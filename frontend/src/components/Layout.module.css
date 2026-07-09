@@ -286,7 +286,8 @@
     bottom: 0;
     left: 0;
     right: 0;
-    height: 60px;
+    height: calc(60px + env(safe-area-inset-bottom, 0px));
+    padding-bottom: env(safe-area-inset-bottom, 0px);
     background: var(--bg-sidebar);
     border-top: 1px solid var(--border);
     z-index: 100;

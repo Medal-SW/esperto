@@ -244,6 +244,50 @@
 }
 
 @media (max-width: 768px) {
+  .title {
+    font-size: 20px;
+  }
+
+  .filters {
+    gap: 4px;
+  }
+
+  .filterBtn {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+
+  .podium {
+    gap: 6px;
+  }
+
+  .podiumBar {
+    width: 56px;
+    font-size: 14px;
+  }
+
+  .podiumName {
+    font-size: 12px;
+  }
+
+  .podiumAvg {
+    font-size: 10px;
+  }
+
+  .table th {
+    padding: 10px 8px;
+    font-size: 10px;
+  }
+
+  .table td {
+    padding: 10px 8px;
+    font-size: 13px;
+  }
+
+  .playerName {
+    font-size: 13px;
+  }
+
   .compareBtnLabel {
     display: none;
   }

@@ -231,12 +231,35 @@
 }
 
 @media (max-width: 768px) {
+  .header {
+    margin-bottom: 24px;
+  }
+
   .greeting {
-    font-size: 22px;
+    font-size: 20px;
+  }
+
+  .date {
+    font-size: 13px;
+  }
+
+  .streak {
+    padding: 6px 12px;
+    font-size: 13px;
   }
 
   .triadGrid,
   .highlightsGrid {
     grid-template-columns: 1fr;
+  }
+
+  .championBanner {
+    padding: 14px 16px;
+    gap: 12px;
+  }
+
+  .reminderBanner {
+    font-size: 13px;
+    padding: 10px 14px;
   }
 }

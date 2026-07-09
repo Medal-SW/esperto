@@ -142,6 +142,10 @@
 }
 
 @media (max-width: 768px) {
+  .title {
+    font-size: 20px;
+  }
+
   .statsGrid {
     grid-template-columns: 1fr;
   }
@@ -158,5 +162,17 @@
   .calendarCell {
     width: 12px;
     height: 12px;
+  }
+
+  .recordHeader {
+    gap: 10px;
+  }
+
+  .recordTitle {
+    font-size: 13px;
+  }
+
+  .recordDesc {
+    font-size: 10px;
   }
 }
