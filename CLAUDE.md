@@ -95,9 +95,9 @@ src/
 
 **State management**: TanStack Query for server state, React Context for auth and toasts. No Redux/Zustand.
 
-**Styling**: CSS Modules (`.module.css` per component/page) with CSS custom properties defined in `global.css`. Dark theme only.
+**Styling**: CSS Modules (`.module.css` per component/page) with CSS custom properties defined in `global.css`. Dark/light theme via CSS custom properties and `data-theme` attribute.
 
-**Routing**: react-router-dom v7. `Layout` component wraps authenticated routes (sidebar nav + topbar with user menu).
+**Routing**: react-router-dom v7. `Layout` component wraps authenticated routes (topbar nav on desktop + bottom tab bar on mobile).
 
 ## Business Rules
 
