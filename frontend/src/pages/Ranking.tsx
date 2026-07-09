@@ -3,7 +3,7 @@ import { useGameRanking, useGeneralRanking } from "../api/hooks";
 import { Avatar } from "../components/Avatar";
 import { Card } from "../components/Card";
 import { CompareModal } from "../components/CompareModal";
-import { Skeleton, SkeletonRow } from "../components/Skeleton";
+import { SkeletonRow } from "../components/Skeleton";
 import { useAuth } from "../context/AuthContext";
 import {
   ALL_GAMES,

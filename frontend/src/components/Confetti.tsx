@@ -19,7 +19,7 @@ function createParticles(count: number): Particle[] {
     id: i,
     x: 50 + (Math.random() - 0.5) * 20,
     y: 30,
-    color: COLORS[Math.floor(Math.random() * COLORS.length)],
+    color: COLORS[Math.floor(Math.random() * COLORS.length)]!,
     rotation: Math.random() * 360,
     scale: 0.5 + Math.random() * 0.8,
     dx: (Math.random() - 0.5) * 12,

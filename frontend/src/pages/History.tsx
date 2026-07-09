@@ -8,7 +8,7 @@ import { useAuth } from "../context/AuthContext";
 import { ALL_GAMES, GAME_META, type GameName, type Score } from "../types";
 import styles from "./History.module.css";
 
-const ICON_MAP: Record<string, JSX.Element> = {
+const ICON_MAP: Record<string, React.ReactNode> = {
   target: (
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
       <circle cx="12" cy="12" r="10" /><circle cx="12" cy="12" r="6" /><circle cx="12" cy="12" r="2" />
@@ -46,8 +46,9 @@ function buildWeeklyAvg(scores: Score[]): { week: string; conexo: number | null;
     weekStart.setDate(d.getDate() - d.getDay());
     const key = weekStart.toISOString().slice(0, 10);
     if (!byWeek[key]) byWeek[key] = {};
-    if (!byWeek[key][s.game]) byWeek[key][s.game] = [];
-    byWeek[key][s.game].push(s.attempts);
+    const weekEntry = byWeek[key]!;
+    if (!weekEntry[s.game]) weekEntry[s.game] = [];
+    weekEntry[s.game]!.push(s.attempts);
   }
 
   return Object.entries(byWeek)
