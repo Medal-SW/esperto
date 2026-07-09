@@ -1,4 +1,7 @@
-.PHONY: dev prod down build logs seed migrate migration typecheck shell-back shell-front clean
+.PHONY: up dev prod down build logs seed migrate migration typecheck shell-back shell-front clean
+
+up:
+	docker compose up -d
 
 dev:
 	docker compose up --build
