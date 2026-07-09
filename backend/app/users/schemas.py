@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class UserResponse(BaseModel):
@@ -26,4 +26,4 @@ class UserResponse(BaseModel):
 
 
 class UpdateProfileRequest(BaseModel):
-    display_name: str | None = None
+    display_name: str | None = Field(None, max_length=50)

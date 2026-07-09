@@ -57,8 +57,6 @@ def update_profile(
     db: Session = Depends(get_db),
 ):
     display_name = body.display_name.strip() if body.display_name else None
-    if display_name is not None and len(display_name) > 50:
-        raise HTTPException(status_code=400, detail="Nickname muito longo. Máximo 50 caracteres.")
     repo = UserRepository(db)
     updated = repo.update_display_name(user, display_name or None)
     return UserResponse.from_user(updated)

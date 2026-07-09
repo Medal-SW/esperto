@@ -77,7 +77,7 @@
 }
 
 .avatarRemoveBtn:hover {
-  color: #ef4444;
+  color: var(--danger);
 }
 
 .field {
