@@ -1,13 +1,13 @@
 .title {
   font-size: 24px;
   font-weight: 800;
-  margin-bottom: 4px;
+  margin-bottom: var(--space-1);
 }
 
 .date {
   font-size: 14px;
   color: var(--text-secondary);
-  margin-bottom: 24px;
+  margin-bottom: var(--space-6);
 }
 
 .gamesList {
@@ -20,13 +20,13 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 16px;
+  margin-bottom: var(--space-4);
 }
 
 .gameName {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--space-2);
   font-size: 16px;
   font-weight: 700;
 }
@@ -67,7 +67,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.12s;
+  transition: all var(--duration-fast);
 }
 
 .stepperBtn:hover:not(:disabled) {
@@ -82,21 +82,32 @@
 .stepperValue {
   width: 64px;
   height: 64px;
-  border-radius: 12px;
+  border-radius: var(--radius-lg);
   background: var(--bg-primary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
   font-size: 28px;
   font-weight: 800;
   border: 2px solid var(--border);
+  text-align: center;
+  outline: none;
+  -moz-appearance: textfield;
+  transition: border-color var(--duration-fast);
+}
+
+.stepperValue:focus {
+  border-color: var(--accent);
+}
+
+.stepperValue::-webkit-outer-spin-button,
+.stepperValue::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 .stepperHint {
   text-align: center;
   font-size: 12px;
   color: var(--text-muted);
-  margin-top: 8px;
+  margin-top: var(--space-2);
 }
 
 .alreadyDone {
@@ -105,27 +116,27 @@
 
 .doneTags {
   display: flex;
-  gap: 8px;
+  gap: var(--space-2);
   flex-wrap: wrap;
 }
 
 .doneTag {
-  padding: 6px 12px;
-  border-radius: 8px;
+  padding: 6px var(--space-3);
+  border-radius: var(--radius-md);
   font-size: 13px;
   font-weight: 600;
 }
 
 .submitBtn {
   width: 100%;
-  padding: 16px;
-  margin-top: 24px;
+  padding: var(--space-4);
+  margin-top: var(--space-6);
   border: none;
-  border-radius: 12px;
+  border-radius: var(--radius-lg);
   font-size: 16px;
   font-weight: 700;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all var(--duration-normal);
 }
 
 .submitBtn:disabled {
@@ -135,7 +146,7 @@
 .allDone {
   text-align: center;
   padding-top: 80px;
-  animation: fadeIn 0.3s ease;
+  animation: fadeIn var(--duration-slow) var(--easing-default);
 }
 
 .allDoneIcon {
@@ -155,7 +166,7 @@
 .allDoneTitle {
   font-size: 22px;
   font-weight: 700;
-  margin-bottom: 8px;
+  margin-bottom: var(--space-2);
 }
 
 .allDoneSub {
@@ -169,20 +180,20 @@
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--text-muted);
-  margin: 28px 0 12px;
+  margin: 28px 0 var(--space-3);
 }
 
 .editRow {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
+  gap: var(--space-3);
 }
 
 .editControls {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--space-2);
 }
 
 .editAttempts {
@@ -199,10 +210,10 @@
   color: var(--text-muted);
   cursor: pointer;
   padding: 5px;
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
   display: flex;
   align-items: center;
-  transition: all 0.15s;
+  transition: all var(--duration-fast);
 }
 
 .editBtn:hover {
@@ -244,9 +255,9 @@
 }
 
 .editSaveBtn {
-  padding: 4px 10px;
+  padding: var(--space-1) 10px;
   border: none;
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
   background: var(--accent);
   color: #fff;
   font-size: 12px;
@@ -260,7 +271,7 @@
   color: var(--text-muted);
   cursor: pointer;
   font-size: 14px;
-  padding: 4px;
+  padding: var(--space-1);
 }
 
 @media (max-width: 768px) {
@@ -269,7 +280,7 @@
   }
 
   .stepper {
-    gap: 16px;
+    gap: var(--space-4);
   }
 
   .stepperBtn {
@@ -291,7 +302,7 @@
 
   .editRow {
     flex-wrap: wrap;
-    gap: 8px;
+    gap: var(--space-2);
   }
 
   .editControls {

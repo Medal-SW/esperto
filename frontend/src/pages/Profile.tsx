@@ -5,6 +5,7 @@ import { useUpdateProfile, useUploadAvatar, useDeleteAvatar } from "../api/hooks
 import { Avatar } from "../components/Avatar";
 import { AvatarCropModal } from "../components/AvatarCropModal";
 import { Card } from "../components/Card";
+import { Camera } from "lucide-react";
 import styles from "./Profile.module.css";
 
 export function ProfilePage() {
@@ -86,10 +87,7 @@ export function ProfilePage() {
           >
             <Avatar username={user.username} avatarUrl={user.avatar_url} size={80} />
             <div className={styles.avatarOverlay}>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z" />
-                <circle cx="12" cy="13" r="4" />
-              </svg>
+              <Camera size={20} color="#fff" />
             </div>
           </button>
           <div className={styles.avatarActions}>

@@ -8,7 +8,7 @@ export const GAME_META: Record<
   GameName,
   { name: string; color: string }
 > = {
-  [GameName.CONEXO]: { name: "Conexo", color: "#e94560" },
+  [GameName.CONEXO]: { name: "Conexo", color: "#a855f7" },
   [GameName.LETROSO]: { name: "Letroso", color: "#22c55e" },
   [GameName.EXPRESSO]: { name: "Expresso", color: "#f59e0b" },
 };

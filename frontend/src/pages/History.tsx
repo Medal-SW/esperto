@@ -6,35 +6,15 @@ import { Card } from "../components/Card";
 import { Skeleton, SkeletonCard } from "../components/Skeleton";
 import { useAuth } from "../context/AuthContext";
 import { ALL_GAMES, GAME_META, type GameName, type Score } from "../types";
+import { Target, Trophy, Crown, Flame, Zap } from "lucide-react";
 import styles from "./History.module.css";
 
 const ICON_MAP: Record<string, React.ReactNode> = {
-  target: (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-      <circle cx="12" cy="12" r="10" /><circle cx="12" cy="12" r="6" /><circle cx="12" cy="12" r="2" />
-    </svg>
-  ),
-  trophy: (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-      <path d="M6 9H4.5a2.5 2.5 0 010-5H6" /><path d="M18 9h1.5a2.5 2.5 0 000-5H18" />
-      <path d="M4 22h16" /><path d="M18 2H6v7a6 6 0 1012 0V2z" />
-    </svg>
-  ),
-  crown: (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M2 4l3 12h14l3-12-5 4-5-4-5 4-5-4z" /><path d="M5 16h14v4H5z" />
-    </svg>
-  ),
-  flame: (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-      <path d="M12 23c-4.97 0-8-3.03-8-7 0-2.5 1.5-5.5 3-7.5.83-1.1 1.5-2.17 2-3.5.5 2 2 3.5 3 4.5 1.5-2 2.5-4.5 2.5-7.5 2 2 4.5 5 5 8.5.5 3.5-.5 5.5-1.5 7-1.5 2.5-3.5 5.5-6 5.5z" />
-    </svg>
-  ),
-  zap: (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
-    </svg>
-  ),
+  target: <Target size={20} />,
+  trophy: <Trophy size={20} />,
+  crown: <Crown size={20} />,
+  flame: <Flame size={20} />,
+  zap: <Zap size={20} />,
 };
 
 function buildWeeklyAvg(scores: Score[]): { week: string; conexo: number | null; letroso: number | null; expresso: number | null }[] {
@@ -96,7 +76,7 @@ function CalendarHeatmap({ scores }: { scores: Score[] }) {
               d.count === 0
                 ? "var(--bg-hover)"
                 : d.count === 1
-                  ? "rgba(233,69,96,0.3)"
+                  ? "rgba(233, 69, 96, 0.3)"
                   : d.count === 2
                     ? "rgba(233,69,96,0.55)"
                     : "var(--accent)",
@@ -194,7 +174,7 @@ export function HistoryPage() {
               style={{
                 background:
                   n === 0 ? "var(--bg-hover)" :
-                  n === 1 ? "rgba(233,69,96,0.3)" :
+                  n === 1 ? "rgba(233, 69, 96, 0.3)" :
                   n === 2 ? "rgba(233,69,96,0.55)" :
                   "var(--accent)",
               }}
@@ -221,7 +201,7 @@ export function HistoryPage() {
                   }}
                 />
                 <Legend wrapperStyle={{ fontSize: 12 }} />
-                <Line type="monotone" dataKey="conexo" name="Conexo" stroke="#e94560" strokeWidth={2} dot={false} connectNulls />
+                <Line type="monotone" dataKey="conexo" name="Conexo" stroke="#a855f7" strokeWidth={2} dot={false} connectNulls />
                 <Line type="monotone" dataKey="letroso" name="Letroso" stroke="#22c55e" strokeWidth={2} dot={false} connectNulls />
                 <Line type="monotone" dataKey="expresso" name="Expresso" stroke="#f59e0b" strokeWidth={2} dot={false} connectNulls />
               </LineChart>

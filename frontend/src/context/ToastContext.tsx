@@ -5,6 +5,7 @@ import {
   useState,
   type ReactNode,
 } from "react";
+import { CheckCircle, XCircle, Info } from "lucide-react";
 
 type ToastType = "success" | "error" | "info";
 
@@ -20,16 +21,16 @@ interface ToastContextValue {
 
 const ToastContext = createContext<ToastContextValue | null>(null);
 
-const ICONS: Record<ToastType, string> = {
-  success: "✓",
-  error: "✕",
-  info: "ℹ",
+const ICONS: Record<ToastType, React.ReactNode> = {
+  success: <CheckCircle size={18} />,
+  error: <XCircle size={18} />,
+  info: <Info size={18} />,
 };
 
 const COLORS: Record<ToastType, { bg: string; border: string; text: string }> = {
-  success: { bg: "rgba(34,197,94,0.1)", border: "rgba(34,197,94,0.25)", text: "#22c55e" },
-  error: { bg: "rgba(233,69,96,0.1)", border: "rgba(233,69,96,0.25)", text: "#e94560" },
-  info: { bg: "rgba(59,130,246,0.1)", border: "rgba(59,130,246,0.25)", text: "#3b82f6" },
+  success: { bg: "rgba(34,197,94,0.1)", border: "rgba(34,197,94,0.25)", text: "var(--success)" },
+  error: { bg: "rgba(233,69,96,0.1)", border: "rgba(233,69,96,0.25)", text: "var(--accent)" },
+  info: { bg: "rgba(59,130,246,0.1)", border: "rgba(59,130,246,0.25)", text: "var(--secondary)" },
 };
 
 export function ToastProvider({ children }: { children: ReactNode }) {
@@ -80,7 +81,7 @@ export function ToastProvider({ children }: { children: ReactNode }) {
                 pointerEvents: "auto",
               }}
             >
-              <span style={{ fontWeight: 700, fontSize: 16 }}>{ICONS[t.type]}</span>
+              {ICONS[t.type]}
               {t.message}
             </div>
           );

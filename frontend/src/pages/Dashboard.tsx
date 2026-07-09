@@ -6,6 +6,7 @@ import { GameDot } from "../components/GameDot";
 import { Skeleton, SkeletonCard } from "../components/Skeleton";
 import { useAuth } from "../context/AuthContext";
 import { ALL_GAMES, GAME_META, type GameName } from "../types";
+import { Flame, Bell, MinusCircle, Users, Check } from "lucide-react";
 import styles from "./Dashboard.module.css";
 
 function formatDate(d: Date) {
@@ -75,9 +76,7 @@ export function DashboardPage() {
         </div>
         {data.streak > 0 && (
           <div className={styles.streak}>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--accent)" stroke="none">
-              <path d="M12 23c-4.97 0-8-3.03-8-7 0-2.5 1.5-5.5 3-7.5.83-1.1 1.5-2.17 2-3.5.5 2 2 3.5 3 4.5 1.5-2 2.5-4.5 2.5-7.5 2 2 4.5 5 5 8.5.5 3.5-.5 5.5-1.5 7-1.5 2.5-3.5 5.5-6 5.5z" />
-            </svg>
+            <Flame size={16} fill="var(--accent)" stroke="none" />
             {data.streak} dias
           </div>
         )}
@@ -85,10 +84,7 @@ export function DashboardPage() {
 
       {completedCount < 3 && data.friends_activity.length > 0 && (
         <div className={styles.reminderBanner}>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="2" strokeLinecap="round">
-            <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9" />
-            <path d="M13.73 21a2 2 0 01-3.46 0" />
-          </svg>
+          <Bell size={18} stroke="var(--accent)" />
           <span>
             {data.friends_activity.slice(0, 2).map((f) => f.username).join(" e ")}
             {data.friends_activity.length > 2 && ` e mais ${data.friends_activity.length - 2}`}
@@ -127,7 +123,7 @@ export function DashboardPage() {
                     color: t.played ? "#fff" : "var(--text-muted)",
                   }}
                 >
-                  {t.played ? "✓" : "—"}
+                  {t.played ? <Check size={18} /> : "—"}
                 </div>
               </div>
             </Card>
@@ -184,10 +180,7 @@ export function DashboardPage() {
                 </div>
               ) : (
                 <div className={styles.emptyState}>
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" strokeWidth="1.5" strokeLinecap="round">
-                    <circle cx="12" cy="12" r="10" />
-                    <line x1="8" y1="12" x2="16" y2="12" />
-                  </svg>
+                  <MinusCircle size={24} stroke="var(--text-muted)" />
                   <p>Nenhum resultado</p>
                 </div>
               )}
@@ -226,12 +219,7 @@ export function DashboardPage() {
           </div>
         ) : (
           <div className={styles.emptyState}>
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
-              <circle cx="9" cy="7" r="4" />
-              <path d="M23 21v-2a4 4 0 00-3-3.87" />
-              <path d="M16 3.13a4 4 0 010 7.75" />
-            </svg>
+            <Users size={32} stroke="var(--text-muted)" />
             <p>Nenhum amigo registrou resultados hoje.</p>
           </div>
         )}

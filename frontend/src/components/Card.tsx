@@ -20,13 +20,13 @@ export function Card({
       onClick={onClick}
       style={{
         background: "var(--bg-card)",
-        borderRadius: 12,
+        borderRadius: "var(--radius-lg)",
         padding: 20,
         border: "1px solid var(--border)",
-        transition: "transform 0.2s, box-shadow 0.2s",
+        transition: "transform var(--duration-normal), box-shadow var(--duration-normal)",
         transform: hov ? "translateY(-2px)" : "none",
         boxShadow: hov
-          ? "0 8px 24px var(--shadow)"
+          ? "var(--shadow-md)"
           : "0 1px 4px var(--shadow)",
         cursor: onClick ? "pointer" : "default",
         ...style,

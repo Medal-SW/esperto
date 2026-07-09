@@ -1,5 +1,6 @@
 import { useCallback, useState } from "react";
 import Cropper, { type Area } from "react-easy-crop";
+import { ZoomIn, ZoomOut } from "lucide-react";
 import styles from "./AvatarCropModal.module.css";
 
 interface Props {
@@ -59,11 +60,7 @@ export function AvatarCropModal({ imageSrc, onConfirm, onCancel }: Props) {
         </div>
 
         <div className={styles.zoomRow}>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" strokeWidth="2">
-            <circle cx="11" cy="11" r="8" />
-            <line x1="21" y1="21" x2="16.65" y2="16.65" />
-            <line x1="8" y1="11" x2="14" y2="11" />
-          </svg>
+          <ZoomOut size={16} stroke="var(--text-muted)" />
           <input
             type="range"
             className={styles.slider}
@@ -73,12 +70,7 @@ export function AvatarCropModal({ imageSrc, onConfirm, onCancel }: Props) {
             value={zoom}
             onChange={(e) => setZoom(Number(e.target.value))}
           />
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" strokeWidth="2">
-            <circle cx="11" cy="11" r="8" />
-            <line x1="21" y1="21" x2="16.65" y2="16.65" />
-            <line x1="8" y1="11" x2="14" y2="11" />
-            <line x1="11" y1="8" x2="11" y2="14" />
-          </svg>
+          <ZoomIn size={16} stroke="var(--text-muted)" />
         </div>
 
         <div className={styles.actions}>

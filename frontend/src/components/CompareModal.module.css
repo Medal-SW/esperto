@@ -6,34 +6,34 @@
   align-items: center;
   justify-content: center;
   z-index: 1000;
-  animation: fadeIn 0.15s ease;
+  animation: fadeIn var(--duration-fast) var(--easing-default);
 }
 
 .modal {
   background: var(--bg-card);
   border: 1px solid var(--border);
-  border-radius: 16px;
+  border-radius: var(--radius-xl);
   width: 440px;
   max-width: 92vw;
   max-height: 85vh;
   overflow-y: auto;
-  padding: 28px 24px;
+  padding: 28px var(--space-6);
   position: relative;
 }
 
 .closeBtn {
   position: absolute;
-  top: 12px;
-  right: 12px;
+  top: var(--space-3);
+  right: var(--space-3);
   background: none;
   border: none;
   color: var(--text-muted);
   cursor: pointer;
   padding: 6px;
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
   display: flex;
   align-items: center;
-  transition: all 0.15s;
+  transition: all var(--duration-fast);
 }
 
 .closeBtn:hover {
@@ -46,14 +46,14 @@
   align-items: center;
   justify-content: center;
   gap: 20px;
-  margin-bottom: 24px;
+  margin-bottom: var(--space-6);
 }
 
 .player {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
+  gap: var(--space-2);
   min-width: 80px;
 }
 
@@ -79,17 +79,17 @@
   text-align: center;
   color: var(--text-muted);
   font-size: 14px;
-  padding: 24px 0;
+  padding: var(--space-6) 0;
 }
 
 .scoreBoard {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 16px;
+  gap: var(--space-4);
   padding: 14px;
   background: var(--bg-primary);
-  border-radius: 10px;
+  border-radius: var(--radius-md);
   margin-bottom: 20px;
 }
 
@@ -111,20 +111,20 @@
 .games {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: var(--space-4);
 }
 
 .gameRow {
   padding: 14px;
   background: var(--bg-primary);
-  border-radius: 10px;
+  border-radius: var(--radius-md);
 }
 
 .gameHeader {
   display: flex;
   align-items: center;
-  gap: 8px;
-  margin-bottom: 12px;
+  gap: var(--space-2);
+  margin-bottom: var(--space-3);
 }
 
 .gameDot {
@@ -179,13 +179,13 @@
 .barFillLeft {
   height: 100%;
   border-radius: 3px 0 0 3px;
-  transition: width 0.4s ease;
+  transition: width var(--duration-slow) var(--easing-default);
 }
 
 .barFillRight {
   height: 100%;
   border-radius: 0 3px 3px 0;
-  transition: width 0.4s ease;
+  transition: width var(--duration-slow) var(--easing-default);
 }
 
 .barLabel {

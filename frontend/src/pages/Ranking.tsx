@@ -13,6 +13,7 @@ import {
   type RankingEntry,
   type RankingPeriod,
 } from "../types";
+import { Flame, Zap, Trophy, Scale } from "lucide-react";
 import styles from "./Ranking.module.css";
 
 const PERIOD_OPTIONS: { id: RankingPeriod; label: string }[] = [
@@ -50,12 +51,7 @@ function RankingEmpty() {
         padding: "32px 0",
         color: "var(--text-muted)",
       }}>
-        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M6 9H4.5a2.5 2.5 0 010-5H6" />
-          <path d="M18 9h1.5a2.5 2.5 0 000-5H18" />
-          <path d="M4 22h16" />
-          <path d="M18 2H6v7a6 6 0 1012 0V2z" />
-        </svg>
+        <Trophy size={36} stroke="var(--text-muted)" strokeWidth={1.5} />
         <p style={{ fontSize: 14 }}>Nenhum resultado neste período.</p>
       </div>
     </Card>
@@ -160,15 +156,11 @@ function GeneralRanking({
                 <th>
                   <div className={styles.streakHeader}>
                     <span className={styles.streakHeaderItem}>
-                      <svg width="10" height="10" viewBox="0 0 24 24" fill="#f59e0b" stroke="none">
-                        <path d="M12 23c-4.97 0-8-3.03-8-7 0-2.5 1.5-5.5 3-7.5.83-1.1 1.5-2.17 2-3.5.5 2 2 3.5 3 4.5 1.5-2 2.5-4.5 2.5-7.5 2 2 4.5 5 5 8.5.5 3.5-.5 5.5-1.5 7-1.5 2.5-3.5 5.5-6 5.5z" />
-                      </svg>
+                      <Flame size={10} fill="var(--game-expresso)" stroke="none" />
                       Ativa
                     </span>
                     <span className={styles.streakHeaderItem}>
-                      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#22c55e" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
-                      </svg>
+                      <Zap size={10} fill="none" stroke="var(--game-letroso)" strokeWidth={2.5} />
                       Quente
                     </span>
                   </div>
@@ -203,16 +195,12 @@ function GeneralRanking({
                   <td>
                     <div className={styles.streakCell}>
                       <span className={styles.tooltip} data-tip="Sequência ativa: dias seguidos jogando">
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="#f59e0b" stroke="none">
-                          <path d="M12 23c-4.97 0-8-3.03-8-7 0-2.5 1.5-5.5 3-7.5.83-1.1 1.5-2.17 2-3.5.5 2 2 3.5 3 4.5 1.5-2 2.5-4.5 2.5-7.5 2 2 4.5 5 5 8.5.5 3.5-.5 5.5-1.5 7-1.5 2.5-3.5 5.5-6 5.5z" />
-                        </svg>
-                        <span style={{ fontSize: 12, color: r.streak > 0 ? "#f59e0b" : "var(--text-muted)" }}>{r.streak}</span>
+                        <Flame size={12} fill="var(--game-expresso)" stroke="none" />
+                        <span style={{ fontSize: 12, color: r.streak > 0 ? "var(--game-expresso)" : "var(--text-muted)" }}>{r.streak}</span>
                       </span>
                       <span className={styles.tooltip} data-tip="Sequência quente: dias seguidos vencendo algum jogo">
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#22c55e" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                          <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
-                        </svg>
-                        <span style={{ fontSize: 12, color: r.win_streak > 0 ? "#22c55e" : "var(--text-muted)" }}>{r.win_streak}</span>
+                        <Zap size={12} fill="none" stroke="var(--game-letroso)" strokeWidth={2.5} />
+                        <span style={{ fontSize: 12, color: r.win_streak > 0 ? "var(--game-letroso)" : "var(--text-muted)" }}>{r.win_streak}</span>
                       </span>
                     </div>
                   </td>
@@ -222,16 +210,7 @@ function GeneralRanking({
                         className={styles.compareBtn}
                         onClick={() => onCompare({ id: r.user_id, username: r.username, avatar_url: r.avatar_url })}
                       >
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                          <path d="M16 3h5v5" />
-                          <path d="M8 3H3v5" />
-                          <path d="M21 3l-7 7" />
-                          <path d="M3 3l7 7" />
-                          <path d="M16 21h5v-5" />
-                          <path d="M8 21H3v-5" />
-                          <path d="M21 21l-7-7" />
-                          <path d="M3 21l7-7" />
-                        </svg>
+                        <Scale size={14} />
                         <span className={styles.compareBtnLabel}>Comparar</span>
                       </button>
                     )}
@@ -306,16 +285,7 @@ function GameRanking({
                       onClick={() => onCompare({ id: r.user_id, username: r.username, avatar_url: r.avatar_url })}
                       title={`Comparar com ${r.username}`}
                     >
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M16 3h5v5" />
-                        <path d="M8 3H3v5" />
-                        <path d="M21 3l-7 7" />
-                        <path d="M3 3l7 7" />
-                        <path d="M16 21h5v-5" />
-                        <path d="M8 21H3v-5" />
-                        <path d="M21 21l-7-7" />
-                        <path d="M3 21l7-7" />
-                      </svg>
+                      <Scale size={16} />
                     </button>
                   )}
                 </td>

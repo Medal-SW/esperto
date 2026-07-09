@@ -1,7 +1,7 @@
 .title {
   font-size: 24px;
   font-weight: 800;
-  margin-bottom: 24px;
+  margin-bottom: var(--space-6);
 }
 
 .sectionTitle {
@@ -10,7 +10,7 @@
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--text-muted);
-  margin-bottom: 12px;
+  margin-bottom: var(--space-3);
   margin-top: 28px;
 }
 
@@ -21,7 +21,7 @@
 .statsGrid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 12px;
+  gap: var(--space-3);
 }
 
 .statGameName {
@@ -66,13 +66,13 @@
   width: 14px;
   height: 14px;
   border-radius: 3px;
-  transition: background 0.2s;
+  transition: background var(--duration-normal);
 }
 
 .calendarLegend {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: var(--space-1);
   justify-content: flex-end;
   margin-top: 10px;
 }
@@ -80,26 +80,26 @@
 .calendarLegendLabel {
   font-size: 10px;
   color: var(--text-muted);
-  margin: 0 4px;
+  margin: 0 var(--space-1);
 }
 
 .recordsGrid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 12px;
+  gap: var(--space-3);
 }
 
 .recordHeader {
   display: flex;
   align-items: flex-start;
-  gap: 12px;
-  margin-bottom: 12px;
+  gap: var(--space-3);
+  margin-bottom: var(--space-3);
 }
 
 .recordIcon {
   width: 36px;
   height: 36px;
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   background: var(--bg-primary);
   display: flex;
   align-items: center;
@@ -130,7 +130,7 @@
 .recordPlayer {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--space-2);
   font-size: 13px;
   font-weight: 500;
   color: var(--text-secondary);

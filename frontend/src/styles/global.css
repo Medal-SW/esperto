@@ -8,45 +8,100 @@
 
 :root,
 [data-theme="dark"] {
+  /* Brand */
+  --accent: #e94560;
+  --accent-soft: rgba(233, 69, 96, 0.12);
+  --secondary: #3b82f6;
+  --secondary-soft: rgba(59, 130, 246, 0.12);
+
+  /* Semantic */
+  --success: #22c55e;
+  --danger: #ef4444;
+
+  /* Game colors */
+  --game-conexo: #a855f7;
+  --game-letroso: #22c55e;
+  --game-expresso: #f59e0b;
+
+  /* Surfaces */
   --bg-primary: #0f1923;
   --bg-card: #1a2332;
   --bg-hover: #243447;
   --bg-chrome: #141e2b;
   --border: #2a3a4d;
+
+  /* Text */
   --text-primary: #e8edf2;
   --text-secondary: #8b99a8;
   --text-muted: #5a6a7a;
-  --accent: #e94560;
-  --accent-soft: rgba(233, 69, 96, 0.12);
+
+  /* Legacy (keep for backward compat until components migrate) */
   --shadow: rgba(0, 0, 0, 0.25);
-  --success: #22c55e;
-  --danger: #ef4444;
-  --game-conexo: #e94560;
-  --game-letroso: #22c55e;
-  --game-expresso: #f59e0b;
+
+  /* Spacing (base-4) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  /* Border radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.15);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.25);
+  --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.35);
+
+  /* Animation */
+  --duration-fast: 100ms;
+  --duration-normal: 200ms;
+  --duration-slow: 350ms;
+  --easing-default: cubic-bezier(0.4, 0, 0.2, 1);
+  --easing-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 [data-theme="light"] {
+  /* Brand */
+  --accent: #e94560;
+  --accent-soft: rgba(233, 69, 96, 0.08);
+  --secondary: #3b82f6;
+  --secondary-soft: rgba(59, 130, 246, 0.08);
+
+  /* Semantic */
+  --success: #16a34a;
+  --danger: #dc2626;
+
+  /* Game colors */
+  --game-conexo: #a855f7;
+  --game-letroso: #22c55e;
+  --game-expresso: #f59e0b;
+
+  /* Surfaces */
   --bg-primary: #f5f6f8;
   --bg-card: #ffffff;
   --bg-hover: #ebedf0;
   --bg-chrome: #ffffff;
   --border: #dce0e5;
+
+  /* Text */
   --text-primary: #1a1a2e;
   --text-secondary: #5a6070;
   --text-muted: #8b909a;
-  --accent: #e94560;
-  --accent-soft: rgba(233, 69, 96, 0.08);
+
+  /* Legacy */
   --shadow: rgba(0, 0, 0, 0.08);
-  --success: #16a34a;
-  --danger: #dc2626;
-  --game-conexo: #e94560;
-  --game-letroso: #16a34a;
-  --game-expresso: #d97706;
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   background: var(--bg-primary);
   color: var(--text-primary);
   line-height: 1.5;
@@ -62,6 +117,15 @@ button,
 select,
 textarea {
   font-family: inherit;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 @keyframes fadeIn {

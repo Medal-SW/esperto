@@ -1,6 +1,7 @@
 import { useCompare } from "../api/hooks";
 import { Avatar } from "./Avatar";
 import { GAME_META, type GameName } from "../types";
+import { X } from "lucide-react";
 import styles from "./CompareModal.module.css";
 
 interface Props {
@@ -31,10 +32,7 @@ export function CompareModal({
     <div className={styles.overlay} onClick={onClose}>
       <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
         <button className={styles.closeBtn} onClick={onClose}>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-            <line x1="18" y1="6" x2="6" y2="18" />
-            <line x1="6" y1="6" x2="18" y2="18" />
-          </svg>
+          <X size={20} />
         </button>
 
         <div className={styles.header}>

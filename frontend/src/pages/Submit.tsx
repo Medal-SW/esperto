@@ -6,6 +6,7 @@ import { GameDot } from "../components/GameDot";
 import { Skeleton, SkeletonCard } from "../components/Skeleton";
 import { useToast } from "../context/ToastContext";
 import { ALL_GAMES, GAME_META, GameName } from "../types";
+import { Check, SquarePen, Trash2 } from "lucide-react";
 import styles from "./Submit.module.css";
 
 export function SubmitPage() {
@@ -60,9 +61,7 @@ export function SubmitPage() {
         <Confetti active={showConfetti} />
         <div className={styles.allDone}>
           <div className={styles.allDoneIcon}>
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <polyline points="20 6 9 17 4 12" />
-            </svg>
+            <Check size={28} stroke="var(--accent)" strokeWidth={2.5} />
           </div>
           <h2 className={styles.allDoneTitle}>Tudo registrado!</h2>
           <p className={styles.allDoneSub}>Você já completou a tríade de hoje.</p>
@@ -132,10 +131,7 @@ export function SubmitPage() {
                         }}
                         title="Editar"
                       >
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                          <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7" />
-                          <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" />
-                        </svg>
+                        <SquarePen size={14} />
                       </button>
                       <button
                         className={styles.deleteBtn}
@@ -149,10 +145,7 @@ export function SubmitPage() {
                         }}
                         title="Remover"
                       >
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                          <polyline points="3 6 5 6 21 6" />
-                          <path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2" />
-                        </svg>
+                        <Trash2 size={14} />
                       </button>
                     </div>
                   )}
@@ -165,11 +158,11 @@ export function SubmitPage() {
     );
   }
 
-  const hasGamesToSubmit = pendingGames.some((g) => !skipped[g] && attempts[g]);
+  const hasGamesToSubmit = pendingGames.some((g) => !skipped[g] && (attempts[g] ?? 0) >= 1);
 
   const handleSubmit = async () => {
     const scores = pendingGames
-      .filter((g) => !skipped[g] && attempts[g])
+      .filter((g) => !skipped[g] && (attempts[g] ?? 0) >= 1)
       .map((g) => ({ game: g, attempts: attempts[g]! }));
 
     if (scores.length === 0) return;
@@ -229,9 +222,29 @@ export function SubmitPage() {
                     >
                       −
                     </button>
-                    <div className={styles.stepperValue} style={{ color: meta.color }}>
-                      {val}
-                    </div>
+                    <input
+                      type="number"
+                      className={styles.stepperValue}
+                      style={{ color: meta.color }}
+                      value={val || ""}
+                      min={1}
+                      onChange={(e) => {
+                        const raw = e.target.value;
+                        if (raw === "") {
+                          setAttempts((p) => ({ ...p, [game]: 0 }));
+                          return;
+                        }
+                        const n = parseInt(raw, 10);
+                        if (!isNaN(n) && n >= 0) {
+                          setAttempts((p) => ({ ...p, [game]: n }));
+                        }
+                      }}
+                      onBlur={() => {
+                        if (!val || val < 1) {
+                          setAttempts((p) => ({ ...p, [game]: 1 }));
+                        }
+                      }}
+                    />
                     <button
                       className={styles.stepperBtn}
                       onClick={() => setAttempts((p) => ({ ...p, [game]: val + 1 }))}
@@ -240,7 +253,7 @@ export function SubmitPage() {
                     </button>
                   </div>
                   <p className={styles.stepperHint}>
-                    {val === 1 ? "1 tentativa" : `${val} tentativas`}
+                    {!val ? " " : val === 1 ? "1 tentativa" : `${val} tentativas`}
                   </p>
                 </>
               )}
