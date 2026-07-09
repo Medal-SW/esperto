@@ -11,7 +11,7 @@ def today_manaus() -> date:
 
 
 class Settings(BaseSettings):
-    database_url: str = "postgresql://ranking:ranking123@db:5432/ranking_jogos"
+    database_url: str = "postgresql://ranking:ranking123@db:5432/esperto"
     jwt_secret: str = "dev-secret-change-me"
     jwt_algorithm: str = "HS256"
     jwt_expire_minutes: int = 60 * 24 * 7

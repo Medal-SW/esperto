@@ -37,8 +37,8 @@ export function LoginPage() {
     <div className={styles.wrapper}>
       <div className={styles.card}>
         <div className={styles.brand}>
-          <div className={styles.brandIcon}>R</div>
-          <span className={styles.brandText}>Ranking Jogos</span>
+          <span className={styles.brandText}>Esperto</span>
+          <span className={styles.brandSub}>Ranking de jogos diários</span>
         </div>
 
         <div className={styles.tabs}>

@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Game ranking platform for a friend group that plays 3 daily word games: **Conexo**, **Letroso**, **Expresso**. Users register how many attempts they needed to solve each game daily. The system determines winners, daily champions, and maintains leaderboards.
+**Esperto** — Game ranking platform for a friend group that plays 3 daily word games: **Conexo**, **Letroso**, **Expresso**. Users register how many attempts they needed to solve each game daily. The system determines winners, daily champions, and maintains leaderboards.
 
 ## Commands
 

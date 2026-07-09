@@ -1,4 +1,4 @@
-const CACHE_NAME = "ranking-jogos-v1";
+const CACHE_NAME = "esperto-v1";
 const STATIC_ASSETS = ["/", "/dashboard", "/submit", "/ranking", "/history"];
 
 self.addEventListener("install", (event) => {

@@ -4,13 +4,13 @@ services:
     environment:
       POSTGRES_USER: ${POSTGRES_USER:-ranking}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-ranking123}
-      POSTGRES_DB: ${POSTGRES_DB:-ranking_jogos}
+      POSTGRES_DB: ${POSTGRES_DB:-esperto}
     ports:
       - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-ranking} -d ${POSTGRES_DB:-ranking_jogos}"]
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-ranking} -d ${POSTGRES_DB:-esperto}"]
       interval: 5s
       timeout: 3s
       retries: 5
@@ -20,7 +20,7 @@ services:
       context: ./backend
       target: dev
     environment:
-      DATABASE_URL: postgresql://${POSTGRES_USER:-ranking}:${POSTGRES_PASSWORD:-ranking123}@db:5432/${POSTGRES_DB:-ranking_jogos}
+      DATABASE_URL: postgresql://${POSTGRES_USER:-ranking}:${POSTGRES_PASSWORD:-ranking123}@db:5432/${POSTGRES_DB:-esperto}
       JWT_SECRET: ${JWT_SECRET:-dev-secret-change-me}
     ports:
       - "8000:8000"

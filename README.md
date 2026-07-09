@@ -1,4 +1,4 @@
-# Ranking Jogos
+# Esperto
 
 Plataforma de ranking diário para um grupo de amigos que joga 3 jogos de palavras: **Conexo**, **Letroso** e **Expresso**.
 

@@ -12,9 +12,9 @@ from app.ranking.router import router as ranking_router
 from app.scores.router import router as scores_router
 
 app = FastAPI(
-    title="Ranking Jogos",
+    title="Esperto",
     version="0.1.0",
-    description="Plataforma de ranking diário — Conexo, Letroso, Expresso",
+    description="Esperto — Ranking de jogos diários",
 )
 
 
