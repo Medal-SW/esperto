@@ -1,69 +1,48 @@
 .wrapper {
   display: flex;
+  flex-direction: column;
   min-height: 100vh;
 }
 
-.sidebar {
-  width: 220px;
-  background: var(--bg-sidebar);
-  border-right: 1px solid var(--border);
+.topbar {
   display: flex;
-  flex-direction: column;
-  padding: 24px 0;
-  position: fixed;
+  align-items: center;
+  padding: 0 24px;
+  height: 56px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-sidebar);
+  position: sticky;
   top: 0;
-  left: 0;
-  bottom: 0;
-  z-index: 200;
-  transition: transform 0.25s ease;
+  z-index: 100;
+  gap: 8px;
 }
 
 .brand {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 0 20px;
-  margin-bottom: 32px;
-}
-
-.brandIcon {
-  width: 34px;
-  height: 34px;
-  border-radius: 8px;
-  background: var(--accent);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 800;
-  color: #fff;
+  color: var(--accent);
+  margin-right: 8px;
+  flex-shrink: 0;
 }
 
-.brandText {
-  font-size: 18px;
-  font-weight: 700;
-  color: var(--text-primary);
-}
-
-.nav {
+.desktopNav {
   display: flex;
-  flex-direction: column;
-  gap: 4px;
-  padding: 0 12px;
-  flex: 1;
+  align-items: center;
+  gap: 2px;
 }
 
 .navItem {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 10px 12px;
+  gap: 6px;
+  padding: 6px 12px;
   border-radius: 8px;
   text-decoration: none;
   color: var(--text-secondary);
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 500;
   transition: all 0.15s;
+  white-space: nowrap;
 }
 
 .navItem:hover {
@@ -78,50 +57,15 @@
 }
 
 .navIcon {
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   flex-shrink: 0;
-}
-
-.backdrop {
-  display: none;
-}
-
-.hamburger {
-  display: none;
-  background: none;
-  border: none;
-  color: var(--text-secondary);
-  cursor: pointer;
-  padding: 6px;
-  border-radius: 6px;
-  align-items: center;
-  justify-content: center;
-}
-
-.hamburger:hover {
-  background: var(--bg-hover);
-  color: var(--text-primary);
-}
-
-.mainArea {
-  flex: 1;
-  margin-left: 220px;
   display: flex;
-  flex-direction: column;
-  min-height: 100vh;
 }
 
-.topbar {
-  display: flex;
-  align-items: center;
-  padding: 12px 32px;
-  border-bottom: 1px solid var(--border);
-  background: var(--bg-sidebar);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  gap: 12px;
+.navIcon svg {
+  width: 100%;
+  height: 100%;
 }
 
 .userMenu {
@@ -221,7 +165,7 @@
   margin: 12px 0;
 }
 
-.dropdownLogout {
+.dropdownAction {
   width: 100%;
   display: flex;
   align-items: center;
@@ -237,7 +181,7 @@
   transition: all 0.15s;
 }
 
-.dropdownLogout:hover {
+.dropdownAction:hover {
   background: var(--bg-hover);
   color: var(--accent);
 }
@@ -298,7 +242,13 @@
   flex: 1;
   padding: 32px;
   max-width: 960px;
+  width: 100%;
+  margin: 0 auto;
   animation: fadeIn 0.3s ease;
+}
+
+.bottomNav {
+  display: none;
 }
 
 @keyframes dropIn {
@@ -313,40 +263,71 @@
 }
 
 @media (max-width: 768px) {
-  .sidebar {
-    transform: translateX(-100%);
-  }
-
-  .sidebarOpen {
-    transform: translateX(0);
-  }
-
-  .backdrop {
-    display: block;
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 150;
-    animation: fadeIn 0.2s ease;
-  }
-
-  .hamburger {
-    display: flex;
-  }
-
-  .mainArea {
-    margin-left: 0;
-  }
-
   .topbar {
-    padding: 12px 16px;
+    padding: 0 16px;
   }
 
-  .main {
-    padding: 20px 16px;
+  .desktopNav {
+    display: none;
   }
 
   .userMenuName {
     display: none;
+  }
+
+  .main {
+    padding: 20px 16px;
+    padding-bottom: 80px;
+  }
+
+  .bottomNav {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: var(--bg-sidebar);
+    border-top: 1px solid var(--border);
+    z-index: 100;
+  }
+
+  .bottomNavItem {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    text-decoration: none;
+    color: var(--text-muted);
+    font-size: 10px;
+    font-weight: 500;
+    transition: color 0.15s;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .bottomNavItem:hover {
+    color: var(--text-secondary);
+  }
+
+  .bottomNavItemActive {
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  .bottomNavIcon {
+    width: 22px;
+    height: 22px;
+    display: flex;
+  }
+
+  .bottomNavIcon svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .bottomNavLabel {
+    line-height: 1;
   }
 }
