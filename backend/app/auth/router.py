@@ -10,7 +10,7 @@ from app.auth.service import create_access_token, hash_password, verify_password
 from app.database import get_db
 from app.users.model import User
 from app.users.repository import UserRepository
-from app.users.schemas import UserResponse
+from app.users.schemas import UpdateProfileRequest, UserResponse
 
 UPLOAD_DIR = Path("/app/uploads/avatars")
 ALLOWED_TYPES = {"image/jpeg", "image/png", "image/webp", "image/gif"}
@@ -48,6 +48,20 @@ def login(body: LoginRequest, db: Session = Depends(get_db)):
 @router.get("/me", response_model=UserResponse)
 def me(user: User = Depends(get_current_user)):
     return UserResponse.from_user(user)
+
+
+@router.patch("/profile", response_model=UserResponse)
+def update_profile(
+    body: UpdateProfileRequest,
+    user: User = Depends(get_current_user),
+    db: Session = Depends(get_db),
+):
+    display_name = body.display_name.strip() if body.display_name else None
+    if display_name is not None and len(display_name) > 50:
+        raise HTTPException(status_code=400, detail="Nickname muito longo. Máximo 50 caracteres.")
+    repo = UserRepository(db)
+    updated = repo.update_display_name(user, display_name or None)
+    return UserResponse.from_user(updated)
 
 
 @router.post("/avatar", response_model=UserResponse)

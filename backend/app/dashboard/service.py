@@ -50,7 +50,7 @@ class DashboardService:
         friends_activity = [
             FriendActivity(
                 user_id=uid,
-                username=users[uid].username,
+                username=users[uid].visible_name,
                 avatar_url=users[uid].avatar_url,
                 games_played=len(games),
                 games=[GameName(g) for g in games],

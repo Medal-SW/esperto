@@ -3,6 +3,7 @@ import { Layout } from "./components/Layout";
 import { DashboardPage } from "./pages/Dashboard";
 import { HistoryPage } from "./pages/History";
 import { LoginPage } from "./pages/Login";
+import { ProfilePage } from "./pages/Profile";
 import { RankingPage } from "./pages/Ranking";
 import { SubmitPage } from "./pages/Submit";
 
@@ -15,6 +16,7 @@ export function App() {
         <Route path="/submit" element={<SubmitPage />} />
         <Route path="/ranking" element={<RankingPage />} />
         <Route path="/history" element={<HistoryPage />} />
+        <Route path="/profile" element={<ProfilePage />} />
       </Route>
       <Route path="*" element={<Navigate to="/dashboard" replace />} />
     </Routes>

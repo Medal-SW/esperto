@@ -18,6 +18,7 @@ export const ALL_GAMES = [GameName.CONEXO, GameName.LETROSO, GameName.EXPRESSO];
 export interface User {
   id: number;
   username: string;
+  display_name: string | null;
   avatar_url: string | null;
   is_admin: boolean;
   created_at: string;

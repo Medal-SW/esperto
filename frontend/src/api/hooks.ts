@@ -121,6 +121,19 @@ export function useGameRanking(game: GameName, period: RankingPeriod) {
 }
 
 
+export function useUpdateProfile() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (body: { display_name: string | null }) =>
+      api.patch<User>("/auth/profile", body).then((r) => r.data),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ["me"] });
+      qc.invalidateQueries({ queryKey: ["dashboard"] });
+      qc.invalidateQueries({ queryKey: ["ranking"] });
+    },
+  });
+}
+
 export function useUploadAvatar() {
   const qc = useQueryClient();
   return useMutation({

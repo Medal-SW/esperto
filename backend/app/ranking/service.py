@@ -163,7 +163,7 @@ class RankingService:
             entries.append(RankingEntry(
                 position=0,
                 user_id=uid,
-                username=users[uid].username,
+                username=users[uid].visible_name,
                 avatar_url=users[uid].avatar_url,
                 game_victories=user_total_victories[uid],
                 daily_championships=user_championships[uid],
@@ -212,7 +212,7 @@ class RankingService:
             entries.append(GameRankingEntry(
                 position=0,
                 user_id=uid,
-                username=users[uid].username,
+                username=users[uid].visible_name,
                 avatar_url=users[uid].avatar_url,
                 victories=user_victories[uid],
                 avg_attempts=round(user_att[uid] / total, 2) if total else 0,
@@ -241,7 +241,7 @@ class RankingService:
         return [
             DailyChampionResponse(
                 user_id=uid,
-                username=users[uid].username,
+                username=users[uid].visible_name,
                 avatar_url=users[uid].avatar_url,
                 victories=victories.get((uid, today), 0),
                 total_attempts=attempts.get((uid, today), 0),
@@ -265,7 +265,7 @@ class RankingService:
                 highlights.append(TodayHighlight(
                     game=game,
                     user_id=best.user_id,
-                    username=u.username if u else None,
+                    username=u.visible_name if u else None,
                     avatar_url=u.avatar_url if u else None,
                     attempts=best.attempts,
                 ))
@@ -349,9 +349,9 @@ class RankingService:
 
         return CompareResponse(
             player1_id=p1_id,
-            player1_username=u1.username,
+            player1_username=u1.visible_name,
             player2_id=p2_id,
-            player2_username=u2.username,
+            player2_username=u2.visible_name,
             games=results,
         )
 
@@ -375,7 +375,7 @@ class RankingService:
                     description=f"Menor tentativa de todos os tempos em {game.value.capitalize()}",
                     icon="target",
                     user_id=u.id,
-                    username=u.username,
+                    username=u.visible_name,
                     avatar_url=u.avatar_url,
                     value=f"{best.attempts} tent. ({best.played_date.strftime('%d/%m')})",
                     game=game,
@@ -394,7 +394,7 @@ class RankingService:
                     description="Maior número total de vitórias em jogos individuais",
                     icon="trophy",
                     user_id=u.id,
-                    username=u.username,
+                    username=u.visible_name,
                     avatar_url=u.avatar_url,
                     value=f"{user_total_vic[top_uid]} vitórias",
                 ))
@@ -413,7 +413,7 @@ class RankingService:
                     description="Maior número de títulos diários",
                     icon="crown",
                     user_id=u.id,
-                    username=u.username,
+                    username=u.visible_name,
                     avatar_url=u.avatar_url,
                     value=f"{user_champ[top_uid]} títulos",
                 ))
@@ -431,7 +431,7 @@ class RankingService:
                     description="Maior sequência de dias consecutivos jogando",
                     icon="flame",
                     user_id=u.id,
-                    username=u.username,
+                    username=u.visible_name,
                     avatar_url=u.avatar_url,
                     value=f"{play_streaks[best_uid]} dias",
                 ))
@@ -445,7 +445,7 @@ class RankingService:
                     description="Maior sequência de dias consecutivos vencendo",
                     icon="zap",
                     user_id=u.id,
-                    username=u.username,
+                    username=u.visible_name,
                     avatar_url=u.avatar_url,
                     value=f"{win_streaks[best_uid]} dias",
                 ))

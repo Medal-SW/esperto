@@ -11,6 +11,7 @@ class User(Base):
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
     username: Mapped[str] = mapped_column(String(50), unique=True, nullable=False, index=True)
+    display_name: Mapped[str | None] = mapped_column(String(50), nullable=True)
     password_hash: Mapped[str] = mapped_column(String(255), nullable=False)
     is_admin: Mapped[bool] = mapped_column(Boolean, default=False, nullable=False)
     avatar_filename: Mapped[str | None] = mapped_column(String(255), nullable=True)
@@ -19,6 +20,10 @@ class User(Base):
     scores: Mapped[list["Score"]] = relationship(  # noqa: F821
         back_populates="user", cascade="all, delete-orphan",
     )
+
+    @property
+    def visible_name(self) -> str:
+        return self.display_name or self.username
 
     @property
     def avatar_url(self) -> str | None:
