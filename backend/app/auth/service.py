@@ -25,8 +25,32 @@ def create_access_token(user_id: int) -> str:
 def decode_access_token(token: str) -> int | None:
     try:
         payload = jwt.decode(
-            token, settings.jwt_secret, algorithms=[settings.jwt_algorithm],
+            token,
+            settings.jwt_secret,
+            algorithms=[settings.jwt_algorithm],
         )
         return int(payload["sub"])
     except (JWTError, ValueError, KeyError):
+        return None
+
+
+def create_reset_token(email: str) -> str:
+    expire = datetime.now(timezone.utc) + timedelta(minutes=30)
+    payload = {"sub": email, "exp": expire, "type": "reset"}
+    return jwt.encode(payload, settings.jwt_secret, algorithm=settings.jwt_algorithm)
+
+
+def decode_reset_token(token: str) -> str | None:
+    try:
+        payload = jwt.decode(
+            token,
+            settings.jwt_secret,
+            algorithms=[settings.jwt_algorithm],
+        )
+
+        if payload.get("type") != "reset":
+            return None
+
+        return payload["sub"]
+    except (JWTError, KeyError):
         return None

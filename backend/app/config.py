@@ -1,7 +1,7 @@
 from datetime import date, datetime
 from zoneinfo import ZoneInfo
 
-from pydantic_settings import BaseSettings
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
 MANAUS_TZ = ZoneInfo("America/Manaus")
 
@@ -16,7 +16,17 @@ class Settings(BaseSettings):
     jwt_algorithm: str = "HS256"
     jwt_expire_minutes: int = 60 * 24 * 7
 
-    model_config = {"env_file": ".env"}
+    mail_username: str = "seu_email@gmail.com"
+    mail_password: str = "sua_senha_de_app"
+    mail_from: str = "seu_email@gmail.com"
+    mail_port: int = 587
+    mail_server: str = "smtp.gmail.com"
+    mail_starttls: bool = True
+    mail_ssl_tls: bool = False
+
+    frontend_url: str = "url-do-seu-frontend"
+
+    model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8")
 
 
 settings = Settings()

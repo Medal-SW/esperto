@@ -1,8 +1,9 @@
-from pydantic import BaseModel, field_validator
+from pydantic import BaseModel, EmailStr, field_validator
 
 
 class SignupRequest(BaseModel):
     username: str
+    email: EmailStr
     password: str
 
     @field_validator("username")
@@ -22,10 +23,26 @@ class SignupRequest(BaseModel):
 
 
 class LoginRequest(BaseModel):
-    username: str
+    login: str
     password: str
 
 
 class TokenResponse(BaseModel):
     access_token: str
     token_type: str = "bearer"
+
+
+class ForgotPasswordRequest(BaseModel):
+    email: EmailStr
+
+
+class ResetPasswordRequest(BaseModel):
+    token: str
+    new_password: str
+
+    @field_validator("new_password")
+    @classmethod
+    def password_not_empty(cls, v: str) -> str:
+        if len(v) < 4:
+            raise ValueError("senha deve ter pelo menos 4 caracteres")
+        return v
