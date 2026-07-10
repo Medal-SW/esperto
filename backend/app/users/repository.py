@@ -1,3 +1,4 @@
+from sqlalchemy import or_
 from sqlalchemy.orm import Session
 
 from app.users.model import User
@@ -13,12 +14,33 @@ class UserRepository:
     def get_by_username(self, username: str) -> User | None:
         return self.db.query(User).filter(User.username == username).first()
 
+    def get_by_email(self, email: str) -> User | None:
+        return self.db.query(User).filter(User.email == email).first()
+
+    def get_by_login(self, login: str):
+        return (
+            self.db.query(User)
+            .filter(
+                or_(
+                    User.username == login,
+                    User.email == login,
+                )
+            )
+            .first()
+        )
+
     def get_all(self) -> list[User]:
         return self.db.query(User).order_by(User.username).all()
 
-    def create(self, username: str, password_hash: str) -> User:
-        user = User(username=username, password_hash=password_hash)
+    def create(self, username: str, email: str, password_hash: str) -> User:
+        user = User(username=username, email=email, password_hash=password_hash)
         self.db.add(user)
+        self.db.commit()
+        self.db.refresh(user)
+        return user
+
+    def update_password(self, user: User, password_hash: str) -> User:
+        user.password_hash = password_hash
         self.db.commit()
         self.db.refresh(user)
         return user

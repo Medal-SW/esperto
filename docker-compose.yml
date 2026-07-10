@@ -10,7 +10,11 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-esperto} -d ${POSTGRES_DB:-esperto}"]
+      test:
+        [
+          "CMD-SHELL",
+          "pg_isready -U ${POSTGRES_USER:-esperto} -d ${POSTGRES_DB:-esperto}",
+        ]
       interval: 5s
       timeout: 3s
       retries: 5
@@ -19,6 +23,8 @@ services:
     build:
       context: ./backend
       target: dev
+    env_file:
+      - .env
     environment:
       DATABASE_URL: postgresql://${POSTGRES_USER:-esperto}:${POSTGRES_PASSWORD:-esperto123}@db:5432/${POSTGRES_DB:-esperto}
       JWT_SECRET: ${JWT_SECRET:-dev-secret-change-me}
