@@ -2,6 +2,8 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+@design.md
+
 ## Project Overview
 
 **Esperto** — Game ranking platform for a friend group that plays 3 daily word games: **Conexo**, **Letroso**, **Expresso**. Users register how many attempts they needed to solve each game daily. The system determines winners, daily champions, and maintains leaderboards.
@@ -59,6 +61,7 @@ app/
 ├── config.py            # Settings (env-based), MANAUS_TZ, today_manaus()
 ├── database.py          # SQLAlchemy engine, SessionLocal, Base, get_db()
 ├── enums.py             # GameName enum (conexo, letroso, expresso)
+├── exceptions.py        # Domain exceptions (NotFoundError, ForbiddenError)
 ├── models.py            # Re-exports User and Score for Alembic discovery
 ├── auth/                # signup, login, JWT, avatar upload/delete
 │   ├── dependencies.py  # get_current_user, get_admin_user (Depends)
@@ -79,16 +82,17 @@ app/
 
 ```
 src/
-├── main.tsx             # React root: QueryClient, BrowserRouter, ToastProvider, AuthProvider
-├── App.tsx              # Routes: /login, /dashboard, /submit, /ranking, /history
+├── main.tsx             # React root: QueryClient, BrowserRouter, ThemeProvider, ToastProvider, AuthProvider
+├── App.tsx              # Routes: /login, /dashboard, /submit, /ranking, /history, /profile
 ├── api/
 │   ├── client.ts        # Axios instance with JWT interceptor, auto-redirect on 401
 │   └── hooks.ts         # TanStack Query hooks (all API calls go through here)
 ├── context/
 │   ├── AuthContext.tsx   # Auth state, login/signup/logout/refreshUser
+│   ├── ThemeContext.tsx  # Dark/light theme toggle (data-theme attribute)
 │   └── ToastContext.tsx  # Global toast notifications
-├── components/          # Avatar, AvatarCropModal, Card, CompareModal, GameDot, Layout, Skeleton
-├── pages/               # Dashboard, Submit, Ranking, History, Login (each with .module.css)
+├── components/          # Avatar, AvatarCropModal, Card, CompareModal, Confetti, ErrorBoundary, GameDot, Layout, Skeleton
+├── pages/               # Dashboard, Submit, Ranking, History, Login, Profile (each with .module.css)
 ├── types/index.ts       # All TypeScript interfaces and enums
 └── styles/global.css    # CSS variables (dark theme), reset
 ```

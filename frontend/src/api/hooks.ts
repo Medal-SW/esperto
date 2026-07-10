@@ -7,6 +7,9 @@ import type {
   AttemptsDistribution,
   GameName,
   GameRankingEntry,
+  LetterFeedback,
+  LetrosoGameState,
+  LetrosoStatus,
   RankingEntry,
   RankingPeriod,
   RecordsResponse,
@@ -205,5 +208,42 @@ export function useCalendar(userId: number) {
           params: { user_id: userId },
         })
         .then((r) => r.data),
+  });
+}
+
+
+export function useLetrosoGame() {
+  return useQuery({
+    queryKey: ["letroso", "today"],
+    queryFn: () =>
+      api.get<LetrosoGameState>("/letroso/today").then((r) => r.data),
+  });
+}
+
+export function useSubmitGuess() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (guess: string) =>
+      api
+        .post<{
+          guess: string;
+          feedback: LetterFeedback[];
+          solved: boolean;
+          game_state: LetrosoGameState;
+        }>("/letroso/guess", { guess })
+        .then((r) => r.data),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ["letroso"] });
+      qc.invalidateQueries({ queryKey: ["scores"] });
+      qc.invalidateQueries({ queryKey: ["dashboard"] });
+    },
+  });
+}
+
+export function useLetrosoStatus() {
+  return useQuery({
+    queryKey: ["letroso", "status"],
+    queryFn: () =>
+      api.get<LetrosoStatus>("/letroso/status").then((r) => r.data),
   });
 }
