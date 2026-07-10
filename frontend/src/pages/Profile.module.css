@@ -120,6 +120,22 @@
   color: var(--text-muted);
 }
 
+.googleField {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.googleLinked {
+  font-size: 14px;
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.googleBtnWrap {
+  margin-top: var(--space-2);
+}
+
 .saveBtn {
   width: 100%;
   padding: var(--space-3);

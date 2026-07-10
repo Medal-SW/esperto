@@ -21,6 +21,10 @@ export interface User {
   display_name: string | null;
   avatar_url: string | null;
   is_admin: boolean;
+  email: string | null;
+  google_linked: boolean;
+  has_password: boolean;
+  is_onboarded: boolean;
   created_at: string;
 }
 
