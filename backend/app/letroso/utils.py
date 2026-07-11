@@ -7,25 +7,54 @@ def normalize_word(word: str) -> str:
 
 
 def compute_feedback(guess_normalized: str, secret_normalized: str) -> list[dict]:
-    n = len(secret_normalized)
-    result = [
-        {"letter": guess_normalized[i], "state": "absent", "position": i}
-        for i in range(n)
-    ]
+    n_secret = len(secret_normalized)
 
-    secret_remaining = list(secret_normalized)
+    matched: dict[int, int] = {}
+    secret_j = 0
+    for gi, gc in enumerate(guess_normalized):
+        saved_j = secret_j
+        found = False
+        while secret_j < n_secret:
+            if gc == secret_normalized[secret_j]:
+                matched[gi] = secret_j
+                secret_j += 1
+                found = True
+                break
+            secret_j += 1
+        if not found:
+            secret_j = saved_j
 
-    for i in range(n):
-        if guess_normalized[i] == secret_normalized[i]:
-            result[i]["state"] = "correct"
-            secret_remaining[i] = None
+    remaining = list(secret_normalized)
+    for sp in matched.values():
+        remaining[sp] = None
 
-    for i in range(n):
-        if result[i]["state"] == "correct":
-            continue
-        letter = guess_normalized[i]
-        if letter in secret_remaining:
-            result[i]["state"] = "present"
-            secret_remaining[secret_remaining.index(letter)] = None
+    result = []
+    for gi, gc in enumerate(guess_normalized):
+        if gi in matched:
+            sp = matched[gi]
+            result.append({
+                "letter": gc,
+                "state": "correct",
+                "position": gi,
+                "edge_start": sp == 0,
+                "edge_end": sp == n_secret - 1,
+            })
+        elif gc in remaining:
+            remaining[remaining.index(gc)] = None
+            result.append({
+                "letter": gc,
+                "state": "present",
+                "position": gi,
+                "edge_start": False,
+                "edge_end": False,
+            })
+        else:
+            result.append({
+                "letter": gc,
+                "state": "absent",
+                "position": gi,
+                "edge_start": False,
+                "edge_end": False,
+            })
 
     return result

@@ -19,7 +19,17 @@
   color: #fff;
 }
 
-.correctEdge {
+.correctEdgeStart {
+  composes: correct;
+  border-radius: var(--radius-full) var(--radius-sm) var(--radius-sm) var(--radius-full);
+}
+
+.correctEdgeEnd {
+  composes: correct;
+  border-radius: var(--radius-sm) var(--radius-full) var(--radius-full) var(--radius-sm);
+}
+
+.correctPill {
   composes: correct;
   border-radius: var(--radius-full);
 }

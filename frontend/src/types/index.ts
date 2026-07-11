@@ -148,6 +148,8 @@ export interface LetterFeedback {
   letter: string;
   state: LetterState;
   position: number;
+  edge_start?: boolean;
+  edge_end?: boolean;
 }
 
 export interface GuessEntry {
@@ -156,7 +158,6 @@ export interface GuessEntry {
 }
 
 export interface LetrosoGameState {
-  word_length: number;
   guesses: GuessEntry[];
   solved: boolean;
   attempts: number | null;

@@ -5,6 +5,8 @@ class LetterFeedback(BaseModel):
     letter: str
     state: str
     position: int
+    edge_start: bool = False
+    edge_end: bool = False
 
 
 class GuessEntry(BaseModel):
@@ -13,7 +15,6 @@ class GuessEntry(BaseModel):
 
 
 class GameStateResponse(BaseModel):
-    word_length: int
     guesses: list[GuessEntry]
     solved: bool
     attempts: int | None

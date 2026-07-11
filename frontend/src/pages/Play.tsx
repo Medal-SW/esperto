@@ -8,6 +8,8 @@ import { Skeleton } from "../components/Skeleton";
 import { useToast } from "../context/ToastContext";
 import styles from "./Play.module.css";
 
+const MAX_INPUT = 10;
+
 export function PlayPage() {
   const { data: game, isLoading } = useLetrosoGame();
   const guessMutation = useSubmitGuess();
@@ -18,7 +20,6 @@ export function PlayPage() {
   const [showConfetti, setShowConfetti] = useState(false);
   const boardRef = useRef<HTMLDivElement>(null);
 
-  const wordLength = game?.word_length ?? 0;
   const solved = game?.solved ?? false;
   const guesses = game?.guesses ?? [];
 
@@ -29,7 +30,7 @@ export function PlayPage() {
   }, [game?.solved]);
 
   const handleSubmit = useCallback(async () => {
-    if (!wordLength || currentInput.length !== wordLength) return;
+    if (currentInput.length === 0) return;
     setError("");
 
     try {
@@ -49,7 +50,7 @@ export function PlayPage() {
         addToast("Erro ao enviar tentativa", "error");
       }
     }
-  }, [currentInput, wordLength, guessMutation, addToast]);
+  }, [currentInput, guessMutation, addToast]);
 
   const handleKey = useCallback(
     (key: string) => {
@@ -60,11 +61,11 @@ export function PlayPage() {
         handleSubmit();
       } else if (key === "⌫") {
         setCurrentInput((prev) => prev.slice(0, -1));
-      } else if (/^[A-Z]$/.test(key) && currentInput.length < wordLength) {
+      } else if (/^[A-Z]$/.test(key) && currentInput.length < MAX_INPUT) {
         setCurrentInput((prev) => prev + key.toLowerCase());
       }
     },
-    [solved, handleSubmit, currentInput.length, wordLength]
+    [solved, handleSubmit, currentInput.length]
   );
 
   useEffect(() => {
@@ -110,16 +111,16 @@ export function PlayPage() {
         <div className={styles.subtitle}>
           {solved
             ? `Resolvido em ${game?.attempts} tentativa${game?.attempts === 1 ? "" : "s"}`
-            : `${wordLength} letras · Tentativa ${guesses.length + 1}`}
+            : `Tentativa ${guesses.length + 1}`}
         </div>
       </div>
 
       <div className={styles.board} ref={boardRef}>
         {guesses.map((entry, i) => (
-          <GuessRow key={i} entry={entry} wordLength={wordLength} />
+          <GuessRow key={i} entry={entry} />
         ))}
         {!solved && (
-          <GuessRow currentInput={currentInput} wordLength={wordLength} />
+          <GuessRow currentInput={currentInput} />
         )}
       </div>
 

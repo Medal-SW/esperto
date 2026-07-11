@@ -5,10 +5,9 @@ import styles from "./GuessRow.module.css";
 interface GuessRowProps {
   entry?: GuessEntry;
   currentInput?: string;
-  wordLength: number;
 }
 
-export function GuessRow({ entry, currentInput, wordLength }: GuessRowProps) {
+export function GuessRow({ entry, currentInput }: GuessRowProps) {
   if (entry) {
     return (
       <div className={styles.row}>
@@ -17,8 +16,8 @@ export function GuessRow({ entry, currentInput, wordLength }: GuessRowProps) {
             key={i}
             letter={f.letter}
             state={f.state}
-            position={f.position}
-            wordLength={wordLength}
+            edgeStart={f.edge_start}
+            edgeEnd={f.edge_end}
           />
         ))}
       </div>
@@ -28,13 +27,10 @@ export function GuessRow({ entry, currentInput, wordLength }: GuessRowProps) {
   const letters = (currentInput ?? "").split("");
   return (
     <div className={styles.row}>
-      {Array.from({ length: wordLength }, (_, i) => (
-        <LetterTile
-          key={i}
-          letter={letters[i]}
-          isCurrent={i <= letters.length}
-        />
+      {letters.map((ch, i) => (
+        <LetterTile key={i} letter={ch} isCurrent />
       ))}
+      <LetterTile key="cursor" isCurrent />
     </div>
   );
 }

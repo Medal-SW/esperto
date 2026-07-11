@@ -4,24 +4,30 @@ import styles from "./LetterTile.module.css";
 interface LetterTileProps {
   letter?: string;
   state?: LetterState;
-  position?: number;
-  wordLength?: number;
+  edgeStart?: boolean;
+  edgeEnd?: boolean;
   isCurrent?: boolean;
 }
 
 export function LetterTile({
   letter,
   state,
-  position,
-  wordLength,
+  edgeStart,
+  edgeEnd,
   isCurrent,
 }: LetterTileProps) {
   let className = styles.tile;
 
   if (state === "correct") {
-    const isEdge =
-      position === 0 || (wordLength !== undefined && position === wordLength - 1);
-    className += " " + (isEdge ? styles.correctEdge : styles.correct);
+    if (edgeStart && edgeEnd) {
+      className += " " + styles.correctPill;
+    } else if (edgeStart) {
+      className += " " + styles.correctEdgeStart;
+    } else if (edgeEnd) {
+      className += " " + styles.correctEdgeEnd;
+    } else {
+      className += " " + styles.correct;
+    }
   } else if (state === "present") {
     className += " " + styles.present;
   } else if (state === "absent") {

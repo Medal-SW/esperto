@@ -44,12 +44,6 @@ class LetrosoService:
         normalized_guess = normalize_word(raw_guess)
         secret = self._get_daily_word(today)
 
-        if len(normalized_guess) != len(secret):
-            raise HTTPException(
-                status_code=422,
-                detail=f"Palavra deve ter {len(secret)} letras",
-            )
-
         if not normalized_guess.isalpha():
             raise HTTPException(status_code=422, detail="Palavra deve conter apenas letras")
 
@@ -63,7 +57,7 @@ class LetrosoService:
         session.guesses = session.guesses + [guess_entry.model_dump()]
         attributes.flag_modified(session, "guesses")
 
-        solved = all(f.state == "correct" for f in feedback)
+        solved = normalized_guess == secret
         if solved:
             session.solved = True
             session.attempts = len(session.guesses)
@@ -142,7 +136,6 @@ class LetrosoService:
     def _to_game_state(self, session: LetrosoSession) -> GameStateResponse:
         guesses = [GuessEntry(**g) for g in session.guesses]
         return GameStateResponse(
-            word_length=session.word_length,
             guesses=guesses,
             solved=session.solved,
             attempts=session.attempts,
