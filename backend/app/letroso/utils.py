@@ -36,8 +36,6 @@ def compute_feedback(guess_normalized: str, secret_normalized: str) -> list[dict
                 "letter": gc,
                 "state": "correct",
                 "position": gi,
-                "edge_start": sp == 0,
-                "edge_end": sp == n_secret - 1,
             })
         elif gc in remaining:
             remaining[remaining.index(gc)] = None
@@ -45,16 +43,12 @@ def compute_feedback(guess_normalized: str, secret_normalized: str) -> list[dict
                 "letter": gc,
                 "state": "present",
                 "position": gi,
-                "edge_start": False,
-                "edge_end": False,
             })
         else:
             result.append({
                 "letter": gc,
                 "state": "absent",
                 "position": gi,
-                "edge_start": False,
-                "edge_end": False,
             })
 
     return result

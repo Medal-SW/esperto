@@ -1,33 +1,39 @@
+import type { CSSProperties } from "react";
 import type { LetterState } from "../../types";
 import styles from "./LetterTile.module.css";
 
 interface LetterTileProps {
   letter?: string;
   state?: LetterState;
-  edgeStart?: boolean;
-  edgeEnd?: boolean;
+  isFirst?: boolean;
+  isLast?: boolean;
+  prevCorrect?: boolean;
+  nextCorrect?: boolean;
   isCurrent?: boolean;
 }
 
 export function LetterTile({
   letter,
   state,
-  edgeStart,
-  edgeEnd,
+  isFirst,
+  isLast,
+  prevCorrect,
+  nextCorrect,
   isCurrent,
 }: LetterTileProps) {
   let className = styles.tile;
+  const inlineStyle: CSSProperties = {};
 
   if (state === "correct") {
-    if (edgeStart && edgeEnd) {
-      className += " " + styles.correctPill;
-    } else if (edgeStart) {
-      className += " " + styles.correctEdgeStart;
-    } else if (edgeEnd) {
-      className += " " + styles.correctEdgeEnd;
-    } else {
-      className += " " + styles.correct;
+    className += " " + styles.correct;
+    if (prevCorrect) {
+      className += " " + styles.grouped;
     }
+    const tl = isFirst ? "var(--radius-full)" : prevCorrect ? "0" : "var(--radius-sm)";
+    const tr = isLast ? "var(--radius-full)" : nextCorrect ? "0" : "var(--radius-sm)";
+    const br = isLast ? "var(--radius-full)" : nextCorrect ? "0" : "var(--radius-sm)";
+    const bl = isFirst ? "var(--radius-full)" : prevCorrect ? "0" : "var(--radius-sm)";
+    inlineStyle.borderRadius = `${tl} ${tr} ${br} ${bl}`;
   } else if (state === "present") {
     className += " " + styles.present;
   } else if (state === "absent") {
@@ -38,5 +44,9 @@ export function LetterTile({
     className += " " + styles.empty;
   }
 
-  return <div className={className}>{letter ?? ""}</div>;
+  return (
+    <div className={className} style={inlineStyle}>
+      {letter ?? ""}
+    </div>
+  );
 }

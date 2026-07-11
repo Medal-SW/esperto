@@ -5,8 +5,6 @@ class LetterFeedback(BaseModel):
     letter: str
     state: str
     position: int
-    edge_start: bool = False
-    edge_end: bool = False
 
 
 class GuessEntry(BaseModel):
