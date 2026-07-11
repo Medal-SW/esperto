@@ -27,7 +27,11 @@ export function SubmitPage() {
   const pendingGames = ALL_GAMES.filter((g) => !completedGames.includes(g));
 
   useEffect(() => {
-    if (completedGames.length === 3 && prevCompleted.current < 3 && prevCompleted.current > 0) {
+    if (
+      completedGames.length === ALL_GAMES.length &&
+      prevCompleted.current < ALL_GAMES.length &&
+      prevCompleted.current > 0
+    ) {
       setShowConfetti(true);
     }
     prevCompleted.current = completedGames.length;
@@ -55,7 +59,7 @@ export function SubmitPage() {
     );
   }
 
-  if (completedGames.length === 3) {
+  if (completedGames.length === ALL_GAMES.length) {
     return (
       <div style={{ maxWidth: 560 }}>
         <Confetti active={showConfetti} />
@@ -64,7 +68,7 @@ export function SubmitPage() {
             <Check size={28} stroke="var(--accent)" strokeWidth={2.5} />
           </div>
           <h2 className={styles.allDoneTitle}>Tudo registrado!</h2>
-          <p className={styles.allDoneSub}>Você já completou a tríade de hoje.</p>
+          <p className={styles.allDoneSub}>Você já completou todos os jogos de hoje.</p>
         </div>
 
         <h3 className={styles.editSectionTitle}>Seus resultados de hoje</h3>

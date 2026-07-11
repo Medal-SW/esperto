@@ -1,6 +1,7 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import { Layout } from "./components/Layout";
 import { DashboardPage } from "./pages/Dashboard";
+import { HistoricoPage } from "./pages/Historico";
 import { HistoryPage } from "./pages/History";
 import { LoginPage } from "./pages/Login";
 import { OnboardingPage } from "./pages/Onboarding";
@@ -18,6 +19,7 @@ export function App() {
         <Route path="/dashboard" element={<DashboardPage />} />
         <Route path="/submit" element={<SubmitPage />} />
         <Route path="/play" element={<PlayPage />} />
+        <Route path="/historico" element={<HistoricoPage />} />
         <Route path="/ranking" element={<RankingPage />} />
         <Route path="/history" element={<HistoryPage />} />
         <Route path="/profile" element={<ProfilePage />} />

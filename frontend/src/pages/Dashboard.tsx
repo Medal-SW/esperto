@@ -93,7 +93,7 @@ export function DashboardPage() {
         </div>
       )}
 
-      <h3 className={styles.sectionTitle}>Sua Tríade Diária</h3>
+      <h3 className={styles.sectionTitle}>Seus Jogos Diários</h3>
       <div className={styles.triadGrid}>
         {data.triad.map((t) => {
           const meta = GAME_META[t.game];
@@ -198,7 +198,7 @@ export function DashboardPage() {
                 <Avatar username={f.username} avatarUrl={f.avatar_url} size={32} />
                 <div className={styles.friendInfo}>
                   <p className={styles.friendName}>{f.username}</p>
-                  <p className={styles.friendGames}>{f.games_played}/3 jogos registrados</p>
+                  <p className={styles.friendGames}>{f.games_played}/{ALL_GAMES.length} jogos registrados</p>
                 </div>
                 <div className={styles.friendDots}>
                   {ALL_GAMES.map((g: GameName) => (

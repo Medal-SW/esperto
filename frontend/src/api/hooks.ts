@@ -7,6 +7,9 @@ import type {
   AttemptsDistribution,
   GameName,
   GameRankingEntry,
+  HistoricoEventOption,
+  HistoricoGameState,
+  HistoricoGuessEntry,
   LetterFeedback,
   LetrosoGameState,
   LetrosoStatus,
@@ -256,5 +259,45 @@ export function useLetrosoStatus() {
     queryKey: ["letroso", "status"],
     queryFn: () =>
       api.get<LetrosoStatus>("/letroso/status").then((r) => r.data),
+  });
+}
+
+
+export function useHistoricoGame() {
+  return useQuery({
+    queryKey: ["historico", "today"],
+    queryFn: () =>
+      api.get<HistoricoGameState>("/historico/today").then((r) => r.data),
+  });
+}
+
+export function useHistoricoEventos() {
+  return useQuery({
+    queryKey: ["historico", "eventos"],
+    queryFn: () =>
+      api
+        .get<HistoricoEventOption[]>("/historico/eventos")
+        .then((r) => r.data),
+    staleTime: Infinity,
+  });
+}
+
+export function useHistoricoGuess() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (eventId: number) =>
+      api
+        .post<{
+          guess: HistoricoGuessEntry;
+          solved: boolean;
+          game_state: HistoricoGameState;
+        }>("/historico/guess", { event_id: eventId })
+        .then((r) => r.data),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ["historico"] });
+      qc.invalidateQueries({ queryKey: ["scores"] });
+      qc.invalidateQueries({ queryKey: ["dashboard"] });
+      qc.invalidateQueries({ queryKey: ["ranking"] });
+    },
   });
 }
