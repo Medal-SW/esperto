@@ -9,6 +9,7 @@ interface GuessRowProps {
 
 export function GuessRow({ entry, currentInput }: GuessRowProps) {
   if (entry) {
+    const total = entry.feedback.length;
     return (
       <div className={styles.row}>
         {entry.feedback.map((f, i) => (
@@ -16,8 +17,10 @@ export function GuessRow({ entry, currentInput }: GuessRowProps) {
             key={i}
             letter={f.letter}
             state={f.state}
-            edgeStart={f.edge_start}
-            edgeEnd={f.edge_end}
+            isFirst={i === 0}
+            isLast={i === total - 1}
+            prevCorrect={i > 0 && entry.feedback[i - 1]?.state === "correct"}
+            nextCorrect={i < total - 1 && entry.feedback[i + 1]?.state === "correct"}
           />
         ))}
       </div>
