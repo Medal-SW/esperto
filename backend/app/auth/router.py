@@ -242,6 +242,20 @@ def update_profile(
     return UserResponse.from_user(updated)
 
 
+@router.get("/check-username")
+def check_username(
+    username: str,
+    user: User = Depends(get_current_user),
+    db: Session = Depends(get_db),
+):
+    u = username.strip().lower()
+    if len(u) < 3:
+        return {"available": False, "reason": "short"}
+    existing = UserRepository(db).get_by_username(u)
+    available = existing is None or existing.id == user.id
+    return {"available": available, "reason": None if available else "taken"}
+
+
 @router.post("/complete-onboarding", response_model=UserResponse)
 def complete_onboarding(
     body: CompleteOnboardingRequest,
