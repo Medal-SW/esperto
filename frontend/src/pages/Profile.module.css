@@ -1,27 +1,81 @@
+/* Perfil — layout de duas colunas fiel ao Perfil.dc.html, adaptado ao tema do app */
+
 .wrapper {
-  max-width: 480px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.header {
+  margin-bottom: 30px;
+}
+
+.eyebrow {
+  font: 500 12px "Hanken Grotesk", sans-serif;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 6px;
 }
 
 .title {
-  font-size: 24px;
-  font-weight: 800;
-  margin-bottom: var(--space-6);
+  margin: 0;
+  font: 700 32px "Space Grotesk", sans-serif;
+  color: var(--text-primary);
+  letter-spacing: -0.5px;
 }
 
-.avatarSection {
+.grid {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.col {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.leftCol {
   gap: 20px;
+}
+
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 28px;
+}
+
+/* ---------- identidade ---------- */
+.identityCard {
+  padding: 28px 24px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.identityBanner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 74px;
+  background: linear-gradient(120deg, #c026d3, #f43f5e);
 }
 
 .avatarBtn {
   position: relative;
-  background: none;
-  border: none;
+  z-index: 1;
+  display: inline-flex;
+  margin: 22px 0 0;
   padding: 0;
-  cursor: pointer;
+  border: 4px solid var(--bg-card);
   border-radius: 50%;
-  flex-shrink: 0;
+  background: none;
+  cursor: pointer;
+  line-height: 0;
 }
 
 .avatarOverlay {
@@ -40,130 +94,303 @@
   opacity: 1;
 }
 
-.avatarActions {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.avatarActionBtn {
-  padding: 6px 14px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  background: transparent;
+.identityName {
+  margin: 14px 0 3px;
+  font: 700 20px "Space Grotesk", sans-serif;
   color: var(--text-primary);
-  font-size: 13px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all var(--duration-fast);
 }
 
-.avatarActionBtn:hover {
+.identityHandle {
+  font: 500 13px "Hanken Grotesk", sans-serif;
+  color: var(--text-secondary);
+}
+
+.photoActions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.ghostBtn {
+  padding: 9px 18px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
   background: var(--bg-hover);
+  color: var(--text-primary);
+  font: 600 13px "Hanken Grotesk", sans-serif;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.ghostBtn:hover {
   border-color: var(--accent);
   color: var(--accent);
 }
 
-.avatarRemoveBtn {
-  padding: 6px 14px;
+.removeBtn {
   border: none;
-  border-radius: var(--radius-md);
-  background: transparent;
+  background: none;
   color: var(--text-muted);
-  font-size: 12px;
-  font-weight: 500;
+  font: 500 13px "Hanken Grotesk", sans-serif;
   cursor: pointer;
-  transition: color var(--duration-fast);
+  transition: color 0.15s;
 }
 
-.avatarRemoveBtn:hover {
+.removeBtn:hover {
   color: var(--danger);
 }
 
-.field {
+/* ---------- estatísticas ---------- */
+.statsCard {
+  padding: 22px 24px;
+}
+
+.statsTitle {
+  font: 600 11px "Hanken Grotesk", sans-serif;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+}
+
+.statRow {
   display: flex;
-  flex-direction: column;
-  gap: 6px;
+  align-items: center;
+  gap: 13px;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.statRow:last-of-type {
+  border-bottom: none;
+}
+
+.statIcon {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  flex: none;
+}
+
+.statLabel {
+  font: 500 13.5px "Hanken Grotesk", sans-serif;
+  color: var(--text-secondary);
+  flex: 1;
+}
+
+.statValue {
+  font: 700 17px "Space Grotesk", sans-serif;
+  color: var(--text-primary);
+}
+
+.memberSince {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+  font: 500 12px "Hanken Grotesk", sans-serif;
+  color: var(--text-muted);
+}
+
+/* ---------- editar informações ---------- */
+.cardTitle {
+  font: 700 16px "Space Grotesk", sans-serif;
+  color: var(--text-primary);
+  margin-bottom: 22px;
+}
+
+.field {
   margin-bottom: 20px;
 }
 
+.field:last-of-type {
+  margin-bottom: 24px;
+}
+
 .label {
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--text-secondary);
+  display: block;
+  font: 600 11px "Hanken Grotesk", sans-serif;
+  letter-spacing: 1px;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+
+.inputWrap {
+  position: relative;
 }
 
 .input {
-  padding: var(--space-3) 14px;
-  border-radius: var(--radius-md);
-  border: 1px solid var(--border);
+  width: 100%;
+  box-sizing: border-box;
   background: var(--bg-primary);
+  border: 1px solid var(--border);
+  border-radius: 11px;
+  padding: 13px 15px;
+  font: 500 15px "Hanken Grotesk", sans-serif;
   color: var(--text-primary);
-  font-size: 14px;
   outline: none;
-  transition: border-color var(--duration-normal);
+  transition: 0.15s;
 }
 
 .input:focus {
   border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
 }
 
 .input:disabled {
-  opacity: 0.5;
+  color: var(--text-muted);
   cursor: not-allowed;
+  padding-right: 44px;
+}
+
+.lockIcon {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  display: flex;
 }
 
 .hint {
-  font-size: 11px;
+  margin-top: 7px;
+  font: 400 12px "Hanken Grotesk", sans-serif;
   color: var(--text-muted);
 }
 
-.googleField {
+.saveRow {
   display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.googleLinked {
-  font-size: 14px;
-  color: var(--text-primary);
-  font-weight: 500;
-}
-
-.googleBtnWrap {
-  margin-top: var(--space-2);
+  align-items: center;
+  gap: 12px;
 }
 
 .saveBtn {
-  width: 100%;
-  padding: var(--space-3);
+  padding: 13px 26px;
   border: none;
-  border-radius: var(--radius-md);
+  border-radius: 11px;
+  font: 700 14px "Hanken Grotesk", sans-serif;
   background: var(--accent);
   color: #fff;
-  font-size: 14px;
-  font-weight: 700;
   cursor: pointer;
-  transition: opacity var(--duration-normal);
+  box-shadow: 0 8px 20px -8px rgba(233, 69, 96, 0.6);
+  transition: 0.15s;
 }
 
 .saveBtn:hover:not(:disabled) {
-  opacity: 0.9;
+  opacity: 0.92;
 }
 
 .saveBtn:disabled {
-  opacity: 0.4;
+  background: var(--bg-hover);
+  color: var(--text-muted);
+  box-shadow: none;
   cursor: not-allowed;
 }
 
-@media (max-width: 768px) {
-  .title {
-    font-size: 20px;
-  }
+.savedMsg {
+  font: 600 13px "Hanken Grotesk", sans-serif;
+  color: var(--success);
+}
 
-  .avatarSection {
-    gap: var(--space-4);
+/* ---------- conta google ---------- */
+.googleCard {
+  padding: 24px 28px;
+}
+
+.googleRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.googleInfo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+
+.googleName {
+  font: 600 14px "Hanken Grotesk", sans-serif;
+  color: var(--text-primary);
+}
+
+.googleSub {
+  font: 400 13px "Hanken Grotesk", sans-serif;
+  color: var(--text-secondary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  background: rgba(52, 211, 153, 0.12);
+  border: 1px solid rgba(52, 211, 153, 0.3);
+  font: 600 12px "Hanken Grotesk", sans-serif;
+  color: #34b487;
+  flex: none;
+}
+
+.badgeDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #34d399;
+}
+
+.googleConnect {
+  flex: none;
+}
+
+/* ---------- logout ---------- */
+.logoutRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 6px 4px;
+}
+
+.logoutText {
+  font: 500 13px "Hanken Grotesk", sans-serif;
+  color: var(--text-muted);
+}
+
+.logoutBtn {
+  padding: 9px 18px;
+  border: 1px solid rgba(233, 69, 96, 0.3);
+  border-radius: 10px;
+  background: transparent;
+  color: var(--accent);
+  font: 600 13px "Hanken Grotesk", sans-serif;
+  cursor: pointer;
+  transition: 0.15s;
+  flex: none;
+}
+
+.logoutBtn:hover {
+  background: var(--accent-soft);
+}
+
+/* ---------- responsivo ---------- */
+@media (max-width: 860px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .title {
+    font-size: 26px;
   }
 }

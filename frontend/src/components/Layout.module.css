@@ -236,8 +236,8 @@
 
 .main {
   flex: 1;
-  padding: var(--space-8);
-  max-width: 960px;
+  padding: var(--space-8) var(--space-6);
+  max-width: 1200px;
   width: 100%;
   margin: 0 auto;
   animation: fadeIn var(--duration-slow) var(--easing-default);
