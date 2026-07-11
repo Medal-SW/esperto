@@ -1,265 +1,477 @@
+/* Dashboard — layout do Dashboard.dc.html adaptado ao tema do app */
+
+/* ---------- saudação + stats ---------- */
 .header {
   display: flex;
+  align-items: flex-end;
   justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: var(--space-8);
+  gap: 20px;
   flex-wrap: wrap;
-  gap: var(--space-3);
+  margin-bottom: 26px;
 }
 
 .greeting {
-  font-size: 26px;
-  font-weight: 800;
-  margin-bottom: var(--space-1);
+  margin: 0 0 4px;
+  font: 700 30px "Space Grotesk", sans-serif;
+  color: var(--text-primary);
+  letter-spacing: -0.5px;
 }
 
-.date {
-  font-size: 14px;
+.greetingSub {
+  font: 500 14px "Hanken Grotesk", sans-serif;
   color: var(--text-secondary);
 }
 
-.streak {
+.topStats {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.statPill {
   display: flex;
   align-items: center;
-  gap: 6px;
-  background: var(--accent-soft);
-  padding: var(--space-2) 14px;
-  border-radius: var(--radius-full);
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--accent);
+  gap: 10px;
+  padding: 11px 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 13px;
 }
 
-.sectionTitle {
-  font-size: 11px;
-  font-weight: 700;
+.statPillIcon {
+  font-size: 18px;
+}
+
+.statPillValue {
+  font: 700 18px "Space Grotesk", sans-serif;
+  line-height: 1;
+}
+
+.statPillLabel {
+  font: 500 11px "Hanken Grotesk", sans-serif;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+/* ---------- grid principal ---------- */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 22px;
+  align-items: start;
+}
+
+.mainCol {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+  min-width: 0;
+}
+
+.rail {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.sectionHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.sectionLabel {
+  font: 600 12px "Hanken Grotesk", sans-serif;
+  letter-spacing: 1.5px;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--text-muted);
-  margin-bottom: var(--space-3);
+  color: var(--text-secondary);
 }
 
+.sectionMeta {
+  font: 600 12px "Hanken Grotesk", sans-serif;
+  color: var(--text-secondary);
+}
+
+/* ---------- cards da tríade ---------- */
 .triadGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: var(--space-3);
-  margin-bottom: var(--space-6);
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
 }
 
-.triadCard {
+.gameCard {
+  position: relative;
+  overflow: hidden;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 18px;
+  cursor: pointer;
+  transition: transform 0.18s;
+  text-align: left;
+  width: 100%;
+  font-family: inherit;
+}
+
+.gameCard:hover {
+  transform: translateY(-2px);
+}
+
+.gameBar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+}
+
+.gameTop {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
 }
 
-.triadName {
-  font-size: 15px;
-  font-weight: 700;
-  margin-bottom: var(--space-1);
+.gameLeft {
+  display: flex;
+  align-items: center;
+  gap: 11px;
 }
 
-.triadStatus {
-  font-size: 13px;
-  font-weight: 600;
+.gameTile {
+  width: 38px;
+  height: 38px;
+  border-radius: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font: 700 17px "Space Grotesk", sans-serif;
+  flex: none;
 }
 
-.triadIcon {
-  width: 34px;
-  height: 34px;
+.gameName {
+  font: 700 16px "Space Grotesk", sans-serif;
+  color: var(--text-primary);
+}
+
+.gameStatus {
+  font: 500 12px "Hanken Grotesk", sans-serif;
+}
+
+.gameBadge {
+  width: 26px;
+  height: 26px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 15px;
-  transition: all var(--duration-slow);
-}
-
-.ctaBtn {
-  width: 100%;
-  padding: 14px;
-  background: var(--accent);
-  color: #fff;
-  border: none;
-  border-radius: var(--radius-md);
-  font-size: 15px;
-  font-weight: 700;
-  cursor: pointer;
-  margin-bottom: 28px;
-  transition: opacity var(--duration-normal);
-}
-
-.ctaBtn:hover {
-  opacity: 0.9;
-}
-
-.highlightsGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: var(--space-3);
-  margin-bottom: 28px;
-}
-
-.highlightLabel {
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
-  margin-bottom: 10px;
-}
-
-.highlightGame {
-  font-size: 11px;
+  font: 700 13px "Space Grotesk", sans-serif;
+  background: var(--bg-hover);
   color: var(--text-muted);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  border: 1px solid var(--border);
 }
 
-.highlightPlayer {
+.gameBottom {
   display: flex;
-  align-items: center;
-  gap: 10px;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-top: 16px;
 }
 
-.highlightName {
-  font-size: 14px;
-  font-weight: 600;
-}
-
-.highlightAttempts {
-  font-size: 12px;
-}
-
-.championBanner {
-  background: var(--accent-soft);
-  border: 1px solid rgba(233, 69, 96, 0.2);
-  border-radius: var(--radius-lg);
-  padding: var(--space-4) 20px;
-  margin-bottom: 28px;
+.gameResult {
   display: flex;
-  align-items: center;
-  gap: 14px;
+  align-items: baseline;
+  gap: 6px;
 }
 
-.championInfo {
-  flex: 1;
+.gameResultBig {
+  font: 700 30px/1 "Space Grotesk", sans-serif;
 }
 
-.championTitle {
-  font-size: 11px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--accent);
-  margin-bottom: var(--space-1);
-}
-
-.championName {
-  font-size: 16px;
-  font-weight: 700;
-}
-
-.championStats {
-  font-size: 12px;
+.gameResultUnit {
+  font: 500 12px "Hanken Grotesk", sans-serif;
   color: var(--text-secondary);
 }
 
-.provisionalBadge {
-  font-size: 10px;
-  padding: 3px var(--space-2);
-  border-radius: var(--radius-lg);
-  background: rgba(233, 69, 96, 0.15);
-  color: var(--accent);
-  font-weight: 600;
+.gameRating {
+  font: 700 12px "Space Grotesk", sans-serif;
 }
 
-.friendRow {
+/* ---------- CTA ---------- */
+.cta {
+  width: 100%;
+  margin-top: 16px;
+  padding: 15px;
+  border: none;
+  border-radius: 13px;
+  font: 700 15px "Hanken Grotesk", sans-serif;
+  cursor: pointer;
+  transition: 0.15s;
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 10px 26px -8px rgba(233, 69, 96, 0.6);
+}
+
+.cta:hover {
+  filter: brightness(1.05);
+  transform: translateY(-1px);
+}
+
+.ctaDone {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+  box-shadow: none;
+}
+
+/* ---------- feed atividade ---------- */
+.feedCard {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.feedRow {
   display: flex;
   align-items: center;
-  gap: var(--space-3);
+  gap: 13px;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--border);
 }
 
-.friendInfo {
+.feedText {
   flex: 1;
   min-width: 0;
 }
 
-.friendName {
-  font-size: 14px;
-  font-weight: 600;
+.feedName {
+  font: 500 14px "Hanken Grotesk", sans-serif;
+  color: var(--text-primary);
 }
 
-.friendGames {
-  font-size: 12px;
-  color: var(--text-secondary);
+.feedName b {
+  font-weight: 700;
 }
 
-.friendDots {
+.feedMeta {
+  font: 500 12px "Hanken Grotesk", sans-serif;
+  color: var(--text-muted);
+  margin-top: 1px;
+}
+
+.feedDots {
   display: flex;
   gap: 5px;
+  flex: none;
 }
 
-.reminderBanner {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: var(--space-3) var(--space-4);
-  background: var(--accent-soft);
-  border: 1px solid rgba(233, 69, 96, 0.2);
-  border-radius: var(--radius-md);
-  margin-bottom: 20px;
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--text-primary);
-  animation: fadeIn var(--duration-slow) var(--easing-default);
+.feedDot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
 }
 
-.emptyText {
-  font-size: 14px;
-  color: var(--text-muted);
+.feedFooter {
+  padding: 13px;
   text-align: center;
-  padding: 20px;
+}
+
+.feedLink {
+  font: 600 13px "Hanken Grotesk", sans-serif;
+  color: var(--accent);
+  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.feedLink:hover {
+  filter: brightness(1.1);
 }
 
 .emptyState {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--space-2);
-  padding: var(--space-4) 0;
+  gap: 8px;
+  padding: 32px 0;
   color: var(--text-muted);
-  font-size: 13px;
+  font: 500 13px "Hanken Grotesk", sans-serif;
 }
 
-@media (max-width: 768px) {
-  .header {
-    margin-bottom: var(--space-6);
-  }
+/* ---------- rail: sequência ---------- */
+.railCard {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 22px 24px;
+}
 
-  .greeting {
-    font-size: 20px;
-  }
+.streakCard {
+  position: relative;
+  overflow: hidden;
+  border-color: rgba(251, 191, 36, 0.25);
+}
 
-  .date {
-    font-size: 13px;
-  }
+.streakCard::before {
+  content: "";
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  width: 160px;
+  height: 160px;
+  background: radial-gradient(circle, rgba(251, 191, 36, 0.16), transparent 70%);
+  pointer-events: none;
+}
 
-  .streak {
-    padding: 6px var(--space-3);
-    font-size: 13px;
-  }
+.railLabel {
+  font: 600 11px "Hanken Grotesk", sans-serif;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+}
 
-  .triadGrid,
-  .highlightsGrid {
+.streakLabel {
+  color: #d9a441;
+}
+
+.streakBody {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+}
+
+.streakEmoji {
+  font-size: 40px;
+}
+
+.streakNum {
+  font: 700 40px/1 "Space Grotesk", sans-serif;
+  color: var(--text-primary);
+}
+
+.streakUnit {
+  font: 500 12px "Hanken Grotesk", sans-serif;
+  color: var(--text-secondary);
+}
+
+.streakMsg {
+  position: relative;
+  margin-top: 16px;
+  font: 500 13px/1.5 "Hanken Grotesk", sans-serif;
+  color: var(--text-secondary);
+}
+
+.streakMsg b {
+  color: #d9a441;
+}
+
+/* ---------- rail: posição ---------- */
+.rankTop {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.rankBig {
+  font: 700 38px/1 "Space Grotesk", sans-serif;
+  color: #d9a441;
+}
+
+.nearbyRow {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 8px 0;
+}
+
+.nearbyRank {
+  width: 18px;
+  font: 700 13px "Space Grotesk", sans-serif;
+  color: var(--text-muted);
+  flex: none;
+}
+
+.nearbyRankTop {
+  color: #d9a441;
+}
+
+.nearbyName {
+  flex: 1;
+  min-width: 0;
+  font: 600 14px "Hanken Grotesk", sans-serif;
+  color: var(--text-secondary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.nearbyNameYou {
+  color: var(--text-primary);
+}
+
+.nearbyWins {
+  font: 700 14px "Space Grotesk", sans-serif;
+  color: var(--text-primary);
+  flex: none;
+}
+
+/* ---------- rail: média + sparkline ---------- */
+.avgTop {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.avgBig {
+  font: 700 32px/1 "Space Grotesk", sans-serif;
+  color: var(--success);
+}
+
+.avgDelta {
+  font: 600 12px "Hanken Grotesk", sans-serif;
+}
+
+.spark {
+  display: flex;
+  gap: 4px;
+  margin-top: 16px;
+  align-items: flex-end;
+  height: 44px;
+}
+
+.sparkBar {
+  flex: 1;
+  min-height: 12%;
+  border-radius: 3px 3px 0 0;
+  opacity: 0.85;
+}
+
+.avgFoot {
+  font: 500 11px "Hanken Grotesk", sans-serif;
+  color: var(--text-muted);
+  margin-top: 8px;
+}
+
+/* ---------- responsivo ---------- */
+@media (max-width: 900px) {
+  .grid {
     grid-template-columns: 1fr;
   }
+}
 
-  .championBanner {
-    padding: 14px var(--space-4);
-    gap: var(--space-3);
+@media (max-width: 600px) {
+  .greeting {
+    font-size: 24px;
   }
-
-  .reminderBanner {
-    font-size: 13px;
-    padding: 10px 14px;
+  .triadGrid {
+    grid-template-columns: 1fr;
+  }
+  .header {
+    align-items: flex-start;
   }
 }

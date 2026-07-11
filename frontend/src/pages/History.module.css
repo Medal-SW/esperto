@@ -1,178 +1,429 @@
-.title {
-  font-size: 24px;
-  font-weight: 800;
-  margin-bottom: var(--space-6);
-}
+/* Desempenho — layout do Desempenho.dc.html adaptado ao tema, responsivo */
 
-.sectionTitle {
-  font-size: 11px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--text-muted);
-  margin-bottom: var(--space-3);
-  margin-top: 28px;
-}
-
-.sectionTitle:first-of-type {
-  margin-top: 0;
-}
-
-.statsGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: var(--space-3);
-}
-
-.statGameName {
-  font-size: 13px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  margin-bottom: 10px;
-}
-
-.statNumbers {
+/* ---------- header + hero pills ---------- */
+.header {
   display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
   gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 26px;
 }
 
-.statItem {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.statValue {
-  font-size: 20px;
-  font-weight: 800;
-}
-
-.statLabel {
-  font-size: 10px;
-  color: var(--text-muted);
+.eyebrow {
+  font: 500 12px "Hanken Grotesk", sans-serif;
+  letter-spacing: 2px;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  color: var(--accent);
+  margin-bottom: 6px;
 }
 
-.calendarGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, 14px);
-  gap: 3px;
-  justify-content: center;
+.title {
+  margin: 0;
+  font: 700 32px "Space Grotesk", sans-serif;
+  color: var(--text-primary);
+  letter-spacing: -0.5px;
 }
 
-.calendarCell {
-  width: 14px;
-  height: 14px;
-  border-radius: 3px;
-  transition: background var(--duration-normal);
+.heroStats {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
-.calendarLegend {
+.heroPill {
   display: flex;
   align-items: center;
-  gap: var(--space-1);
-  justify-content: flex-end;
-  margin-top: 10px;
+  gap: 11px;
+  padding: 12px 18px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
 }
 
-.calendarLegendLabel {
-  font-size: 10px;
-  color: var(--text-muted);
-  margin: 0 var(--space-1);
+.heroPillIcon {
+  font-size: 19px;
 }
 
-.recordsGrid {
+.heroPillValue {
+  font: 700 20px "Space Grotesk", sans-serif;
+  line-height: 1;
+}
+
+.heroPillLabel {
+  font: 500 11px "Hanken Grotesk", sans-serif;
+  color: var(--text-secondary);
+  margin-top: 3px;
+}
+
+/* ---------- resumo por jogo ---------- */
+.summaryGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: var(--space-3);
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 22px;
 }
 
-.recordHeader {
+.gameCard {
+  position: relative;
+  overflow: hidden;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 20px 20px 20px 22px;
+}
+
+.gameBar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 3px;
+}
+
+.gameCardHead {
   display: flex;
-  align-items: flex-start;
-  gap: var(--space-3);
-  margin-bottom: var(--space-3);
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
 }
 
-.recordIcon {
+.gameCardLeft {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+.gameTile {
   width: 36px;
   height: 36px;
-  border-radius: var(--radius-md);
-  background: var(--bg-primary);
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
+  font: 700 16px "Space Grotesk", sans-serif;
+  flex: none;
 }
 
-.recordTitle {
-  font-size: 14px;
-  font-weight: 700;
-  margin-bottom: 2px;
+.gameName {
+  font: 700 16px "Space Grotesk", sans-serif;
+  color: var(--text-primary);
+  letter-spacing: 0.3px;
 }
 
-.recordDesc {
-  font-size: 11px;
+.trendBadge {
+  font: 600 12px "Hanken Grotesk", sans-serif;
+  padding: 4px 9px;
+  border-radius: 20px;
+}
+
+.trendDown {
+  color: #34d399;
+  background: rgba(52, 211, 153, 0.12);
+}
+
+.trendUp {
+  color: #f87171;
+  background: rgba(248, 113, 113, 0.12);
+}
+
+.trendFlat {
   color: var(--text-muted);
-  line-height: 1.4;
+  background: var(--bg-hover);
 }
 
-.recordFooter {
+.metrics {
   display: flex;
-  justify-content: space-between;
+  gap: 8px;
+}
+
+.metric {
+  flex: 1;
+  text-align: center;
+  padding: 12px 4px;
+  background: var(--bg-hover);
+  border-radius: 11px;
+}
+
+.metricValue {
+  font: 700 24px "Space Grotesk", sans-serif;
+  line-height: 1;
+  color: var(--text-primary);
+}
+
+.metricLabel {
+  font: 500 10px "Hanken Grotesk", sans-serif;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-top: 6px;
+}
+
+/* ---------- grid gráfico + heatmap ---------- */
+.contentGrid {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 22px;
+  align-items: start;
+}
+
+.panel {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 22px 24px;
+}
+
+.chartHead {
+  display: flex;
   align-items: center;
-  padding-top: 10px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.chartTitle {
+  font: 700 16px "Space Grotesk", sans-serif;
+  color: var(--text-primary);
+}
+
+.chartSub {
+  font: 500 12px "Hanken Grotesk", sans-serif;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.legend {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  cursor: pointer;
+  user-select: none;
+  transition: opacity 0.15s;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.legendItem:hover {
+  opacity: 0.75;
+}
+
+.legendDim {
+  opacity: 0.35;
+}
+
+.legendSwatch {
+  width: 12px;
+  height: 12px;
+  border-radius: 4px;
+  flex: none;
+}
+
+.legendName {
+  font: 600 13px "Hanken Grotesk", sans-serif;
+  color: var(--text-primary);
+}
+
+/* ---------- heatmap ---------- */
+.rightCol {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.heatHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  gap: 10px;
+}
+
+.heatTitle {
+  font: 700 15px "Space Grotesk", sans-serif;
+  color: var(--text-primary);
+}
+
+.heatStreak {
+  font: 600 12px "Hanken Grotesk", sans-serif;
+  color: #34d399;
+}
+
+.heatGrid {
+  display: grid;
+  grid-template-rows: repeat(7, 1fr);
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  gap: 4px;
+}
+
+.heatCell {
+  aspect-ratio: 1;
+  border-radius: 3px;
+}
+
+.heatFoot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 14px;
+  gap: 10px;
+}
+
+.heatFootLabel {
+  font: 500 11px "Hanken Grotesk", sans-serif;
+  color: var(--text-muted);
+}
+
+.heatKey {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.heatKeyCell {
+  width: 11px;
+  height: 11px;
+  border-radius: 3px;
+}
+
+/* ---------- recordes & conquistas ---------- */
+.achWrap {
+  margin-top: 26px;
+}
+
+.achLabel {
+  font: 600 12px "Hanken Grotesk", sans-serif;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin-bottom: 14px;
+}
+
+.achGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.achCard {
+  position: relative;
+  overflow: hidden;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 18px 20px;
+}
+
+.achCardMine {
+  border-color: rgba(233, 69, 96, 0.3);
+}
+
+.mineBadge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font: 600 9px "Hanken Grotesk", sans-serif;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 0 0 0 10px;
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.achTop {
+  display: flex;
+  align-items: flex-start;
+  gap: 13px;
+  margin-bottom: 16px;
+}
+
+.achIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: 11px;
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.achTitle {
+  font: 700 15px "Space Grotesk", sans-serif;
+  color: var(--text-primary);
+}
+
+.achDesc {
+  font: 500 12px/1.4 "Hanken Grotesk", sans-serif;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.achFooter {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding-top: 14px;
   border-top: 1px solid var(--border);
 }
 
-.recordPlayer {
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--text-secondary);
+.achHolder {
+  font: 600 14px "Hanken Grotesk", sans-serif;
+  color: var(--text-primary);
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.recordValue {
-  font-size: 14px;
-  font-weight: 700;
+.achValue {
+  font: 700 15px "Space Grotesk", sans-serif;
+  flex: none;
 }
 
-@media (max-width: 768px) {
+.empty {
+  text-align: center;
+  padding: 24px;
+  color: var(--text-muted);
+  font: 500 14px "Hanken Grotesk", sans-serif;
+}
+
+/* ---------- responsivo ---------- */
+@media (max-width: 900px) {
+  .contentGrid {
+    grid-template-columns: 1fr;
+  }
+  .summaryGrid,
+  .achGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .header {
+    align-items: flex-start;
+  }
   .title {
-    font-size: 20px;
+    font-size: 26px;
   }
-
-  .statsGrid {
-    grid-template-columns: 1fr;
+  .heroStats {
+    width: 100%;
   }
-
-  .recordsGrid {
-    grid-template-columns: 1fr;
+  .heroPill {
+    flex: 1;
+    min-width: calc(50% - 5px);
   }
-
-  .calendarGrid {
-    grid-template-columns: repeat(auto-fill, 12px);
-    gap: 2px;
-  }
-
-  .calendarCell {
-    width: 12px;
-    height: 12px;
-  }
-
-  .recordHeader {
-    gap: 10px;
-  }
-
-  .recordTitle {
-    font-size: 13px;
-  }
-
-  .recordDesc {
-    font-size: 10px;
+  .panel {
+    padding: 18px 16px;
   }
 }
