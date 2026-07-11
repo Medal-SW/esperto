@@ -143,3 +143,32 @@ export interface RecordsResponse {
 }
 
 export type RankingPeriod = "hoje" | "semana" | "mes" | "todos";
+
+// Letroso game types
+
+export type LetterState = "correct" | "present" | "absent";
+
+export interface LetterFeedback {
+  letter: string;
+  state: LetterState;
+  position: number;
+  edge_start?: boolean;
+  edge_end?: boolean;
+}
+
+export interface GuessEntry {
+  guess: string;
+  feedback: LetterFeedback[];
+}
+
+export interface LetrosoGameState {
+  guesses: GuessEntry[];
+  solved: boolean;
+  attempts: number | null;
+}
+
+export interface LetrosoStatus {
+  played_today: boolean;
+  solved: boolean;
+  attempts: number | null;
+}

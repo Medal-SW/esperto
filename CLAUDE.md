@@ -2,6 +2,8 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+@design.md
+
 ## Project Overview
 
 **Esperto** — Game ranking platform for a friend group that plays 3 daily word games: **Conexo**, **Letroso**, **Expresso**. Users register how many attempts they needed to solve each game daily. The system determines winners, daily champions, and maintains leaderboards.
@@ -59,6 +61,7 @@ app/
 ├── config.py            # Settings (env-based), MANAUS_TZ, today_manaus()
 ├── database.py          # SQLAlchemy engine, SessionLocal, Base, get_db()
 ├── enums.py             # GameName enum (conexo, letroso, expresso)
+├── exceptions.py        # Domain exceptions (NotFoundError, ForbiddenError)
 ├── models.py            # Re-exports User and Score for Alembic discovery
 ├── auth/                # signup, login, JWT, avatar upload/delete
 │   ├── dependencies.py  # get_current_user, get_admin_user (Depends)
@@ -68,6 +71,11 @@ app/
 ├── scores/              # Score model, repository, service (upsert + edit window), router
 ├── ranking/             # Aggregation logic: victories, champions, streaks, records, compare
 ├── dashboard/           # Dashboard endpoint: triad, highlights, champion, friend activity
+├── letroso/             # Native Letroso word game (daily puzzle, feedback, dictionary)
+│   ├── dictionary.py    # Load/reload word lists from CSV + pt-br lexicon cross-reference
+│   ├── utils.py         # normalize_word(), compute_feedback() (order-preserving subsequence)
+│   ├── service.py       # Game logic, daily word selection (SHA-256 deterministic), score registration
+│   └── router.py        # /letroso/* endpoints (today, guess, status)
 └── admin/               # Admin-only score editing and user deletion
 ```
 
@@ -79,16 +87,18 @@ app/
 
 ```
 src/
-├── main.tsx             # React root: QueryClient, BrowserRouter, ToastProvider, AuthProvider
-├── App.tsx              # Routes: /login, /dashboard, /submit, /ranking, /history
+├── main.tsx             # React root: QueryClient, BrowserRouter, ThemeProvider, ToastProvider, AuthProvider
+├── App.tsx              # Routes: /login, /dashboard, /submit, /ranking, /history, /profile, /play
 ├── api/
 │   ├── client.ts        # Axios instance with JWT interceptor, auto-redirect on 401
 │   └── hooks.ts         # TanStack Query hooks (all API calls go through here)
 ├── context/
 │   ├── AuthContext.tsx   # Auth state, login/signup/logout/refreshUser
+│   ├── ThemeContext.tsx  # Dark/light theme toggle (data-theme attribute)
 │   └── ToastContext.tsx  # Global toast notifications
-├── components/          # Avatar, AvatarCropModal, Card, CompareModal, GameDot, Layout, Skeleton
-├── pages/               # Dashboard, Submit, Ranking, History, Login (each with .module.css)
+├── components/          # Avatar, AvatarCropModal, Card, CompareModal, Confetti, ErrorBoundary, GameDot, Layout, Skeleton
+│   └── letroso/         # GuessRow, LetterTile (edge variants), Keyboard, SuccessScreen
+├── pages/               # Dashboard, Submit, Ranking, History, Login, Profile, Play (each with .module.css)
 ├── types/index.ts       # All TypeScript interfaces and enums
 └── styles/global.css    # CSS variables (dark theme), reset
 ```
@@ -110,6 +120,7 @@ These are critical invariants — do not change without explicit user approval:
 5. **Win streak**: Consecutive days where user won at least 1 individual game (not daily champion).
 6. **Play streak**: Consecutive days where user registered at least 1 score.
 7. **`played_date`**: Always set server-side via `today_manaus()`, never from client input.
+8. **Letroso game**: One game per day per player. Word length (4–10) is secret — never exposed to client. Feedback uses order-preserving subsequence matching (NOT Wordle position-based). Any valid dictionary word accepted as guess regardless of length. Score = number of attempts. Secret words curated via CSV frequency + pt-br lexicon cross-reference.
 
 ## Key Conventions
 
@@ -119,3 +130,4 @@ These are critical invariants — do not change without explicit user approval:
 - Avatar files stored in Docker volume at `/app/uploads/avatars/`, served via FastAPI `StaticFiles`.
 - UI text is in Brazilian Portuguese.
 - The `app/models.py` file exists solely to re-export models for Alembic — add new models there.
+- Letroso word data lives in `backend/data/letroso/` (CSV files + pt-br-words.txt). Use `reload_dictionary(db)` from `app.letroso.dictionary` to re-seed after changes (requires `import app.models` first).

@@ -5,6 +5,7 @@ import { HistoryPage } from "./pages/History";
 import { LoginPage } from "./pages/Login";
 import { OnboardingPage } from "./pages/Onboarding";
 import { ProfilePage } from "./pages/Profile";
+import { PlayPage } from "./pages/Play";
 import { RankingPage } from "./pages/Ranking";
 import { SubmitPage } from "./pages/Submit";
 
@@ -16,6 +17,7 @@ export function App() {
       <Route element={<Layout />}>
         <Route path="/dashboard" element={<DashboardPage />} />
         <Route path="/submit" element={<SubmitPage />} />
+        <Route path="/play" element={<PlayPage />} />
         <Route path="/ranking" element={<RankingPage />} />
         <Route path="/history" element={<HistoryPage />} />
         <Route path="/profile" element={<ProfilePage />} />

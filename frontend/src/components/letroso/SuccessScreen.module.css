@@ -1,0 +1,28 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-6) var(--space-4);
+  text-align: center;
+}
+
+.icon {
+  color: #22c55e;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.attempts {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.attemptsValue {
+  font-weight: 700;
+  color: #22c55e;
+}

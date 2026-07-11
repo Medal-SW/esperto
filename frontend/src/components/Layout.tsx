@@ -6,12 +6,13 @@ import { useToast } from "../context/ToastContext";
 import { useUploadAvatar } from "../api/hooks";
 import { Avatar } from "./Avatar";
 import { AvatarCropModal } from "./AvatarCropModal";
-import { LayoutGrid, PlusCircle, Trophy, BarChart3, ChevronDown, Camera, User, Sun, Moon, LogOut } from "lucide-react";
+import { LayoutGrid, PlusCircle, Gamepad2, Trophy, BarChart3, ChevronDown, Camera, User, Sun, Moon, LogOut } from "lucide-react";
 import styles from "./Layout.module.css";
 
 const NAV_ITEMS = [
   { to: "/dashboard", label: "Dashboard", icon: <LayoutGrid size={18} /> },
   { to: "/submit", label: "Registrar", icon: <PlusCircle size={18} /> },
+  { to: "/play", label: "Jogar", icon: <Gamepad2 size={18} /> },
   { to: "/ranking", label: "Ranking", icon: <Trophy size={18} /> },
   { to: "/history", label: "Desempenho", icon: <BarChart3 size={18} /> },
 ];

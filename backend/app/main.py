@@ -8,6 +8,7 @@ from app.admin.router import router as admin_router
 from app.auth.router import router as auth_router
 from app.dashboard.router import router as dashboard_router
 from app.exceptions import ForbiddenError, NotFoundError
+from app.letroso.router import router as letroso_router
 from app.ranking.router import router as ranking_router
 from app.scores.router import router as scores_router
 
@@ -33,6 +34,7 @@ app.include_router(scores_router, prefix="/api")
 app.include_router(ranking_router, prefix="/api")
 app.include_router(dashboard_router, prefix="/api")
 app.include_router(admin_router, prefix="/api")
+app.include_router(letroso_router, prefix="/api")
 
 uploads_dir = Path("/app/uploads/avatars")
 uploads_dir.mkdir(parents=True, exist_ok=True)
