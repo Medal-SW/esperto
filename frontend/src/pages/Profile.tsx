@@ -1,10 +1,16 @@
 import { useRef, useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import { useToast } from "../context/ToastContext";
-import { useUpdateProfile, useUploadAvatar, useDeleteAvatar } from "../api/hooks";
+import {
+  useConnectGoogle,
+  useUpdateProfile,
+  useUploadAvatar,
+  useDeleteAvatar,
+} from "../api/hooks";
 import { Avatar } from "../components/Avatar";
 import { AvatarCropModal } from "../components/AvatarCropModal";
 import { Card } from "../components/Card";
+import { GoogleButton } from "../components/GoogleButton";
 import { Camera } from "lucide-react";
 import styles from "./Profile.module.css";
 
@@ -14,6 +20,7 @@ export function ProfilePage() {
   const updateProfile = useUpdateProfile();
   const uploadAvatar = useUploadAvatar();
   const deleteAvatar = useDeleteAvatar();
+  const connectGoogle = useConnectGoogle();
   const fileRef = useRef<HTMLInputElement>(null);
 
   const [displayName, setDisplayName] = useState(user?.display_name ?? "");
@@ -50,6 +57,19 @@ export function ProfilePage() {
       addToast("Foto removida");
     } catch {
       addToast("Erro ao remover foto", "error");
+    }
+  };
+
+  const handleConnectGoogle = async (credential: string) => {
+    try {
+      await connectGoogle.mutateAsync(credential);
+      await refreshUser();
+      addToast("Conta Google conectada!");
+    } catch (err: unknown) {
+      const msg =
+        (err as { response?: { data?: { detail?: string } } })?.response?.data
+          ?.detail ?? "Erro ao conectar conta Google";
+      addToast(msg, "error");
     }
   };
 
@@ -142,6 +162,29 @@ export function ProfilePage() {
         >
           {updateProfile.isPending ? "Salvando..." : "Salvar"}
         </button>
+      </Card>
+
+      <Card hover={false}>
+        <div className={styles.googleField}>
+          <label className={styles.label}>Conta Google</label>
+          {user.google_linked ? (
+            <span className={styles.googleLinked}>
+              Conectada{user.email ? ` — ${user.email}` : ""}
+            </span>
+          ) : (
+            <>
+              <span className={styles.hint}>
+                Conecte sua conta Google para entrar sem senha
+              </span>
+              <div className={styles.googleBtnWrap}>
+                <GoogleButton
+                  text="continue_with"
+                  onCredential={handleConnectGoogle}
+                />
+              </div>
+            </>
+          )}
+        </div>
       </Card>
 
       {cropSrc && (

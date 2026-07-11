@@ -29,6 +29,7 @@ def seed() -> None:
         for username, pwd, is_admin in players:
             u = User(
                 username=username,
+                email=f"{username}@example.com",
                 password_hash=hash_password(pwd),
                 is_admin=is_admin,
             )

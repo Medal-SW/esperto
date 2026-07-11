@@ -55,6 +55,7 @@ export function Layout() {
   }
 
   if (!user) return <Navigate to="/login" replace />;
+  if (!user.is_onboarded) return <Navigate to="/onboarding" replace />;
 
   const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];

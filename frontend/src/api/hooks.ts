@@ -25,7 +25,7 @@ export function useMe() {
 
 export function useLogin() {
   return useMutation({
-    mutationFn: (body: { username: string; password: string }) =>
+    mutationFn: (body: { login: string; password: string }) =>
       api
         .post<{ access_token: string }>("/auth/login", body)
         .then((r) => r.data),
@@ -34,8 +34,19 @@ export function useLogin() {
 
 export function useSignup() {
   return useMutation({
-    mutationFn: (body: { username: string; password: string }) =>
+    mutationFn: (body: { username: string; email: string; password: string }) =>
       api.post<User>("/auth/signup", body).then((r) => r.data),
+  });
+}
+
+export function useConnectGoogle() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (credential: string) =>
+      api.post<User>("/auth/google/connect", { credential }).then((r) => r.data),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ["me"] });
+    },
   });
 }
 

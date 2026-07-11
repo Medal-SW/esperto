@@ -15,6 +15,7 @@ class Settings(BaseSettings):
     jwt_secret: str = "dev-secret-change-me"
     jwt_algorithm: str = "HS256"
     jwt_expire_minutes: int = 60 * 24 * 7
+    google_client_id: str = ""
 
     mail_username: str = "seu_email@gmail.com"
     mail_password: str = "sua_senha_de_app"
