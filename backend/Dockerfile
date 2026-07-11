@@ -7,6 +7,9 @@ RUN mkdir -p app && touch app/__init__.py && \
     pip install --no-cache-dir -e "."
 
 COPY . .
+RUN chmod +x entrypoint.sh
+
+ENTRYPOINT ["./entrypoint.sh"]
 
 FROM base AS dev
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
