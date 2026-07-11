@@ -6,9 +6,8 @@ import { GoogleButton } from "../components/GoogleButton";
 import styles from "./Login.module.css";
 
 function extractDetail(err: unknown): string {
-  const detail = (
-    err as { response?: { data?: { detail?: unknown } } }
-  )?.response?.data?.detail;
+  const detail = (err as { response?: { data?: { detail?: unknown } } })
+    ?.response?.data?.detail;
   // erro 422 do Pydantic vem como array de objetos
   if (Array.isArray(detail)) {
     return (detail[0] as { msg?: string })?.msg ?? "Dados inválidos";
@@ -183,18 +182,7 @@ export function LoginPage() {
               )}
 
               <div>
-                <div className={styles.labelRow}>
-                  <label className={styles.label}>Senha</label>
-                  {isLogin && (
-                    <a
-                      href="#"
-                      className={styles.forgot}
-                      onClick={(e) => e.preventDefault()}
-                    >
-                      Esqueci a senha
-                    </a>
-                  )}
-                </div>
+                <label className={styles.label}>Senha</label>
                 <div className={styles.passwordWrapper}>
                   <input
                     className={styles.input}
@@ -207,11 +195,22 @@ export function LoginPage() {
                     type="button"
                     className={styles.eyeButton}
                     onClick={() => setShowPassword((prev) => !prev)}
-                    aria-label={showPassword ? "Ocultar senha" : "Mostrar senha"}
+                    aria-label={
+                      showPassword ? "Ocultar senha" : "Mostrar senha"
+                    }
                   >
                     {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
                   </button>
                 </div>
+                {isLogin && (
+                  <a
+                    href="#"
+                    className={styles.forgot}
+                    onClick={(e) => e.preventDefault()}
+                  >
+                    Esqueci a senha
+                  </a>
+                )}
               </div>
             </div>
 
@@ -229,7 +228,12 @@ export function LoginPage() {
           <div className={styles.googleSlot}>
             <GoogleButton onCredential={handleGoogleCredential} width={384}>
               <button type="button" className={styles.googleBtn}>
-                <svg width="18" height="18" viewBox="0 0 48 48" aria-hidden="true">
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 48 48"
+                  aria-hidden="true"
+                >
                   <path
                     fill="#FFC107"
                     d="M43.6 20.5H42V20H24v8h11.3C33.7 32.9 29.3 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.5 6.1 29.5 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.3-.4-3.5z"
@@ -251,17 +255,6 @@ export function LoginPage() {
               </button>
             </GoogleButton>
           </div>
-
-          <p className={styles.switch}>
-            {isLogin ? "Ainda não tem conta?" : "Já tem uma conta?"}{" "}
-            <button
-              type="button"
-              className={styles.switchLink}
-              onClick={() => setTab(isLogin ? "signup" : "login")}
-            >
-              {isLogin ? "Criar conta" : "Entrar"}
-            </button>
-          </p>
         </div>
       </div>
     </div>

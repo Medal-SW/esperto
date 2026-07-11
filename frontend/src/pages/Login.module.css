@@ -14,7 +14,12 @@
   position: relative;
   flex: 1.05;
   min-width: 0;
-  background: radial-gradient(120% 120% at 15% 10%, #1a1030 0%, #0c1018 55%, #080b12 100%);
+  background: radial-gradient(
+    120% 120% at 15% 10%,
+    #1a1030 0%,
+    #0c1018 55%,
+    #080b12 100%
+  );
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -42,7 +47,11 @@
   right: -60px;
   width: 460px;
   height: 460px;
-  background: radial-gradient(circle, rgba(168, 85, 247, 0.22), transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(168, 85, 247, 0.22),
+    transparent 70%
+  );
 }
 
 .logo {
@@ -60,19 +69,25 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font: 700 22px "Space Grotesk", sans-serif;
+  font:
+    700 22px "Space Grotesk",
+    sans-serif;
   color: #fff;
   box-shadow: 0 8px 24px -6px rgba(244, 63, 94, 0.7);
 }
 
 .logoName {
-  font: 700 22px "Space Grotesk", sans-serif;
+  font:
+    700 22px "Space Grotesk",
+    sans-serif;
   color: #fff;
   letter-spacing: -0.5px;
 }
 
 .logoSub {
-  font: 500 12px "Hanken Grotesk", sans-serif;
+  font:
+    500 12px "Hanken Grotesk",
+    sans-serif;
   color: #8b93a7;
 }
 
@@ -83,7 +98,9 @@
 
 .heroTitle {
   margin: 0 0 16px;
-  font: 700 42px/1.12 "Space Grotesk", sans-serif;
+  font:
+    700 42px/1.12 "Space Grotesk",
+    sans-serif;
   color: #f1f5f9;
   letter-spacing: -1px;
   text-wrap: balance;
@@ -95,7 +112,9 @@
 
 .heroText {
   margin: 0 0 30px;
-  font: 400 16px/1.6 "Hanken Grotesk", sans-serif;
+  font:
+    400 16px/1.6 "Hanken Grotesk",
+    sans-serif;
   color: #9aa3b5;
   max-width: 400px;
 }
@@ -112,7 +131,9 @@
   gap: 7px;
   padding: 9px 14px;
   border-radius: 11px;
-  font: 600 13px "Hanken Grotesk", sans-serif;
+  font:
+    600 13px "Hanken Grotesk",
+    sans-serif;
 }
 
 .chipDot {
@@ -175,14 +196,18 @@
 
 .heading {
   margin: 0 0 6px;
-  font: 700 26px "Space Grotesk", sans-serif;
+  font:
+    700 26px "Space Grotesk",
+    sans-serif;
   color: #f1f5f9;
   letter-spacing: -0.4px;
 }
 
 .sub {
   margin: 0 0 26px;
-  font: 400 14px "Hanken Grotesk", sans-serif;
+  font:
+    400 14px "Hanken Grotesk",
+    sans-serif;
   color: #8b93a7;
 }
 
@@ -202,7 +227,9 @@
   padding: 11px;
   border: none;
   border-radius: 10px;
-  font: 600 14px "Hanken Grotesk", sans-serif;
+  font:
+    600 14px "Hanken Grotesk",
+    sans-serif;
   cursor: pointer;
   transition: all 0.15s;
   background: transparent;
@@ -231,26 +258,23 @@
 
 .label {
   display: block;
-  font: 600 11px "Hanken Grotesk", sans-serif;
+  font:
+    600 11px "Hanken Grotesk",
+    sans-serif;
   letter-spacing: 1px;
   text-transform: uppercase;
   color: #8b93a7;
   margin-bottom: 8px;
 }
 
-.labelRow {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 8px;
-}
-
-.labelRow .label {
-  margin-bottom: 0;
-}
-
 .forgot {
-  font: 500 12px "Hanken Grotesk", sans-serif;
+  display: block;
+  width: fit-content;
+  margin-left: auto;
+  margin-top: 8px;
+  font:
+    500 12px "Hanken Grotesk",
+    sans-serif;
   color: #fb7185;
   text-decoration: none;
 }
@@ -266,7 +290,9 @@
   border: 1px solid rgba(255, 255, 255, 0.09);
   border-radius: 12px;
   padding: 14px 16px;
-  font: 400 15px "Hanken Grotesk", sans-serif;
+  font:
+    400 15px "Hanken Grotesk",
+    sans-serif;
   color: #f1f5f9;
   outline: none;
   transition: 0.15s;
@@ -321,7 +347,9 @@
   border-radius: 12px;
   background: #f43f5e;
   color: #fff;
-  font: 700 15px "Hanken Grotesk", sans-serif;
+  font:
+    700 15px "Hanken Grotesk",
+    sans-serif;
   cursor: pointer;
   box-shadow: 0 10px 26px -8px rgba(244, 63, 94, 0.65);
   transition: 0.15s;
@@ -353,7 +381,9 @@
 }
 
 .divider span {
-  font: 500 11px "Hanken Grotesk", sans-serif;
+  font:
+    500 11px "Hanken Grotesk",
+    sans-serif;
   letter-spacing: 1px;
   color: #5b6577;
 }
@@ -374,7 +404,9 @@
   border-radius: 12px;
   background: #11161f;
   color: #e6e9f0;
-  font: 600 14px "Hanken Grotesk", sans-serif;
+  font:
+    600 14px "Hanken Grotesk",
+    sans-serif;
   cursor: pointer;
   transition: 0.15s;
 }
@@ -387,7 +419,9 @@
 .switch {
   margin: 24px 0 0;
   text-align: center;
-  font: 400 13px "Hanken Grotesk", sans-serif;
+  font:
+    400 13px "Hanken Grotesk",
+    sans-serif;
   color: #8b93a7;
 }
 
@@ -395,7 +429,9 @@
   background: none;
   border: none;
   padding: 0;
-  font: 600 13px "Hanken Grotesk", sans-serif;
+  font:
+    600 13px "Hanken Grotesk",
+    sans-serif;
   color: #fb7185;
   cursor: pointer;
 }
@@ -410,7 +446,9 @@
   border: 1px solid rgba(244, 63, 94, 0.28);
   border-radius: 10px;
   padding: 10px 14px;
-  font: 500 13px "Hanken Grotesk", sans-serif;
+  font:
+    500 13px "Hanken Grotesk",
+    sans-serif;
   color: #fda4af;
 }
 
