@@ -1,0 +1,219 @@
+/* Onboarding de username — dark, fiel ao Onboarding Username.dc.html */
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  background: radial-gradient(
+    120% 100% at 50% -10%,
+    #1a1030 0%,
+    #0b0f19 55%,
+    #0a0d15 100%
+  );
+  font-family: "Hanken Grotesk", system-ui, sans-serif;
+}
+
+.wrap {
+  width: 100%;
+  max-width: 460px;
+}
+
+/* marca */
+.brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 11px;
+  margin-bottom: 30px;
+}
+
+.brandBadge {
+  width: 40px;
+  height: 40px;
+  border-radius: 11px;
+  background: #f43f5e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font: 700 21px "Space Grotesk", sans-serif;
+  color: #fff;
+  box-shadow: 0 8px 24px -6px rgba(244, 63, 94, 0.7);
+}
+
+.brandName {
+  font: 700 20px "Space Grotesk", sans-serif;
+  color: #fff;
+  letter-spacing: -0.4px;
+}
+
+.brandSub {
+  font: 500 11px "Hanken Grotesk", sans-serif;
+  color: #8b93a7;
+}
+
+/* card */
+.card {
+  background: #0e131e;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 22px;
+  padding: 34px 32px;
+  box-shadow: 0 30px 70px -25px rgba(0, 0, 0, 0.7);
+}
+
+.title {
+  margin: 0 0 8px;
+  font: 700 26px "Space Grotesk", sans-serif;
+  color: #f1f5f9;
+  letter-spacing: -0.4px;
+}
+
+.subtitle {
+  margin: 0 0 26px;
+  font: 400 15px/1.5 "Hanken Grotesk", sans-serif;
+  color: #8b93a7;
+}
+
+.label {
+  display: block;
+  font: 600 11px "Hanken Grotesk", sans-serif;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #8b93a7;
+  margin-bottom: 9px;
+}
+
+.inputWrap {
+  position: relative;
+}
+
+.at {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #5b6577;
+  font: 600 16px "Space Grotesk", sans-serif;
+  pointer-events: none;
+}
+
+.input {
+  width: 100%;
+  box-sizing: border-box;
+  background: #0c1119;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 13px;
+  padding: 15px 44px 15px 40px;
+  font: 500 16px "Hanken Grotesk", sans-serif;
+  color: #f1f5f9;
+  outline: none;
+  transition: 0.15s;
+}
+
+.input::placeholder {
+  color: #5b6577;
+}
+
+.input:focus {
+  border-color: #f43f5e;
+  background: #0e131e;
+  box-shadow: 0 0 0 3px rgba(244, 63, 94, 0.14);
+}
+
+.checkIcon {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+}
+
+.spin {
+  animation: onbspin 0.7s linear infinite;
+}
+
+@keyframes onbspin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.metaRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 9px;
+  min-height: 18px;
+}
+
+.hint {
+  font: 500 12px "Hanken Grotesk", sans-serif;
+}
+
+.count {
+  font: 500 12px "Hanken Grotesk", sans-serif;
+  color: #5b6577;
+}
+
+/* sugestões */
+.suggest {
+  margin-top: 18px;
+}
+
+.suggestLabel {
+  font: 600 11px "Hanken Grotesk", sans-serif;
+  color: #6b7488;
+  margin-bottom: 9px;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  padding: 8px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  background: #151c29;
+  color: #9aa3b5;
+  font: 600 13px "Hanken Grotesk", sans-serif;
+  cursor: pointer;
+  transition: 0.15s;
+}
+
+.chip:hover {
+  background: #1b2434;
+  border-color: rgba(255, 255, 255, 0.22);
+  color: #e6e9f0;
+}
+
+/* cta */
+.cta {
+  width: 100%;
+  margin-top: 24px;
+  padding: 16px;
+  border: none;
+  border-radius: 14px;
+  font: 700 15px "Hanken Grotesk", sans-serif;
+  transition: 0.15s;
+  background: #f43f5e;
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 12px 28px -8px rgba(244, 63, 94, 0.65);
+}
+
+.cta:hover:not(:disabled) {
+  background: #fb5069;
+  transform: translateY(-1px);
+}
+
+.cta:disabled {
+  background: #1b2434;
+  color: #5b6577;
+  cursor: not-allowed;
+  box-shadow: none;
+}

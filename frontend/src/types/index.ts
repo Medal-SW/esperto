@@ -159,8 +159,6 @@ export interface LetterFeedback {
   letter: string;
   state: LetterState;
   position: number;
-  edge_start?: boolean;
-  edge_end?: boolean;
 }
 
 export interface GuessEntry {

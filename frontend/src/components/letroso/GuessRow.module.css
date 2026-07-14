@@ -2,4 +2,19 @@
   display: flex;
   gap: 4px;
   justify-content: center;
+  align-items: center;
+}
+
+.cursor {
+  width: 2px;
+  height: 28px;
+  background: var(--text-secondary);
+  animation: blink 1s step-end infinite;
+  margin: 0 -1px;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
 }

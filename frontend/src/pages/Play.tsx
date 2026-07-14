@@ -10,15 +10,24 @@ import styles from "./Play.module.css";
 
 const MAX_INPUT = 10;
 
+interface InputState {
+  text: string;
+  cursor: number;
+}
+
+const EMPTY_INPUT: InputState = { text: "", cursor: 0 };
+
 export function PlayPage() {
   const { data: game, isLoading } = useLetrosoGame();
   const guessMutation = useSubmitGuess();
   const { addToast } = useToast();
 
-  const [currentInput, setCurrentInput] = useState("");
+  const [input, setInput] = useState<InputState>(EMPTY_INPUT);
   const [error, setError] = useState("");
   const [showConfetti, setShowConfetti] = useState(false);
   const boardRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef(input);
+  inputRef.current = input;
 
   const solved = game?.solved ?? false;
   const guesses = game?.guesses ?? [];
@@ -30,12 +39,13 @@ export function PlayPage() {
   }, [game?.solved]);
 
   const handleSubmit = useCallback(async () => {
-    if (currentInput.length === 0) return;
+    const current = inputRef.current.text;
+    if (current.length === 0) return;
     setError("");
 
     try {
-      const result = await guessMutation.mutateAsync(currentInput);
-      setCurrentInput("");
+      const result = await guessMutation.mutateAsync(current);
+      setInput(EMPTY_INPUT);
       if (result.solved) {
         setShowConfetti(true);
       }
@@ -50,7 +60,7 @@ export function PlayPage() {
         addToast("Erro ao enviar tentativa", "error");
       }
     }
-  }, [currentInput, guessMutation, addToast]);
+  }, [guessMutation, addToast]);
 
   const handleKey = useCallback(
     (key: string) => {
@@ -60,12 +70,30 @@ export function PlayPage() {
       if (key === "ENTER") {
         handleSubmit();
       } else if (key === "⌫") {
-        setCurrentInput((prev) => prev.slice(0, -1));
-      } else if (/^[A-Z]$/.test(key) && currentInput.length < MAX_INPUT) {
-        setCurrentInput((prev) => prev + key.toLowerCase());
+        setInput((prev) =>
+          prev.cursor > 0
+            ? {
+                text: prev.text.slice(0, prev.cursor - 1) + prev.text.slice(prev.cursor),
+                cursor: prev.cursor - 1,
+              }
+            : prev
+        );
+      } else if (key === "←") {
+        setInput((prev) => ({ ...prev, cursor: Math.max(0, prev.cursor - 1) }));
+      } else if (key === "→") {
+        setInput((prev) => ({ ...prev, cursor: Math.min(prev.text.length, prev.cursor + 1) }));
+      } else if (/^[A-Z]$/.test(key)) {
+        setInput((prev) =>
+          prev.text.length < MAX_INPUT
+            ? {
+                text: prev.text.slice(0, prev.cursor) + key.toLowerCase() + prev.text.slice(prev.cursor),
+                cursor: prev.cursor + 1,
+              }
+            : prev
+        );
       }
     },
-    [solved, handleSubmit, currentInput.length]
+    [solved, handleSubmit]
   );
 
   useEffect(() => {
@@ -79,6 +107,12 @@ export function PlayPage() {
       } else if (key === "BACKSPACE") {
         e.preventDefault();
         handleKey("⌫");
+      } else if (key === "ARROWLEFT") {
+        e.preventDefault();
+        handleKey("←");
+      } else if (key === "ARROWRIGHT") {
+        e.preventDefault();
+        handleKey("→");
       } else if (/^[A-Z]$/.test(key)) {
         e.preventDefault();
         handleKey(key);
@@ -120,7 +154,11 @@ export function PlayPage() {
           <GuessRow key={i} entry={entry} />
         ))}
         {!solved && (
-          <GuessRow currentInput={currentInput} />
+          <GuessRow
+            currentInput={input.text}
+            cursorPos={input.cursor}
+            onTileClick={(pos) => setInput((prev) => ({ ...prev, cursor: pos }))}
+          />
         )}
       </div>
 
