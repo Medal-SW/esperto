@@ -10,6 +10,7 @@ interface LetterTileProps {
   prevCorrect?: boolean;
   nextCorrect?: boolean;
   isCurrent?: boolean;
+  onClick?: () => void;
 }
 
 export function LetterTile({
@@ -20,6 +21,7 @@ export function LetterTile({
   prevCorrect,
   nextCorrect,
   isCurrent,
+  onClick,
 }: LetterTileProps) {
   let className = styles.tile;
   const inlineStyle: CSSProperties = {};
@@ -40,12 +42,15 @@ export function LetterTile({
     className += " " + styles.absent;
   } else if (isCurrent) {
     className += " " + styles.current;
+    if (onClick) {
+      className += " " + styles.clickable;
+    }
   } else {
     className += " " + styles.empty;
   }
 
   return (
-    <div className={className} style={inlineStyle}>
+    <div className={className} style={inlineStyle} onClick={onClick}>
       {letter ?? ""}
     </div>
   );
