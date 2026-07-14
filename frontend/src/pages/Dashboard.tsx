@@ -97,7 +97,8 @@ export function DashboardPage() {
   }
 
   const doneCount = data.triad.filter((t) => t.played).length;
-  const allDone = doneCount === 3;
+  const totalGames = data.triad.length;
+  const allDone = doneCount === totalGames;
   const { word, emoji } = greetingWord();
 
   const rankingList = ranking.data ?? [];
@@ -122,7 +123,7 @@ export function DashboardPage() {
 
   const pendingMsg = allDone
     ? "tudo registrado hoje! 🎉"
-    : `${3 - doneCount} ${3 - doneCount === 1 ? "jogo pendente" : "jogos pendentes"}`;
+    : `${totalGames - doneCount} ${totalGames - doneCount === 1 ? "jogo pendente" : "jogos pendentes"}`;
 
   // vizinhos no ranking (eu + adjacentes)
   const myIdx = rankingList.findIndex((e) => e.user_id === user.id);
@@ -174,39 +175,13 @@ export function DashboardPage() {
             {longDate(new Date())} · {pendingMsg}
           </div>
         </div>
-      )}
-
-      <h3 className={styles.sectionTitle}>Seus Jogos Diários</h3>
-      <div className={styles.triadGrid}>
-        {data.triad.map((t) => {
-          const meta = GAME_META[t.game];
-          return (
-            <Card
-              key={t.game}
-              onClick={!t.played ? () => navigate("/submit") : undefined}
-              style={{ borderLeft: `4px solid ${meta.color}`, cursor: t.played ? "default" : "pointer" }}
-            >
-              <div className={styles.triadCard}>
-                <div>
-                  <p className={styles.triadName}>{meta.name}</p>
-                  {t.played ? (
-                    <p className={styles.triadStatus} style={{ color: meta.color }}>
-                      {t.attempts} {t.attempts === 1 ? "tentativa" : "tentativas"}
-                    </p>
-                  ) : (
-                    <p className={styles.triadStatus} style={{ color: "var(--text-muted)" }}>
-                      Pendente
-                    </p>
-                  )}
-                </div>
-                <div
-                  className={styles.triadIcon}
-                  style={{
-                    background: t.played ? meta.color : "var(--bg-hover)",
-                    color: t.played ? "#fff" : "var(--text-muted)",
-                  }}
-                >
-                  {t.played ? <Check size={18} /> : "—"}
+        <div className={styles.topStats}>
+          {topStats.map((s) => (
+            <div key={s.label} className={styles.statPill}>
+              <span className={styles.statPillIcon}>{s.icon}</span>
+              <div>
+                <div className={styles.statPillValue} style={{ color: s.color }}>
+                  {s.value}
                 </div>
                 <div className={styles.statPillLabel}>{s.label}</div>
               </div>
@@ -222,7 +197,7 @@ export function DashboardPage() {
           <div>
             <div className={styles.sectionHead}>
               <span className={styles.sectionLabel}>Sua tríade diária</span>
-              <span className={styles.sectionMeta}>{doneCount}/3 registrados</span>
+              <span className={styles.sectionMeta}>{doneCount}/{totalGames} registrados</span>
             </div>
             <div className={styles.triadGrid}>
               {data.triad.map((t) => {
@@ -331,9 +306,9 @@ export function DashboardPage() {
                       <div className={styles.feedText}>
                         <div className={styles.feedName}>
                           <b>{f.username}</b> registrou{" "}
-                          {f.games_played === 3
+                          {f.games_played === totalGames
                             ? "todos os jogos"
-                            : `${f.games_played}/3 jogos`}
+                            : `${f.games_played}/${totalGames} jogos`}
                         </div>
                         <div className={styles.feedMeta}>hoje</div>
                       </div>
@@ -371,16 +346,19 @@ export function DashboardPage() {
           </div>
         </div>
 
-      <h3 className={styles.sectionTitle}>Atividade dos Amigos</h3>
-      <Card hover={false}>
-        {data.friends_activity.length > 0 ? (
-          <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-            {data.friends_activity.map((f) => (
-              <div key={f.user_id} className={styles.friendRow}>
-                <Avatar username={f.username} avatarUrl={f.avatar_url} size={32} />
-                <div className={styles.friendInfo}>
-                  <p className={styles.friendName}>{f.username}</p>
-                  <p className={styles.friendGames}>{f.games_played}/{ALL_GAMES.length} jogos registrados</p>
+        {/* RAIL DIREITO */}
+        <div className={styles.rail}>
+          {/* sequência */}
+          <div className={`${styles.railCard} ${styles.streakCard}`}>
+            <div className={`${styles.railLabel} ${styles.streakLabel}`}>
+              Sequência
+            </div>
+            <div className={styles.streakBody}>
+              <span className={styles.streakEmoji}>🔥</span>
+              <div>
+                <div className={styles.streakNum}>{data.streak}</div>
+                <div className={styles.streakUnit}>
+                  {data.streak === 1 ? "dia seguido" : "dias seguidos"}
                 </div>
               </div>
             </div>
