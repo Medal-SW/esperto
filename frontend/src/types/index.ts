@@ -2,6 +2,7 @@ export enum GameName {
   CONEXO = "conexo",
   LETROSO = "letroso",
   EXPRESSO = "expresso",
+  HISTORICO = "historico",
 }
 
 export const GAME_META: Record<
@@ -11,9 +12,15 @@ export const GAME_META: Record<
   [GameName.CONEXO]: { name: "Conexo", color: "#a855f7" },
   [GameName.LETROSO]: { name: "Letroso", color: "#22c55e" },
   [GameName.EXPRESSO]: { name: "Expresso", color: "#f59e0b" },
+  [GameName.HISTORICO]: { name: "Histórico", color: "#3b82f6" },
 };
 
-export const ALL_GAMES = [GameName.CONEXO, GameName.LETROSO, GameName.EXPRESSO];
+export const ALL_GAMES = [
+  GameName.CONEXO,
+  GameName.LETROSO,
+  GameName.EXPRESSO,
+  GameName.HISTORICO,
+];
 
 export interface User {
   id: number;
@@ -166,6 +173,49 @@ export interface LetrosoGameState {
 }
 
 export interface LetrosoStatus {
+  played_today: boolean;
+  solved: boolean;
+  attempts: number | null;
+}
+
+// Historico game types
+
+export type HistoricoEra =
+  | "antiga"
+  | "media"
+  | "moderna"
+  | "contemporanea"
+  | "atual";
+
+export type HistoricoDirection = "antes" | "depois" | "mesmo_ano" | "acertou";
+
+export interface HistoricoEventOption {
+  id: number;
+  name: string;
+  era: HistoricoEra;
+}
+
+export interface HistoricoGuessEntry {
+  event_id: number;
+  name: string;
+  year: number;
+  direction: HistoricoDirection;
+}
+
+export interface HistoricoTarget {
+  name: string;
+  year: number;
+  category: string | null;
+}
+
+export interface HistoricoGameState {
+  guesses: HistoricoGuessEntry[];
+  solved: boolean;
+  attempts: number | null;
+  target: HistoricoTarget | null;
+}
+
+export interface HistoricoStatus {
   played_today: boolean;
   solved: boolean;
   attempts: number | null;

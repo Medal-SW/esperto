@@ -1,0 +1,659 @@
+nome;ano;categoria
+# Formato: nome;ano;categoria — ano negativo = a.C. Ano de guerras/processos = ano de início.
+Invenção da escrita cuneiforme;-3200;ciencia
+Unificação do Egito Antigo;-3100;politica
+Construção de Stonehenge;-2500;cultura
+Construção da Grande Pirâmide de Gizé;-2560;cultura
+Auge da civilização do Vale do Indo;-2000;cultura
+Código de Hamurábi;-1754;politica
+Reinado de Ramsés II no Egito;-1279;politica
+Reinado de Tutancâmon;-1332;politica
+Êxodo hebreu do Egito;-1250;religiao
+Guerra de Troia;-1200;guerra
+Reinado do rei Davi em Israel;-1000;religiao
+Reinado do rei Salomão;-970;religiao
+Fundação de Cartago;-814;politica
+Primeiros Jogos Olímpicos da Antiguidade;-776;esporte
+Fundação de Roma;-753;politica
+Homero compõe a Ilíada e a Odisseia;-750;cultura
+Fundação de Bizâncio;-667;politica
+Nabucodonosor II conquista Jerusalém;-587;guerra
+Nascimento de Buda;-563;religiao
+Nascimento de Confúcio;-551;religiao
+Ciro, o Grande funda o Império Persa;-550;politica
+Roma torna-se uma república;-509;politica
+Reformas democráticas de Clístenes em Atenas;-508;politica
+Batalha de Maratona;-490;guerra
+Batalha das Termópilas;-480;guerra
+Batalha de Salamina;-480;guerra
+Parthenon é concluído em Atenas;-438;cultura
+Guerra do Peloponeso;-431;guerra
+Hipócrates funda a medicina ocidental;-400;ciencia
+Morte de Sócrates;-399;cultura
+Fundação da Academia de Platão;-387;ciencia
+Batalha de Gaugamela;-331;guerra
+Alexandre, o Grande inicia suas conquistas;-334;guerra
+Morte de Alexandre, o Grande;-323;politica
+Fundação da Biblioteca de Alexandria;-295;ciencia
+Colosso de Rodes é erguido;-280;cultura
+Asoca expande o Império Máuria;-268;politica
+Primeira Guerra Púnica;-264;guerra
+Eratóstenes mede a circunferência da Terra;-240;ciencia
+Unificação da China por Qin Shi Huang;-221;politica
+Início da construção da Grande Muralha da China;-220;politica
+Segunda Guerra Púnica;-218;guerra
+Batalha de Canas;-216;guerra
+Morte de Arquimedes;-212;ciencia
+Pedra de Roseta é esculpida;-196;cultura
+Destruição de Cartago;-146;guerra
+Revolta de Espártaco;-73;politica
+Reinado de Cleópatra no Egito;-51;politica
+César cruza o Rubicão;-49;politica
+Assassinato de Júlio César;-44;politica
+Batalha de Áccio;-31;guerra
+Augusto funda o Império Romano;-27;politica
+Crucificação de Jesus Cristo;30;religiao
+Grande Incêndio de Roma;64;desastre
+Destruição do Templo de Jerusalém;70;religiao
+Erupção do Vesúvio destrói Pompeia;79;desastre
+Inauguração do Coliseu;80;cultura
+Papel é inventado na China;105;ciencia
+Ptolomeu publica o Almagesto;150;ciencia
+Galeno consolida a medicina romana;170;ciencia
+Édito de Caracala;212;politica
+Início da Crise do Terceiro Século em Roma;235;politica
+Tetrarquia de Diocleciano;293;politica
+Conversão de Constantino ao cristianismo;312;religiao
+Édito de Milão;313;religiao
+Concílio de Niceia;325;religiao
+Fundação de Constantinopla;330;politica
+Batalha de Adrianópolis;378;guerra
+Cristianismo vira religião oficial de Roma;380;religiao
+Divisão definitiva do Império Romano;395;politica
+Saque de Roma pelos visigodos;410;guerra
+Assassinato de Hipátia em Alexandria;415;cultura
+Batalha dos Campos Cataláunicos contra Átila;451;guerra
+Vândalos saqueiam Roma;455;guerra
+Queda do Império Romano do Ocidente;476;politica
+Clóvis unifica os francos;486;politica
+Justiniano assume o trono bizantino;527;politica
+Código de Justiniano;529;politica
+Basílica de Santa Sofia é concluída;537;religiao
+Praga de Justiniano;541;desastre
+Nascimento de Maomé;570;religiao
+Hégira de Maomé para Medina;622;religiao
+Morte de Maomé;632;religiao
+Fundação de Veneza;697;politica
+Muçulmanos chegam à Península Ibérica;711;guerra
+Iconoclastia bizantina;726;religiao
+Batalha de Poitiers;732;guerra
+Fundação de Bagdá;762;politica
+Vikings saqueiam Lindisfarne;793;guerra
+Coroação de Carlos Magno;800;politica
+Al-Khwarizmi funda a álgebra;820;ciencia
+Casa da Sabedoria floresce em Bagdá;830;ciencia
+Tratado de Verdun divide o império carolíngio;843;politica
+Fundação da Rússia de Kiev;882;politica
+Otão I funda o Sacro Império Romano-Germânico;962;politica
+Erik, o Vermelho coloniza a Groenlândia;985;exploracao
+Leif Erikson chega à América do Norte;1000;exploracao
+Cnuto, o Grande une Inglaterra e Dinamarca;1016;politica
+Grande Cisma do Oriente;1054;religiao
+Batalha de Hastings;1066;guerra
+Reconquista de Toledo;1085;guerra
+Domesday Book é compilado;1086;politica
+Fundação da Universidade de Bolonha;1088;ciencia
+El Cid conquista Valência;1094;guerra
+Primeira Cruzada;1096;guerra
+Cruzados conquistam Jerusalém;1099;guerra
+Fundação de Portugal;1143;politica
+Segunda Cruzada;1147;guerra
+Saladino retoma Jerusalém;1187;guerra
+Terceira Cruzada;1189;guerra
+Fundação da Universidade de Paris;1200;ciencia
+Quarta Cruzada saqueia Constantinopla;1204;guerra
+Gengis Khan unifica os mongóis;1206;politica
+Batalha de Las Navas de Tolosa;1212;guerra
+Magna Carta;1215;politica
+Morte de Gengis Khan;1227;politica
+Bizantinos retomam Constantinopla;1261;guerra
+Tomás de Aquino escreve a Suma Teológica;1265;religiao
+Oitava Cruzada;1270;guerra
+Marco Polo parte para a China;1271;exploracao
+Fundação do Império Otomano;1299;politica
+Grande Fome na Europa;1315;desastre
+Divina Comédia de Dante é concluída;1320;cultura
+Peregrinação de Mansa Musa a Meca;1324;religiao
+Fundação de Tenochtitlán;1325;politica
+Guerra dos Cem Anos começa;1337;guerra
+Peste Negra devasta a Europa;1347;desastre
+Alhambra é concluída em Granada;1358;cultura
+Fundação da dinastia Ming;1368;politica
+Grande Cisma do Ocidente;1378;religiao
+Revolta camponesa na Inglaterra;1381;politica
+Batalha de Kosovo;1389;guerra
+União de Kalmar;1397;politica
+Tamerlão saqueia Délhi;1398;guerra
+Zheng He inicia suas grandes navegações;1405;exploracao
+Construção da Cidade Proibida começa;1406;cultura
+Batalha de Tannenberg;1410;guerra
+Concílio de Constança;1414;religiao
+Batalha de Agincourt;1415;guerra
+Conquista de Ceuta pelos portugueses;1415;exploracao
+Jan Hus é executado;1415;religiao
+Joana d'Arc liberta Orléans;1429;guerra
+Execução de Joana d'Arc;1431;guerra
+Pachacuti expande o Império Inca;1438;politica
+Gutenberg inventa a prensa de tipos móveis;1440;ciencia
+Queda de Constantinopla;1453;guerra
+Fim da Guerra dos Cem Anos;1453;guerra
+Guerra das Duas Rosas;1455;guerra
+Bíblia de Gutenberg é impressa;1455;cultura
+Bartolomeu Dias dobra o Cabo da Boa Esperança;1488;exploracao
+Queda de Granada e fim da Reconquista;1492;guerra
+Chegada de Colombo à América;1492;exploracao
+Tratado de Tordesilhas;1494;politica
+Vasco da Gama chega à Índia;1498;exploracao
+Chegada de Cabral ao Brasil;1500;brasil
+Primeira missa no Brasil;1500;brasil
+Mona Lisa é pintada;1503;cultura
+Michelangelo esculpe o Davi;1504;cultura
+Teto da Capela Sistina é concluído;1512;cultura
+Balboa avista o Oceano Pacífico;1513;exploracao
+Lutero publica as 95 teses;1517;religiao
+Fernão de Magalhães inicia a circum-navegação;1519;exploracao
+Cortés conquista Tenochtitlán;1521;guerra
+Primeira circum-navegação completa da Terra;1522;exploracao
+Saque de Roma pelas tropas de Carlos V;1527;guerra
+Pizarro conquista o Império Inca;1532;guerra
+Fundação de São Vicente, primeira vila do Brasil;1532;brasil
+Henrique VIII cria a Igreja Anglicana;1534;religiao
+Capitanias hereditárias são criadas no Brasil;1534;brasil
+Fundação de Buenos Aires;1536;politica
+Copérnico publica o heliocentrismo;1543;ciencia
+Concílio de Trento;1545;religiao
+Fundação de Salvador, primeira capital do Brasil;1549;brasil
+Fundação de São Paulo;1554;brasil
+Paz de Augsburgo;1555;religiao
+Fundação do Rio de Janeiro;1565;brasil
+Batalha de Lepanto;1571;guerra
+Massacre da Noite de São Bartolomeu;1572;religiao
+União Ibérica une Portugal e Espanha;1580;politica
+Derrota da Armada Invencível;1588;guerra
+Giordano Bruno é queimado em Roma;1600;religiao
+Fundação da Companhia das Índias Orientais;1600;economia
+Hamlet de Shakespeare é encenado;1601;cultura
+Dom Quixote é publicado;1605;cultura
+Conspiração da Pólvora;1605;politica
+Fundação de Jamestown;1607;exploracao
+Galileu aponta o telescópio para o céu;1609;ciencia
+Kepler publica as leis do movimento planetário;1609;ciencia
+Guerra dos Trinta Anos começa;1618;guerra
+Peregrinos do Mayflower chegam à América;1620;exploracao
+Invasão holandesa em Pernambuco;1630;brasil
+Construção do Taj Mahal começa;1632;cultura
+Galileu é julgado pela Inquisição;1633;ciencia
+Fundação da Universidade de Harvard;1636;ciencia
+Revolução Inglesa começa;1642;politica
+Paz de Vestfália;1648;politica
+Execução de Carlos I da Inglaterra;1649;politica
+Expulsão dos holandeses do Brasil;1654;brasil
+Grande Peste de Londres;1665;desastre
+Grande Incêndio de Londres;1666;desastre
+Morte de Zumbi dos Palmares;1695;brasil
+Newton publica os Principia;1687;ciencia
+Revolução Gloriosa na Inglaterra;1688;politica
+Descoberta de ouro em Minas Gerais;1693;brasil
+Grande Guerra do Norte;1700;guerra
+Guerra de Sucessão Espanhola;1701;guerra
+Fundação de São Petersburgo;1703;politica
+Guerra dos Emboabas;1707;brasil
+Guerra dos Mascates;1710;brasil
+Fundação de Vila Rica, atual Ouro Preto;1711;brasil
+Tratado de Utrecht;1713;politica
+Morte de Luís XIV;1715;politica
+Bach compõe os Concertos de Brandemburgo;1721;cultura
+Fahrenheit cria sua escala de temperatura;1724;ciencia
+Lineu publica a classificação das espécies;1735;ciencia
+Guerra da Sucessão Austríaca;1740;guerra
+Terremoto de Lisboa;1755;desastre
+Guerra dos Sete Anos;1756;guerra
+Marquês de Pombal expulsa os jesuítas;1759;politica
+Capital do Brasil muda para o Rio de Janeiro;1763;brasil
+Máquina a vapor de James Watt;1769;ciencia
+James Cook chega à Austrália;1770;exploracao
+Motim do Chá de Boston;1773;politica
+Independência dos Estados Unidos;1776;politica
+A Riqueza das Nações de Adam Smith;1776;economia
+James Cook chega ao Havaí;1778;exploracao
+Rebelião de Túpac Amaru II;1780;politica
+Primeiro voo de balão dos irmãos Montgolfier;1783;ciencia
+Tratado de Paris reconhece os Estados Unidos;1783;politica
+Constituição dos Estados Unidos;1787;politica
+Mozart compõe Don Giovanni;1787;cultura
+Primeira frota de colonos chega à Austrália;1788;exploracao
+Revolução Francesa;1789;politica
+Queda da Bastilha;1789;politica
+Declaração dos Direitos do Homem e do Cidadão;1789;politica
+Inconfidência Mineira;1789;brasil
+Lavoisier publica o Tratado Elementar de Química;1789;ciencia
+Revolta dos escravizados no Haiti;1791;politica
+Execução de Luís XVI;1793;politica
+Período do Terror na França;1793;politica
+Vacina contra a varíola de Jenner;1796;ciencia
+Conjuração Baiana;1798;brasil
+Golpe do 18 de Brumário;1799;politica
+Pedra de Roseta é descoberta;1799;cultura
+Napoleão coroa-se imperador;1804;politica
+Independência do Haiti;1804;politica
+Batalha de Trafalgar;1805;guerra
+Batalha de Austerlitz;1805;guerra
+Chegada da família real portuguesa ao Brasil;1808;brasil
+Abertura dos portos brasileiros;1808;brasil
+Fundação do Banco do Brasil;1808;brasil
+Invasão napoleônica da Rússia;1812;guerra
+Guerra de 1812 entre Estados Unidos e Inglaterra;1812;guerra
+Batalha de Waterloo;1815;guerra
+Congresso de Viena;1815;politica
+Brasil é elevado a Reino Unido de Portugal;1815;brasil
+Independência da Argentina;1816;politica
+Revolução Pernambucana;1817;brasil
+San Martín cruza os Andes;1817;guerra
+Independência do Chile;1818;politica
+Revolução do Porto;1820;politica
+Independência do México;1821;politica
+Grito do Ipiranga e independência do Brasil;1822;brasil
+Coroação de Dom Pedro I;1822;brasil
+Primeira Constituição do Brasil;1824;brasil
+Confederação do Equador;1824;brasil
+Independência da Bolívia;1825;politica
+Guerra da Cisplatina;1825;brasil
+Primeira ferrovia de passageiros do mundo;1825;ciencia
+Morte de Beethoven;1827;cultura
+Independência do Uruguai;1828;politica
+Abdicação de Dom Pedro I;1831;brasil
+Início do período regencial no Brasil;1831;brasil
+Abolição da escravidão no Império Britânico;1833;politica
+Cabanagem explode no Pará;1835;brasil
+Revolução Farroupilha;1835;brasil
+Sabinada na Bahia;1837;brasil
+Balaiada no Maranhão;1838;brasil
+Daguerre apresenta a fotografia;1839;ciencia
+Primeira Guerra do Ópio;1839;guerra
+Golpe da Maioridade de Dom Pedro II;1840;brasil
+Telégrafo de Morse entra em operação;1844;ciencia
+Grande Fome da Irlanda;1845;desastre
+Guerra entre México e Estados Unidos;1846;guerra
+Manifesto Comunista é publicado;1848;politica
+Primavera dos Povos na Europa;1848;politica
+Corrida do ouro na Califórnia;1848;economia
+Revolta Praieira em Pernambuco;1848;brasil
+Lei Eusébio de Queirós;1850;brasil
+Moby Dick é publicado;1851;cultura
+Primeira Exposição Universal em Londres;1851;cultura
+Guerra da Crimeia;1853;guerra
+Comodoro Perry força a abertura do Japão;1853;politica
+Primeira ferrovia do Brasil;1854;brasil
+A Origem das Espécies de Darwin;1859;ciencia
+Primeiro poço de petróleo dos Estados Unidos;1859;economia
+Guerra Civil dos Estados Unidos;1861;guerra
+Unificação da Itália;1861;politica
+Abolição da servidão na Rússia;1861;politica
+Proclamação de emancipação de Lincoln;1863;politica
+Fundação da Cruz Vermelha;1863;politica
+Guerra do Paraguai;1864;brasil
+Assassinato de Abraham Lincoln;1865;politica
+Fim da Guerra Civil Americana;1865;guerra
+Batalha do Riachuelo;1865;brasil
+Guerra Austro-Prussiana;1866;guerra
+Compra do Alasca pelos Estados Unidos;1867;politica
+O Capital de Marx é publicado;1867;economia
+Restauração Meiji no Japão;1868;politica
+Inauguração do Canal de Suez;1869;economia
+Primeira ferrovia transcontinental americana;1869;ciencia
+Guerra Franco-Prussiana;1870;guerra
+Fim da Guerra do Paraguai;1870;brasil
+Unificação da Alemanha;1871;politica
+Comuna de Paris;1871;politica
+Lei do Ventre Livre;1871;brasil
+Grande Incêndio de Chicago;1871;desastre
+Telefone de Graham Bell;1876;ciencia
+Batalha de Little Bighorn;1876;guerra
+Fonógrafo de Edison;1877;ciencia
+Lâmpada elétrica de Edison;1879;ciencia
+Guerra do Pacífico na América do Sul;1879;guerra
+Erupção do Krakatoa;1883;desastre
+Conferência de Berlim divide a África;1884;politica
+Primeiro automóvel de Karl Benz;1885;ciencia
+Lei dos Sexagenários;1885;brasil
+Estátua da Liberdade é inaugurada;1886;cultura
+Lei Áurea abole a escravidão no Brasil;1888;brasil
+Proclamação da República no Brasil;1889;brasil
+Torre Eiffel é inaugurada;1889;cultura
+Primeira Constituição republicana do Brasil;1891;brasil
+Ellis Island abre como porta de imigração;1892;politica
+Revolta da Armada;1893;brasil
+Primeiro filme dos irmãos Lumière;1895;cultura
+Descoberta dos raios X;1895;ciencia
+Guerra de Canudos;1896;brasil
+Primeiros Jogos Olímpicos da era moderna;1896;esporte
+Guerra Hispano-Americana;1898;guerra
+Marie Curie descobre o rádio;1898;ciencia
+Dom Casmurro de Machado de Assis;1899;cultura
+Guerra dos Bôeres;1899;guerra
+A Interpretação dos Sonhos de Freud;1900;ciencia
+Rebelião dos Boxers na China;1900;guerra
+Primeira transmissão de rádio transatlântica;1901;ciencia
+Primeiro Prêmio Nobel é entregue;1901;cultura
+Voo dos irmãos Wright;1903;ciencia
+Revolta da Vacina;1904;brasil
+Guerra Russo-Japonesa;1904;guerra
+Revolução Russa de 1905;1905;politica
+Teoria da relatividade especial de Einstein;1905;ciencia
+Voo do 14-Bis de Santos Dumont;1906;brasil
+Terremoto de São Francisco;1906;desastre
+Revolta da Chibata;1910;brasil
+Revolução Mexicana;1910;politica
+Naufrágio do Titanic;1912;desastre
+Guerra do Contestado;1912;brasil
+Fim da dinastia Qing na China;1912;politica
+Linha de montagem de Henry Ford;1913;economia
+Primeira Guerra Mundial;1914;guerra
+Abertura do Canal do Panamá;1914;economia
+Genocídio Armênio;1915;guerra
+Batalha do Somme;1916;guerra
+Batalha de Verdun;1916;guerra
+Revolução Russa;1917;politica
+Brasil entra na Primeira Guerra Mundial;1917;brasil
+Greve geral de 1917 em São Paulo;1917;brasil
+Gripe Espanhola;1918;desastre
+Fim da Primeira Guerra Mundial;1918;guerra
+Tratado de Versalhes;1919;politica
+Liga das Nações é criada;1920;politica
+Sufrágio feminino nos Estados Unidos;1920;politica
+Semana de Arte Moderna;1922;brasil
+Revolta dos 18 do Forte de Copacabana;1922;brasil
+Descoberta da tumba de Tutancâmon;1922;cultura
+Marcha sobre Roma de Mussolini;1922;politica
+Fundação da União Soviética;1922;politica
+Coluna Prestes inicia sua marcha;1925;brasil
+Primeiro voo solo transatlântico de Lindbergh;1927;exploracao
+Descoberta da penicilina;1928;ciencia
+Quebra da Bolsa de Nova York;1929;economia
+Revolução de 1930 no Brasil;1930;brasil
+Getúlio Vargas assume o poder;1930;brasil
+Primeira Copa do Mundo de futebol;1930;esporte
+Empire State Building é inaugurado;1931;cultura
+Cristo Redentor é inaugurado;1931;brasil
+Revolução Constitucionalista de 1932;1932;brasil
+Voto feminino é conquistado no Brasil;1932;brasil
+Hitler chega ao poder na Alemanha;1933;politica
+New Deal de Roosevelt;1933;economia
+Longa Marcha de Mao na China;1934;politica
+Intentona Comunista;1935;brasil
+Guerra Civil Espanhola;1936;guerra
+Jogos Olímpicos de Berlim;1936;esporte
+Estado Novo de Vargas;1937;brasil
+Bombardeio de Guernica;1937;guerra
+Desastre do dirigível Hindenburg;1937;desastre
+Noite dos Cristais;1938;politica
+Segunda Guerra Mundial;1939;guerra
+Batalha da Inglaterra;1940;guerra
+Ataque a Pearl Harbor;1941;guerra
+Cerco de Leningrado;1941;guerra
+Brasil declara guerra ao Eixo;1942;brasil
+Batalha de Stalingrado;1942;guerra
+Batalha de Midway;1942;guerra
+Criação da CLT;1943;brasil
+FEB parte para a Itália;1944;brasil
+Dia D, desembarque na Normandia;1944;guerra
+Conferência de Yalta;1945;politica
+Bomba atômica em Hiroshima;1945;guerra
+Fim da Segunda Guerra Mundial;1945;guerra
+Fundação da ONU;1945;politica
+Fim do Estado Novo no Brasil;1945;brasil
+Julgamento de Nuremberg;1946;politica
+Constituição brasileira de 1946;1946;brasil
+Plano Marshall;1947;economia
+Independência da Índia;1947;politica
+Criação do Estado de Israel;1948;politica
+Declaração Universal dos Direitos Humanos;1948;politica
+Bloqueio de Berlim;1948;politica
+Assassinato de Gandhi;1948;politica
+Fundação da OTAN;1949;politica
+Revolução Chinesa de Mao;1949;politica
+União Soviética testa sua primeira bomba atômica;1949;guerra
+Guerra da Coreia;1950;guerra
+Maracanazo na Copa de 1950;1950;esporte
+TV Tupi, primeira televisão do Brasil;1950;brasil
+Morte de Stalin;1953;politica
+Estrutura do DNA é descoberta;1953;ciencia
+Conquista do Monte Everest;1953;exploracao
+Criação da Petrobras;1953;brasil
+Suicídio de Getúlio Vargas;1954;brasil
+Rosa Parks e o boicote aos ônibus de Montgomery;1955;politica
+Juscelino Kubitschek é eleito presidente;1955;brasil
+Crise de Suez;1956;politica
+Revolução Húngara;1956;politica
+Sputnik, primeiro satélite artificial;1957;ciencia
+Tratado de Roma cria a Comunidade Europeia;1957;economia
+Brasil campeão mundial pela primeira vez;1958;esporte
+Chega de Saudade lança a Bossa Nova;1958;cultura
+Revolução Cubana;1959;politica
+Inauguração de Brasília;1960;brasil
+Ano da África, dezessete países independentes;1960;politica
+Fundação da OPEP;1960;economia
+Yuri Gagarin, primeiro humano no espaço;1961;ciencia
+Construção do Muro de Berlim;1961;politica
+Invasão da Baía dos Porcos;1961;guerra
+Renúncia de Jânio Quadros;1961;brasil
+Crise dos Mísseis de Cuba;1962;politica
+Brasil bicampeão mundial de futebol;1962;esporte
+Concílio Vaticano II;1962;religiao
+Nelson Mandela é preso;1962;politica
+Assassinato de John F. Kennedy;1963;politica
+Discurso Eu Tenho um Sonho de Martin Luther King;1963;politica
+Golpe militar de 1964 no Brasil;1964;brasil
+Beatles chegam aos Estados Unidos;1964;cultura
+Estados Unidos intensificam a Guerra do Vietnã;1965;guerra
+Revolução Cultural Chinesa;1966;politica
+Guerra dos Seis Dias;1967;guerra
+Primeiro transplante de coração;1967;ciencia
+Guerra civil de Biafra na Nigéria;1967;guerra
+Assassinato de Martin Luther King;1968;politica
+Maio de 1968 na França;1968;politica
+AI-5 é decretado;1968;brasil
+Passeata dos Cem Mil;1968;brasil
+Massacre de Tlatelolco no México;1968;politica
+Chegada do homem à Lua;1969;ciencia
+Festival de Woodstock;1969;cultura
+Criação da Arpanet, embrião da internet;1969;ciencia
+Pelé marca seu milésimo gol;1969;brasil
+Brasil tricampeão mundial de futebol;1970;esporte
+Salvador Allende é eleito no Chile;1970;politica
+Auge do milagre econômico brasileiro;1970;brasil
+Missão Apollo 13 sobrevive a explosão no espaço;1970;ciencia
+Fim do padrão ouro;1971;economia
+Independência de Bangladesh;1971;politica
+Escândalo de Watergate;1972;politica
+Massacre nas Olimpíadas de Munique;1972;esporte
+Nixon visita a China;1972;politica
+Inauguração da rodovia Transamazônica;1972;brasil
+Golpe de Pinochet no Chile;1973;politica
+Crise mundial do petróleo;1973;economia
+Guerra do Yom Kippur;1973;guerra
+Renúncia de Nixon;1974;politica
+Revolução dos Cravos em Portugal;1974;politica
+Geisel inicia a abertura lenta e gradual;1974;brasil
+Fim da Guerra do Vietnã;1975;guerra
+Independência de Angola e Moçambique;1975;politica
+Fundação da Microsoft;1975;economia
+Khmer Vermelho toma o Camboja;1975;politica
+Guerra civil do Líbano;1975;guerra
+Morte de Mao Tsé-Tung;1976;politica
+Fundação da Apple;1976;economia
+Terremoto de Tangshan na China;1976;desastre
+Morte de Elvis Presley;1977;cultura
+Primeiro bebê de proveta;1978;ciencia
+Acordos de Camp David;1978;politica
+João Paulo II é eleito papa;1978;religiao
+Revolução Iraniana;1979;politica
+Invasão soviética do Afeganistão;1979;guerra
+Margaret Thatcher vira primeira-ministra;1979;politica
+Acidente nuclear de Three Mile Island;1979;desastre
+Lei da Anistia no Brasil;1979;brasil
+Fundação do Partido dos Trabalhadores;1980;brasil
+Assassinato de John Lennon;1980;cultura
+Guerra Irã-Iraque;1980;guerra
+Erupção do Monte Santa Helena;1980;desastre
+Sindicato Solidariedade surge na Polônia;1980;politica
+Atentado do Riocentro;1981;brasil
+Primeiro voo do ônibus espacial;1981;ciencia
+Casamento de Charles e Diana;1981;cultura
+Guerra das Malvinas;1982;guerra
+Michael Jackson lança Thriller;1982;cultura
+Identificação do vírus HIV;1983;ciencia
+Campanha das Diretas Já;1984;brasil
+Desastre químico de Bhopal;1984;desastre
+Fim da ditadura militar no Brasil;1985;brasil
+Morte de Tancredo Neves;1985;brasil
+Gorbachev assume a União Soviética;1985;politica
+Primeira edição do Rock in Rio;1985;brasil
+Desastre nuclear de Chernobyl;1986;desastre
+Explosão do ônibus espacial Challenger;1986;desastre
+Plano Cruzado;1986;brasil
+Retorno do cometa Halley;1986;ciencia
+Acidente com o Césio-137 em Goiânia;1987;desastre
+Perestroika e Glasnost na União Soviética;1987;politica
+Primeira Intifada palestina;1987;politica
+Constituição brasileira de 1988;1988;brasil
+Assassinato de Chico Mendes;1988;brasil
+Ayrton Senna conquista seu primeiro título mundial;1988;esporte
+Atentado de Lockerbie;1988;desastre
+Queda do Muro de Berlim;1989;politica
+Massacre da Praça da Paz Celestial;1989;politica
+Primeira eleição direta pós-ditadura no Brasil;1989;brasil
+Invenção da World Wide Web;1989;ciencia
+Exxon Valdez derrama petróleo no Alasca;1989;desastre
+Libertação de Nelson Mandela;1990;politica
+Reunificação da Alemanha;1990;politica
+Plano Collor confisca a poupança;1990;brasil
+Guerra do Golfo;1991;guerra
+Fim da União Soviética;1991;politica
+Fim das leis do apartheid na África do Sul;1991;politica
+Guerra civil da Iugoslávia;1991;guerra
+Impeachment de Collor;1992;brasil
+ECO-92 no Rio de Janeiro;1992;brasil
+Tratado de Maastricht cria a União Europeia;1992;politica
+Cerco de Sarajevo;1992;guerra
+Acordos de Oslo;1993;politica
+Atentado ao World Trade Center de 1993;1993;guerra
+Mandela é eleito presidente da África do Sul;1994;politica
+Genocídio de Ruanda;1994;guerra
+Plano Real;1994;brasil
+Brasil tetracampeão mundial de futebol;1994;esporte
+Morte de Ayrton Senna;1994;brasil
+Massacre de Srebrenica;1995;guerra
+Atentado de Oklahoma City;1995;politica
+Assassinato de Yitzhak Rabin;1995;politica
+Ovelha Dolly é clonada;1996;ciencia
+Morte da princesa Diana;1997;cultura
+Crise financeira asiática;1997;economia
+Deep Blue vence Kasparov no xadrez;1997;ciencia
+Hong Kong é devolvida à China;1997;politica
+Google é fundado;1998;economia
+Acordo da Sexta-Feira Santa na Irlanda;1998;politica
+Reeleição de Fernando Henrique Cardoso;1998;brasil
+Lançamento da Estação Espacial Internacional;1998;ciencia
+Guerra do Kosovo;1999;guerra
+Massacre de Columbine;1999;politica
+Putin chega ao poder na Rússia;1999;politica
+Adoção do euro;1999;economia
+Estouro da bolha da internet;2000;economia
+Naufrágio do submarino Kursk;2000;desastre
+Acidente do Concorde em Paris;2000;desastre
+Atentados de 11 de setembro;2001;guerra
+Invasão do Afeganistão;2001;guerra
+Wikipedia é criada;2001;ciencia
+Lançamento do iPod;2001;economia
+Brasil pentacampeão mundial de futebol;2002;esporte
+Lula é eleito presidente pela primeira vez;2002;brasil
+Invasão do Iraque;2003;guerra
+Acidente do ônibus espacial Columbia;2003;desastre
+Facebook é fundado;2004;economia
+Tsunami no Oceano Índico;2004;desastre
+Atentados de Madri;2004;guerra
+Morte do papa João Paulo II;2005;religiao
+Atentados de Londres;2005;guerra
+Furacão Katrina;2005;desastre
+YouTube é fundado;2005;economia
+Escândalo do Mensalão vem à tona;2005;brasil
+Lançamento do Twitter;2006;economia
+Plutão deixa de ser planeta;2006;ciencia
+Descoberta do pré-sal no Brasil;2006;brasil
+Execução de Saddam Hussein;2006;politica
+Lançamento do iPhone;2007;economia
+Crise financeira global;2008;economia
+Obama é eleito presidente dos Estados Unidos;2008;politica
+Bitcoin é criado;2008;economia
+Grande Colisor de Hádrons é ligado;2008;ciencia
+Voo Air France 447 cai no Atlântico;2009;desastre
+Morte de Michael Jackson;2009;cultura
+Milagre do rio Hudson;2009;desastre
+Terremoto no Haiti;2010;desastre
+Primavera Árabe;2010;politica
+Resgate dos 33 mineiros no Chile;2010;desastre
+Dilma Rousseff é eleita presidenta do Brasil;2010;brasil
+Vazamento de petróleo no Golfo do México;2010;desastre
+WikiLeaks divulga telegramas diplomáticos;2010;politica
+Tsunami e desastre nuclear de Fukushima;2011;desastre
+Morte de Osama bin Laden;2011;guerra
+Guerra Civil Síria;2011;guerra
+Morte de Steve Jobs;2011;cultura
+Curiosity pousa em Marte;2012;ciencia
+Bóson de Higgs é confirmado;2012;ciencia
+Papa Francisco é eleito;2013;religiao
+Protestos de junho de 2013 no Brasil;2013;brasil
+Incêndio da boate Kiss;2013;brasil
+Copa do Mundo no Brasil e o 7 a 1;2014;esporte
+Anexação da Crimeia pela Rússia;2014;politica
+Operação Lava Jato começa;2014;brasil
+Epidemia de ebola na África Ocidental;2014;desastre
+Acordo de Paris sobre o clima;2015;politica
+Atentado ao Charlie Hebdo;2015;guerra
+Rompimento da barragem de Mariana;2015;brasil
+Impeachment de Dilma Rousseff;2016;brasil
+Brexit é aprovado em referendo;2016;politica
+Trump é eleito presidente dos Estados Unidos;2016;politica
+Olimpíadas do Rio de Janeiro;2016;esporte
+Detecção das ondas gravitacionais;2016;ciencia
+Tragédia do voo da Chapecoense;2016;brasil
+Acordo de paz com as Farc na Colômbia;2016;politica
+Furacão Maria devasta Porto Rico;2017;desastre
+Assassinato de Marielle Franco;2018;brasil
+Incêndio do Museu Nacional;2018;brasil
+Bolsonaro é eleito presidente;2018;brasil
+Prisão de Lula em Curitiba;2018;brasil
+Incêndio da catedral de Notre-Dame;2019;desastre
+Rompimento da barragem de Brumadinho;2019;brasil
+Primeira foto de um buraco negro;2019;ciencia
+Pandemia de covid-19;2020;desastre
+Morte de George Floyd e protestos globais;2020;politica
+Explosão no porto de Beirute;2020;desastre
+Brexit é concluído;2020;politica
+Invasão do Capitólio dos Estados Unidos;2021;politica
+Vacinação contra a covid-19 começa no Brasil;2021;brasil
+Talibã retoma o poder no Afeganistão;2021;politica
+Telescópio James Webb é lançado;2021;ciencia
+Invasão da Ucrânia pela Rússia;2022;guerra
+Morte da rainha Elizabeth II;2022;politica
+Lula é eleito para o terceiro mandato;2022;brasil
+Lançamento do ChatGPT;2022;ciencia
+Elon Musk compra o Twitter;2022;economia
+Missão Artemis I contorna a Lua;2022;ciencia
+Atos golpistas de 8 de janeiro em Brasília;2023;brasil
+Terremoto na Turquia e na Síria;2023;desastre
+Guerra entre Israel e Hamas;2023;guerra
+Implosão do submersível Titan;2023;desastre
+Enchentes históricas no Rio Grande do Sul;2024;brasil
+Olimpíadas de Paris;2024;esporte

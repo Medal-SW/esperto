@@ -68,7 +68,7 @@ class RankingService:
 
         triad_by_date: dict[date, set[int]] = defaultdict(set)
         for (uid, d), games in games_per_user_date.items():
-            if len(games) == 3:
+            if len(games) == len(GameName):
                 triad_by_date[d].add(uid)
 
         champions: dict[date, list[int]] = {}

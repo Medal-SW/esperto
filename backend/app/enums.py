@@ -5,3 +5,4 @@ class GameName(str, Enum):
     CONEXO = "conexo"
     LETROSO = "letroso"
     EXPRESSO = "expresso"
+    HISTORICO = "historico"

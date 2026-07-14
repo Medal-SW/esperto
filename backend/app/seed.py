@@ -4,6 +4,7 @@ from datetime import date, timedelta
 from app.auth.service import hash_password
 from app.database import SessionLocal
 from app.enums import GameName
+from app.historico.dataset import load_events
 from app.letroso.dictionary import load_dictionary
 from app.scores.model import Score
 from app.users.model import User
@@ -61,6 +62,7 @@ def seed() -> None:
             print("Users already seeded — skipping user/score seed.")
 
         load_dictionary(db)
+        load_events(db)
     finally:
         db.close()
 
