@@ -1,25 +1,24 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { api } from "./client";
 import type {
+  AttemptsDistribution,
   CalendarDay,
   CompareResponse,
   DashboardData,
-  AttemptsDistribution,
   GameName,
   GameRankingEntry,
   HistoricoEventOption,
   HistoricoGameState,
   HistoricoGuessEntry,
-  LetterFeedback,
   LetrosoGameState,
   LetrosoStatus,
+  LetterFeedback,
   RankingEntry,
   RankingPeriod,
   RecordsResponse,
   Score,
   User,
 } from "../types";
-
+import { api } from "./client";
 
 export function useMe() {
   return useQuery({
@@ -49,13 +48,14 @@ export function useConnectGoogle() {
   const qc = useQueryClient();
   return useMutation({
     mutationFn: (credential: string) =>
-      api.post<User>("/auth/google/connect", { credential }).then((r) => r.data),
+      api
+        .post<User>("/auth/google/connect", { credential })
+        .then((r) => r.data),
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ["me"] });
     },
   });
 }
-
 
 export function useMyScores() {
   return useQuery({
@@ -67,7 +67,13 @@ export function useMyScores() {
 export function useUpdateScore() {
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: ({ scoreId, attempts }: { scoreId: number; attempts: number }) =>
+    mutationFn: ({
+      scoreId,
+      attempts,
+    }: {
+      scoreId: number;
+      attempts: number;
+    }) =>
       api.put<Score>(`/scores/${scoreId}`, { attempts }).then((r) => r.data),
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ["scores"] });
@@ -77,14 +83,12 @@ export function useUpdateScore() {
   });
 }
 
-
 export function useDashboard() {
   return useQuery({
     queryKey: ["dashboard"],
     queryFn: () => api.get<DashboardData>("/dashboard").then((r) => r.data),
   });
 }
-
 
 export function useTodayScores() {
   return useQuery({
@@ -116,7 +120,6 @@ export function useDeleteScore() {
   });
 }
 
-
 export function useGeneralRanking(period: RankingPeriod) {
   return useQuery({
     queryKey: ["ranking", "general", period],
@@ -132,11 +135,12 @@ export function useGameRanking(game: GameName, period: RankingPeriod) {
     queryKey: ["ranking", "game", game, period],
     queryFn: () =>
       api
-        .get<GameRankingEntry[]>(`/ranking/game/${game}`, { params: { period } })
+        .get<
+          GameRankingEntry[]
+        >(`/ranking/game/${game}`, { params: { period } })
         .then((r) => r.data),
   });
 }
-
 
 export function useUpdateProfile() {
   const qc = useQueryClient();
@@ -179,7 +183,6 @@ export function useDeleteAvatar() {
   });
 }
 
-
 export function useRecords() {
   return useQuery({
     queryKey: ["ranking", "records"],
@@ -187,7 +190,6 @@ export function useRecords() {
       api.get<RecordsResponse>("/ranking/records").then((r) => r.data),
   });
 }
-
 
 export function useCompare(p1: number, p2: number) {
   return useQuery({
@@ -199,7 +201,6 @@ export function useCompare(p1: number, p2: number) {
     enabled: p1 > 0 && p2 > 0 && p1 !== p2,
   });
 }
-
 
 export function useDistribution(userId?: number, game?: GameName) {
   return useQuery({
@@ -224,7 +225,6 @@ export function useCalendar(userId: number) {
         .then((r) => r.data),
   });
 }
-
 
 export function useLetrosoGame() {
   return useQuery({
@@ -254,6 +254,25 @@ export function useSubmitGuess() {
   });
 }
 
+export function useSubmitAttempt() {
+  return useMutation({
+    mutationFn: (guess: string) =>
+      api
+        .post<{
+          guess: string;
+          feedback: {
+            substring: string;
+            exists: boolean;
+            correct_order: boolean;
+            is_start: boolean;
+            is_end: boolean;
+          };
+          solved: boolean;
+        }>("/letroso/attempt", { guess })
+        .then((r) => r.data),
+  });
+}
+
 export function useLetrosoStatus() {
   return useQuery({
     queryKey: ["letroso", "status"],
@@ -261,7 +280,6 @@ export function useLetrosoStatus() {
       api.get<LetrosoStatus>("/letroso/status").then((r) => r.data),
   });
 }
-
 
 export function useHistoricoGame() {
   return useQuery({
@@ -275,9 +293,7 @@ export function useHistoricoEventos() {
   return useQuery({
     queryKey: ["historico", "eventos"],
     queryFn: () =>
-      api
-        .get<HistoricoEventOption[]>("/historico/eventos")
-        .then((r) => r.data),
+      api.get<HistoricoEventOption[]>("/historico/eventos").then((r) => r.data),
     staleTime: Infinity,
   });
 }

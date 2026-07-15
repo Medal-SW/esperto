@@ -1,5 +1,6 @@
 import hashlib
 from datetime import date
+from difflib import SequenceMatcher
 
 from fastapi import HTTPException
 from sqlalchemy.orm import Session, attributes
@@ -11,12 +12,15 @@ from app.letroso.models import LetrosoSession
 from app.letroso.repository import LetrosoRepository
 from app.letroso.schemas import (
     GameStateResponse,
+    Guess,
     GuessEntry,
+    GuessFinalResponse,
     GuessResponse,
+    GuessResponseTrial,
     LetrosoStatusResponse,
     LetterFeedback,
 )
-from app.letroso.utils import compute_feedback, normalize_word
+from app.letroso.utils import compute_feedback, evaluate_guess, normalize_word
 from app.scores.schemas import ScoreCreate
 from app.scores.service import ScoreService
 from app.users.model import User
@@ -45,10 +49,14 @@ class LetrosoService:
         secret = self._get_daily_word(today)
 
         if not normalized_guess.isalpha():
-            raise HTTPException(status_code=422, detail="Palavra deve conter apenas letras")
+            raise HTTPException(
+                status_code=422, detail="Palavra deve conter apenas letras"
+            )
 
         if not self.repo.is_valid_word(normalized_guess):
-            raise HTTPException(status_code=422, detail="Palavra não encontrada no dicionário")
+            raise HTTPException(
+                status_code=422, detail="Palavra não encontrada no dicionário"
+            )
 
         feedback_raw = compute_feedback(normalized_guess, secret)
         feedback = [LetterFeedback(**f) for f in feedback_raw]
@@ -70,6 +78,47 @@ class LetrosoService:
             feedback=feedback,
             solved=solved,
             game_state=self._to_game_state(session),
+        )
+
+    def submit_attempt(self, user: User, raw_guess: str):
+        today = today_manaus()
+        session = self._get_or_create_session(user, today)
+
+        if session.solved:
+            raise ForbiddenError("Jogo já finalizado hoje")
+
+        normalized_guess = normalize_word(raw_guess)
+        secret = self._get_daily_word(today)
+
+        if not normalized_guess.isalpha():
+            raise HTTPException(
+                status_code=422, detail="Palavra deve conter apenas letras"
+            )
+
+        if not self.repo.is_valid_word(normalized_guess):
+            raise HTTPException(
+                status_code=422, detail="Palavra não encontrada no dicionário"
+            )
+
+        feedback_raw = evaluate_guess(normalized_guess, secret)
+        feedback = [Guess(**f) for f in feedback_raw]
+
+        guess_entry = GuessResponseTrial(guess=normalized_guess, feedback=feedback)
+        session.guesses = session.guesses + [guess_entry.model_dump()]
+        attributes.flag_modified(session, "guesses")
+
+        solved = normalized_guess == secret
+        if solved:
+            session.solved = True
+            session.attempts = len(session.guesses)
+            self._register_score(user, session.attempts)
+
+        self.repo.save_session(session)
+
+        return GuessFinalResponse(
+            guess=normalized_guess,
+            feedback=feedback,
+            solved=solved,
         )
 
     def get_status(self, user: User) -> LetrosoStatusResponse:
@@ -126,7 +175,7 @@ class LetrosoService:
         for d in list(_daily_word_cache):
             if d < played_date:
                 del _daily_word_cache[d]
-
+        print(word)
         return word
 
     def _register_score(self, user: User, attempts: int) -> None:
