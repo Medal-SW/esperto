@@ -6,6 +6,7 @@ from app.database import get_db
 from app.letroso.schemas import (
     GameStateResponse,
     GuessCreate,
+    GuessFinalResponse,
     GuessResponse,
     LetrosoStatusResponse,
 )
@@ -30,6 +31,15 @@ def submit_guess(
     db: Session = Depends(get_db),
 ):
     return LetrosoService(db).submit_guess(user, body.guess)
+
+
+@router.post("/attempt", response_model=GuessFinalResponse)
+def submit_attempt(
+    body: GuessCreate,
+    user: User = Depends(get_current_user),
+    db: Session = Depends(get_db),
+):
+    return LetrosoService(db).submit_attempt(user, body.guess)
 
 
 @router.get("/status", response_model=LetrosoStatusResponse)

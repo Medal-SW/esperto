@@ -43,3 +43,22 @@ class LetrosoStatusResponse(BaseModel):
     played_today: bool
     solved: bool
     attempts: int | None
+
+
+class Guess(BaseModel):
+    substring: str
+    exists: bool
+    correct_order: bool
+    is_start: bool
+    is_end: bool
+
+
+class GuessResponseTrial(BaseModel):
+    guess: str
+    feedback: list[Guess]
+
+
+class GuessFinalResponse(BaseModel):
+    guess: str
+    feedback: list[Guess]
+    solved: bool

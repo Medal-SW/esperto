@@ -254,6 +254,25 @@ export function useSubmitGuess() {
   });
 }
 
+export function useSubmitAttempt() {
+  return useMutation({
+    mutationFn: (guess: string) =>
+      api
+        .post<{
+          guess: string;
+          feedback: {
+            substring: string;
+            exists: boolean;
+            correct_order: boolean;
+            is_start: boolean;
+            is_end: boolean;
+          };
+          solved: boolean;
+        }>("/letroso/attempt", { guess })
+        .then((r) => r.data),
+  });
+}
+
 export function useLetrosoStatus() {
   return useQuery({
     queryKey: ["letroso", "status"],

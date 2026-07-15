@@ -4,6 +4,7 @@ import { DashboardPage } from "./pages/Dashboard";
 import { ForgotPasswordPage } from "./pages/ForgotPassword";
 import { HistoricoPage } from "./pages/Historico";
 import { HistoryPage } from "./pages/History";
+import { LetrosoTest } from "./pages/LetrosoTest";
 import { LoginPage } from "./pages/Login";
 import { OnboardingPage } from "./pages/Onboarding";
 import { PlayPage } from "./pages/Play";
@@ -23,6 +24,7 @@ export function App() {
         <Route path="/dashboard" element={<DashboardPage />} />
         <Route path="/submit" element={<SubmitPage />} />
         <Route path="/play" element={<PlayPage />} />
+        <Route path="/letroso" element={<LetrosoTest />} />
         <Route path="/historico" element={<HistoricoPage />} />
         <Route path="/ranking" element={<RankingPage />} />
         <Route path="/history" element={<HistoryPage />} />
