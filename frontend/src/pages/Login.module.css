@@ -54,43 +54,6 @@
   );
 }
 
-.logo {
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.logoBadge {
-  width: 42px;
-  height: 42px;
-  border-radius: 12px;
-  background: #f43f5e;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font:
-    700 22px "Space Grotesk",
-    sans-serif;
-  color: #fff;
-  box-shadow: 0 8px 24px -6px rgba(244, 63, 94, 0.7);
-}
-
-.logoName {
-  font:
-    700 22px "Space Grotesk",
-    sans-serif;
-  color: #fff;
-  letter-spacing: -0.5px;
-}
-
-.logoSub {
-  font:
-    500 12px "Hanken Grotesk",
-    sans-serif;
-  color: #8b93a7;
-}
-
 .hero {
   position: relative;
   max-width: 460px;

@@ -1,8 +1,9 @@
-import { useState, type FormEvent } from "react";
-import { Navigate } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
 import { Eye, EyeOff } from "lucide-react";
+import { useState, type FormEvent } from "react";
+import { Link, Navigate } from "react-router-dom";
 import { GoogleButton } from "../components/GoogleButton";
+import { Logo } from "../components/Logo";
+import { useAuth } from "../context/AuthContext";
 import styles from "./Login.module.css";
 
 function extractDetail(err: unknown): string {
@@ -13,18 +14,6 @@ function extractDetail(err: unknown): string {
     return (detail[0] as { msg?: string })?.msg ?? "Dados inválidos";
   }
   return typeof detail === "string" ? detail : "Erro inesperado";
-}
-
-function Logo() {
-  return (
-    <>
-      <span className={styles.logoBadge}>E</span>
-      <div>
-        <div className={styles.logoName}>Esperto</div>
-        <div className={styles.logoSub}>Ranking de jogos diários</div>
-      </div>
-    </>
-  );
 }
 
 export function LoginPage() {
@@ -83,9 +72,7 @@ export function LoginPage() {
         <div className={`${styles.blob} ${styles.blobTop}`} />
         <div className={`${styles.blob} ${styles.blobBottom}`} />
 
-        <div className={styles.logo}>
-          <Logo />
-        </div>
+        <Logo />
 
         <div className={styles.hero}>
           <h1 className={styles.heroTitle}>
@@ -203,13 +190,13 @@ export function LoginPage() {
                   </button>
                 </div>
                 {isLogin && (
-                  <a
-                    href="#"
-                    className={styles.forgot}
-                    onClick={(e) => e.preventDefault()}
+                  <Link
+                    to="/forgot-password"
+                    className={styles.toggleBtn}
+                    style={{ textDecoration: "none", display: "inline-block" }}
                   >
                     Esqueci a senha
-                  </a>
+                  </Link>
                 )}
               </div>
             </div>

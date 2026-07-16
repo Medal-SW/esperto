@@ -18,6 +18,8 @@ interface AuthContextValue {
   completeOnboarding: (username: string) => Promise<void>;
   logout: () => void;
   refreshUser: () => Promise<void>;
+  forgotPassword: (email: string) => Promise<void>;
+  resetPassword: (token: string, new_password: string) => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextValue | null>(null);
@@ -45,13 +47,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setUser(me.data);
   }, []);
 
-  const login = useCallback(async (login: string, password: string) => {
-    const { data } = await api.post<{ access_token: string }>("/auth/login", {
-      login,
-      password,
-    });
-    await finishLogin(data.access_token);
-  }, [finishLogin]);
+  const login = useCallback(
+    async (login: string, password: string) => {
+      const { data } = await api.post<{ access_token: string }>("/auth/login", {
+        login,
+        password,
+      });
+      await finishLogin(data.access_token);
+    },
+    [finishLogin],
+  );
 
   const signup = useCallback(
     async (username: string, email: string, password: string) => {
@@ -90,6 +95,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setUser(me.data);
   }, []);
 
+  const forgotPassword = useCallback(async (email: string) => {
+    await api.post("/auth/forgot-password", { email });
+  }, []);
+
+  const resetPassword = useCallback(
+    async (token: string, new_password: string) => {
+      await api.post("/auth/reset-password", { token, new_password });
+    },
+    [],
+  );
+
   return (
     <AuthContext.Provider
       value={{
@@ -101,6 +117,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         completeOnboarding,
         logout,
         refreshUser,
+        forgotPassword,
+        resetPassword,
       }}
     >
       {children}
