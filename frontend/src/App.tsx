@@ -1,13 +1,15 @@
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import { Layout } from "./components/Layout";
 import { DashboardPage } from "./pages/Dashboard";
+import { ForgotPasswordPage } from "./pages/ForgotPassword";
 import { HistoricoPage } from "./pages/Historico";
 import { HistoryPage } from "./pages/History";
 import { LoginPage } from "./pages/Login";
 import { OnboardingPage } from "./pages/Onboarding";
-import { ProfilePage } from "./pages/Profile";
 import { PlayPage } from "./pages/Play";
+import { ProfilePage } from "./pages/Profile";
 import { RankingPage } from "./pages/Ranking";
+import { ResetPasswordPage } from "./pages/ResetPassword";
 import { SubmitPage } from "./pages/Submit";
 
 export function App() {
@@ -15,6 +17,8 @@ export function App() {
     <Routes>
       <Route path="/login" element={<LoginPage />} />
       <Route path="/onboarding" element={<OnboardingPage />} />
+      <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+      <Route path="/reset-password" element={<ResetPasswordPage />} />
       <Route element={<Layout />}>
         <Route path="/dashboard" element={<DashboardPage />} />
         <Route path="/submit" element={<SubmitPage />} />
