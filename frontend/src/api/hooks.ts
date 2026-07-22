@@ -1,4 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { GameStateResponse, GuessFinalResponse } from "../pages/LetrosoTest";
 import type {
   AttemptsDistribution,
   CalendarDay,
@@ -230,7 +231,7 @@ export function useLetrosoGame() {
   return useQuery({
     queryKey: ["letroso", "today"],
     queryFn: () =>
-      api.get<LetrosoGameState>("/letroso/today").then((r) => r.data),
+      api.get<GameStateResponse>("/letroso/today").then((r) => r.data),
   });
 }
 
@@ -258,17 +259,7 @@ export function useSubmitAttempt() {
   return useMutation({
     mutationFn: (guess: string) =>
       api
-        .post<{
-          guess: string;
-          feedback: {
-            substring: string;
-            exists: boolean;
-            correct_order: boolean;
-            is_start: boolean;
-            is_end: boolean;
-          };
-          solved: boolean;
-        }>("/letroso/attempt", { guess })
+        .post<GuessFinalResponse>("/letroso/attempt", { guess })
         .then((r) => r.data),
   });
 }

@@ -45,6 +45,9 @@ class LetrosoStatusResponse(BaseModel):
     attempts: int | None
 
 
+# NEW GAME
+
+
 class Guess(BaseModel):
     substring: str
     exists: bool
@@ -53,12 +56,21 @@ class Guess(BaseModel):
     is_end: bool
 
 
-class GuessResponseTrial(BaseModel):
+class GuessEntryTrial(BaseModel):
     guess: str
     feedback: list[Guess]
+
+
+class GameStateResponseTrial(BaseModel):
+    guesses: list[GuessEntryTrial]
+    solved: bool
+    attempts: int | None
+
+    model_config = ConfigDict(from_attributes=True)
 
 
 class GuessFinalResponse(BaseModel):
     guess: str
     feedback: list[Guess]
     solved: bool
+    game_state: GameStateResponseTrial

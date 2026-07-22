@@ -4,7 +4,7 @@ from sqlalchemy.orm import Session
 from app.auth.dependencies import get_current_user
 from app.database import get_db
 from app.letroso.schemas import (
-    GameStateResponse,
+    GameStateResponseTrial,
     GuessCreate,
     GuessFinalResponse,
     GuessResponse,
@@ -16,12 +16,12 @@ from app.users.model import User
 router = APIRouter(prefix="/letroso", tags=["letroso"])
 
 
-@router.get("/today", response_model=GameStateResponse)
+@router.get("/today", response_model=GameStateResponseTrial)
 def get_today(
     user: User = Depends(get_current_user),
     db: Session = Depends(get_db),
 ):
-    return LetrosoService(db).get_game_state(user)
+    return LetrosoService(db).get_game_state_trial(user)
 
 
 @router.post("/guess", response_model=GuessResponse)

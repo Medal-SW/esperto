@@ -1,5 +1,6 @@
+import { useQueryClient } from "@tanstack/react-query";
 import React, { useEffect, useState } from "react";
-import { useSubmitAttempt } from "../api/hooks";
+import { useLetrosoGame, useSubmitAttempt } from "../api/hooks";
 
 export interface Guess {
   substring: string;
@@ -12,225 +13,237 @@ export interface Guess {
 export interface GuessEntry {
   guess: string;
   feedback: Guess[];
-  solved: boolean;
 }
 
-export function LetrosoTest() {
-  const attemptMutation = useSubmitAttempt();
+export interface GameStateResponse {
+  guesses: GuessEntry[];
+  solved: boolean;
+  attempts: number | null;
+}
 
-  // 1. BLINDAGEM DO ESTADO: Garantimos que NUNCA será undefined
-  const [guesses, setGuesses] = useState<GuessEntry[]>(() => {
-    try {
-      const saved = localStorage.getItem("letroso_test_guesses");
-      if (saved) {
-        const parsed = JSON.parse(saved);
-        // Garante que se o JSON for inválido ou não for array, retorna array vazio
-        return Array.isArray(parsed)
-          ? (parsed as GuessEntry[])
-          : ([] as GuessEntry[]);
-      }
-    } catch (e) {
-      console.error("Erro no LocalStorage", e);
-    }
-    return [] as GuessEntry[];
-  });
+export interface GuessFinalResponse {
+  guess: string;
+  feedback: Guess[];
+  solved: boolean;
+  game_state: GameStateResponse;
+}
 
-  const [currentInput, setCurrentInput] = useState<string>("");
-  const [errorMsg, setErrorMsg] = useState<string>("");
+export default function LetrosoBoard() {
+  const queryClient = useQueryClient();
+  const { data: gameState } = useLetrosoGame();
+  const { mutate: submitAttempt, isPending } = useSubmitAttempt();
 
-  // 2. BLINDAGEM DE LEITURA: Fallback seguro caso o estado se perca
-  const safeGuesses: GuessEntry[] = guesses || ([] as GuessEntry[]);
+  const [currentGuess, setCurrentGuess] = useState("");
 
-  // Verificação segura do status de vitória
-  const solved: boolean =
-    safeGuesses.length > 0
-      ? Boolean(safeGuesses[safeGuesses.length - 1]?.solved)
-      : false;
+  const [cursorIndex, setCursorIndex] = useState(0);
+  const [cursorVisible, setCursorVisible] = useState(true);
 
   useEffect(() => {
-    localStorage.setItem("letroso_test_guesses", JSON.stringify(safeGuesses));
-  }, [safeGuesses]);
+    setCursorVisible(true);
+    const interval = setInterval(() => setCursorVisible((v) => !v), 500);
+    return () => clearInterval(interval);
+  }, [cursorIndex, currentGuess]);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!currentInput.trim()) return;
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (gameState?.solved || isPending) return;
 
-    setErrorMsg("");
-
-    try {
-      // 3. BLINDAGEM DA MUTATION: Forçamos o TypeScript a entender o formato do retorno
-      const response = (await attemptMutation.mutateAsync(
-        currentInput,
-      )) as unknown as GuessEntry;
-
-      if (!response || !response.feedback) {
-        throw new Error("Resposta inválida do servidor");
+      if (e.key === "Enter") {
+        if (currentGuess.trim().length > 0) {
+          submitAttempt(currentGuess, {
+            onSuccess: () => {
+              queryClient.invalidateQueries({ queryKey: ["letroso", "today"] });
+              setCurrentGuess("");
+              setCursorIndex(0); // <-- ADICIONADO: reseta o cursor
+            },
+          });
+        }
+      } else if (e.key === "Backspace") {
+        // --- MODIFICADO: apaga na posição do cursor ---
+        if (cursorIndex > 0) {
+          setCurrentGuess(
+            (prev) => prev.slice(0, cursorIndex - 1) + prev.slice(cursorIndex),
+          );
+          setCursorIndex((prev) => prev - 1);
+        }
+      } else if (e.key === "ArrowLeft") {
+        // --- ADICIONADO: move para esquerda ---
+        setCursorIndex((prev) => Math.max(0, prev - 1));
+      } else if (e.key === "ArrowRight") {
+        // --- ADICIONADO: move para direita ---
+        setCursorIndex((prev) => Math.min(currentGuess.length, prev + 1));
+      } else if (/^[a-zA-ZáéíóúâêôãõçÁÉÍÓÚÂÊÔÃÕÇ]$/.test(e.key)) {
+        // --- MODIFICADO: insere na posição do cursor ---
+        setCurrentGuess(
+          (prev) =>
+            prev.slice(0, cursorIndex) +
+            e.key.toLowerCase() +
+            prev.slice(cursorIndex),
+        );
+        setCursorIndex((prev) => prev + 1);
       }
+    };
 
-      setGuesses((prev) => [...(prev || []), response]);
-      setCurrentInput("");
-    } catch (err: any) {
-      const detail = err?.response?.data?.detail;
-      setErrorMsg(detail || "Erro ao comunicar com o backend.");
-    }
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [
+    currentGuess,
+    cursorIndex,
+    gameState?.solved,
+    isPending,
+    submitAttempt,
+    queryClient,
+  ]);
+
+  const containerStyle: React.CSSProperties = {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    minHeight: "100vh",
+    padding: "16px",
+    fontFamily: "sans-serif",
   };
 
-  const handleReset = () => {
-    setGuesses([] as GuessEntry[]);
-    setCurrentInput("");
-    setErrorMsg("");
-    localStorage.removeItem("letroso_test_guesses");
+  const boardStyle: React.CSSProperties = {
+    display: "flex",
+    flexDirection: "column",
+    gap: "12px",
   };
 
-  const getTileColor = (correct_order: boolean, exists: boolean) => {
-    if (correct_order) return "#4caf50";
-    if (exists) return "#ffeb3b";
-    return "#e0e0e0";
+  const rowStyle: React.CSSProperties = {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: "6px",
+    height: "48px",
+  };
+
+  const rowStyleTyping: React.CSSProperties = {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    height: "48px",
+    position: "relative",
+    cursor: "text",
+    minWidth: "2px",
+  };
+
+  const typingBlockStyle: React.CSSProperties = {
+    width: "48px",
+    height: "48px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    fontSize: "20px",
+    fontWeight: "bold",
+    textTransform: "uppercase",
+    color: "#ffffff",
+    boxSizing: "border-box",
+  };
+
+  const successMessageStyle: React.CSSProperties = {
+    marginTop: "32px",
+    fontSize: "20px",
+    fontWeight: "bold",
+    color: "#16a34a",
   };
 
   return (
-    <div
-      style={{
-        maxWidth: "400px",
-        margin: "40px auto",
-        fontFamily: "sans-serif",
-      }}
-    >
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
-      >
-        <h2>Teste Isolado (LocalStorage)</h2>
-        <button
-          onClick={handleReset}
-          type="button"
-          style={{
-            padding: "6px 12px",
-            cursor: "pointer",
-            backgroundColor: "#f44336",
-            color: "white",
-            border: "none",
-            borderRadius: "4px",
-          }}
-        >
-          Resetar Jogo
-        </button>
-      </div>
+    <div style={containerStyle}>
+      <div style={boardStyle}>
+        {gameState?.guesses.map((entry, rowIndex) => (
+          <div key={rowIndex} style={rowStyle}>
+            {entry.feedback.map((block, blockIndex) => (
+              <FeedbackBlock key={blockIndex} guess={block} />
+            ))}
+          </div>
+        ))}
 
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          gap: "8px",
-          marginBottom: "24px",
-          marginTop: "20px",
-        }}
-      >
-        {safeGuesses.map((entry, index) => {
-          const tiles: React.ReactNode[] = [];
-
-          // 4. BLINDAGEM DO FEEDBACK: Previne erro se o backend não mandar o array
-          const safeFeedback = entry?.feedback || [];
-
-          safeFeedback.forEach((block, blockIndex) => {
-            const bgColor = getTileColor(
-              Boolean(block?.correct_order),
-              Boolean(block?.exists),
-            );
-            const textColor =
-              block?.correct_order || !block?.exists ? "white" : "black";
-
-            // 5. BLINDAGEM DA STRING: Previne erro de length em undefined
-            const safeSubstring = block?.substring || "";
-
-            for (let i = 0; i < safeSubstring.length; i++) {
-              tiles.push(
-                <div
-                  key={`${index}-${blockIndex}-${i}`}
-                  style={{
-                    width: "40px",
-                    height: "40px",
-                    backgroundColor: bgColor,
-                    color: textColor,
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    fontWeight: "bold",
-                    fontSize: "20px",
-                    textTransform: "uppercase",
-                    borderRadius: "4px",
-                  }}
-                >
-                  {safeSubstring[i]}
-                </div>,
-              );
-            }
-          });
-
-          return (
-            <div
-              key={index}
-              style={{ display: "flex", gap: "6px", justifyContent: "center" }}
-            >
-              {tiles}
-            </div>
-          );
-        })}
-      </div>
-
-      {!solved ? (
-        <form
-          onSubmit={handleSubmit}
-          style={{ display: "flex", flexDirection: "column", gap: "10px" }}
-        >
-          <input
-            type="text"
-            value={currentInput}
-            onChange={(e) => setCurrentInput(e.target.value.toUpperCase())}
-            disabled={attemptMutation.isPending}
-            placeholder="Digite uma palavra..."
-            style={{
-              padding: "12px",
-              textTransform: "uppercase",
-              fontSize: "16px",
-            }}
-            autoFocus
-          />
-          <button
-            type="submit"
-            disabled={attemptMutation.isPending || !currentInput}
-            style={{
-              padding: "12px",
-              cursor: "pointer",
-              fontSize: "16px",
-              backgroundColor: "#2196f3",
-              color: "white",
-              border: "none",
-              borderRadius: "4px",
-            }}
+        {!gameState?.solved && currentGuess.length > 0 && (
+          <div
+            style={rowStyle}
+            onClick={() => setCursorIndex(currentGuess.length)}
           >
-            {attemptMutation.isPending ? "Processando..." : "Enviar Tentativa"}
-          </button>
-        </form>
-      ) : (
-        <h3 style={{ color: "green", textAlign: "center" }}>Você venceu! 🎉</h3>
-      )}
+            {currentGuess.split("").map((char, i) => (
+              <div
+                key={i}
+                style={typingBlockStyle}
+                // --- ADICIONADO: onClick na letra com cálculo de metade ---
+                onClick={(e) => {
+                  e.stopPropagation();
+                  const isRightHalf = e.nativeEvent.offsetX > 28;
+                  setCursorIndex(isRightHalf ? i + 1 : i);
+                }}
+              >
+                {char}
+              </div>
+            ))}
 
-      {errorMsg && (
-        <div
-          style={{
-            marginTop: "12px",
-            color: "red",
-            textAlign: "center",
-            fontWeight: "bold",
-          }}
-        >
-          {errorMsg}
+            <div
+              style={{
+                position: "absolute",
+                width: "8px",
+                height: "40px",
+                backgroundColor: "#000",
+                top: "8px",
+                left: `${currentGuess.length === 0 ? 0 : cursorIndex * 60 - 2}px`,
+                opacity: cursorVisible ? 1 : 0,
+                transition: "left 0.1s ease-out",
+                pointerEvents: "none",
+              }}
+            />
+          </div>
+        )}
+      </div>
+
+      {gameState?.solved && (
+        <div style={successMessageStyle}>
+          Parabéns! Você resolveu o Letroso.
         </div>
       )}
+    </div>
+  );
+}
+
+function FeedbackBlock({ guess }: { guess: Guess }) {
+  let bgColor = "#1e3347";
+  if (guess.correct_order) {
+    bgColor = "#22c55e";
+  } else if (guess.exists) {
+    bgColor = "#eab308";
+  }
+
+  const containerStyle: React.CSSProperties = {
+    display: "flex",
+    backgroundColor: bgColor,
+    color: "#FFFFFF",
+    overflow: "hidden",
+    borderRadius: "6px",
+    borderTopLeftRadius: guess.is_start ? "24px" : "6px",
+    borderBottomLeftRadius: guess.is_start ? "24px" : "6px",
+    borderTopRightRadius: guess.is_end ? "24px" : "6px",
+    borderBottomRightRadius: guess.is_end ? "24px" : "6px",
+  };
+
+  const charStyle: React.CSSProperties = {
+    width: "48px",
+    height: "48px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    fontSize: "20px",
+    fontWeight: "bold",
+    textTransform: "uppercase",
+  };
+
+  return (
+    <div style={containerStyle}>
+      {guess.substring.split("").map((char, i) => (
+        <div key={i} style={charStyle}>
+          {char}
+        </div>
+      ))}
     </div>
   );
 }

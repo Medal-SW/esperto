@@ -12,11 +12,12 @@ from app.letroso.models import LetrosoSession
 from app.letroso.repository import LetrosoRepository
 from app.letroso.schemas import (
     GameStateResponse,
+    GameStateResponseTrial,
     Guess,
     GuessEntry,
+    GuessEntryTrial,
     GuessFinalResponse,
     GuessResponse,
-    GuessResponseTrial,
     LetrosoStatusResponse,
     LetterFeedback,
 )
@@ -37,6 +38,11 @@ class LetrosoService:
         today = today_manaus()
         session = self._get_or_create_session(user, today)
         return self._to_game_state(session)
+
+    def get_game_state_trial(self, user: User) -> GameStateResponse:
+        today = today_manaus()
+        session = self._get_or_create_session(user, today)
+        return self._to_game_state_trial(session)
 
     def submit_guess(self, user: User, raw_guess: str) -> GuessResponse:
         today = today_manaus()
@@ -103,7 +109,7 @@ class LetrosoService:
         feedback_raw = evaluate_guess(normalized_guess, secret)
         feedback = [Guess(**f) for f in feedback_raw]
 
-        guess_entry = GuessResponseTrial(guess=normalized_guess, feedback=feedback)
+        guess_entry = GuessEntryTrial(guess=normalized_guess, feedback=feedback)
         session.guesses = session.guesses + [guess_entry.model_dump()]
         attributes.flag_modified(session, "guesses")
 
@@ -115,10 +121,14 @@ class LetrosoService:
 
         self.repo.save_session(session)
 
+        for s in session.guesses:
+            print("SESSION", s)
+
         return GuessFinalResponse(
             guess=normalized_guess,
             feedback=feedback,
             solved=solved,
+            game_state=self._to_game_state_trial(session),
         )
 
     def get_status(self, user: User) -> LetrosoStatusResponse:
@@ -185,6 +195,14 @@ class LetrosoService:
     def _to_game_state(self, session: LetrosoSession) -> GameStateResponse:
         guesses = [GuessEntry(**g) for g in session.guesses]
         return GameStateResponse(
+            guesses=guesses,
+            solved=session.solved,
+            attempts=session.attempts,
+        )
+
+    def _to_game_state_trial(self, session: LetrosoSession) -> GameStateResponse:
+        guesses = [GuessEntryTrial(**g) for g in session.guesses]
+        return GameStateResponseTrial(
             guesses=guesses,
             solved=session.solved,
             attempts=session.attempts,
