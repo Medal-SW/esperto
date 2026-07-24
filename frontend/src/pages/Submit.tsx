@@ -1,12 +1,17 @@
+import { Check, SquarePen, Trash2 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import { useDashboard, useSubmitScores, useUpdateScore, useDeleteScore } from "../api/hooks";
+import {
+  useDashboard,
+  useDeleteScore,
+  useSubmitScores,
+  useUpdateScore,
+} from "../api/hooks";
 import { Card } from "../components/Card";
 import { Confetti } from "../components/Confetti";
 import { GameDot } from "../components/GameDot";
 import { Skeleton, SkeletonCard } from "../components/Skeleton";
 import { useToast } from "../context/ToastContext";
 import { ALL_GAMES, GAME_META, GameName } from "../types";
-import { Check, SquarePen, Trash2 } from "lucide-react";
 import styles from "./Submit.module.css";
 
 export function SubmitPage() {
@@ -23,7 +28,8 @@ export function SubmitPage() {
   const [showConfetti, setShowConfetti] = useState(false);
   const prevCompleted = useRef(0);
 
-  const completedGames = dashboard?.triad.filter((t) => t.played).map((t) => t.game) ?? [];
+  const completedGames =
+    dashboard?.triad.filter((t) => t.played).map((t) => t.game) ?? [];
   const pendingGames = ALL_GAMES.filter((g) => !completedGames.includes(g));
 
   useEffect(() => {
@@ -45,7 +51,7 @@ export function SubmitPage() {
 
   if (isLoading) {
     return (
-      <div style={{ maxWidth: 560 }}>
+      <div>
         <Skeleton width={200} height={24} radius={8} />
         <div style={{ marginTop: 8, marginBottom: 24 }}>
           <Skeleton width={160} height={14} radius={4} />
@@ -61,108 +67,131 @@ export function SubmitPage() {
 
   if (completedGames.length === ALL_GAMES.length) {
     return (
-      <div style={{ maxWidth: 560 }}>
+      <div>
         <Confetti active={showConfetti} />
         <div className={styles.allDone}>
           <div className={styles.allDoneIcon}>
             <Check size={28} stroke="var(--accent)" strokeWidth={2.5} />
           </div>
           <h2 className={styles.allDoneTitle}>Tudo registrado!</h2>
-          <p className={styles.allDoneSub}>Você já completou todos os jogos de hoje.</p>
+          <p className={styles.allDoneSub}>
+            Você já completou todos os jogos de hoje.
+          </p>
         </div>
 
         <h3 className={styles.editSectionTitle}>Seus resultados de hoje</h3>
         <div className={styles.gamesList}>
-          {dashboard?.triad.filter((t) => t.played).map((t) => {
-            const meta = GAME_META[t.game];
-            const isEditing = editingId === t.score_id;
+          {dashboard?.triad
+            .filter((t) => t.played)
+            .map((t) => {
+              const meta = GAME_META[t.game];
+              const isEditing = editingId === t.score_id;
 
-            return (
-              <Card key={t.game} hover={false} style={{ borderLeft: `4px solid ${meta.color}` }}>
-                <div className={styles.editRow}>
-                  <div className={styles.gameName}>
-                    <GameDot game={t.game} />
-                    <span>{meta.name}</span>
+              return (
+                <Card
+                  key={t.game}
+                  hover={false}
+                  style={{ borderLeft: `4px solid ${meta.color}` }}
+                >
+                  <div className={styles.editRow}>
+                    <div className={styles.gameName}>
+                      <GameDot game={t.game} />
+                      <span>{meta.name}</span>
+                    </div>
+
+                    {isEditing ? (
+                      <div className={styles.editControls}>
+                        <button
+                          className={styles.editStepBtn}
+                          onClick={() =>
+                            setEditValue((v) => Math.max(1, v - 1))
+                          }
+                          disabled={editValue <= 1}
+                        >
+                          −
+                        </button>
+                        <span
+                          className={styles.editStepValue}
+                          style={{ color: meta.color }}
+                        >
+                          {editValue}
+                        </span>
+                        <button
+                          className={styles.editStepBtn}
+                          onClick={() => setEditValue((v) => v + 1)}
+                        >
+                          +
+                        </button>
+                        <button
+                          className={styles.editSaveBtn}
+                          onClick={async () => {
+                            try {
+                              await updateMutation.mutateAsync({
+                                scoreId: t.score_id!,
+                                attempts: editValue,
+                              });
+                              setEditingId(null);
+                              addToast("Resultado atualizado!");
+                            } catch {
+                              addToast("Erro ao atualizar", "error");
+                            }
+                          }}
+                        >
+                          Salvar
+                        </button>
+                        <button
+                          className={styles.editCancelBtn}
+                          onClick={() => setEditingId(null)}
+                        >
+                          ✕
+                        </button>
+                      </div>
+                    ) : (
+                      <div className={styles.editControls}>
+                        <span
+                          className={styles.editAttempts}
+                          style={{ color: meta.color }}
+                        >
+                          {t.attempts} {t.attempts === 1 ? "tent." : "tent."}
+                        </span>
+                        <button
+                          className={styles.editBtn}
+                          onClick={() => {
+                            setEditingId(t.score_id);
+                            setEditValue(t.attempts!);
+                          }}
+                          title="Editar"
+                        >
+                          <SquarePen size={14} />
+                        </button>
+                        <button
+                          className={styles.deleteBtn}
+                          onClick={async () => {
+                            try {
+                              await deleteMutation.mutateAsync(t.score_id!);
+                              addToast("Resultado removido");
+                            } catch {
+                              addToast("Erro ao remover", "error");
+                            }
+                          }}
+                          title="Remover"
+                        >
+                          <Trash2 size={14} />
+                        </button>
+                      </div>
+                    )}
                   </div>
-
-                  {isEditing ? (
-                    <div className={styles.editControls}>
-                      <button
-                        className={styles.editStepBtn}
-                        onClick={() => setEditValue((v) => Math.max(1, v - 1))}
-                        disabled={editValue <= 1}
-                      >
-                        −
-                      </button>
-                      <span className={styles.editStepValue} style={{ color: meta.color }}>{editValue}</span>
-                      <button
-                        className={styles.editStepBtn}
-                        onClick={() => setEditValue((v) => v + 1)}
-                      >
-                        +
-                      </button>
-                      <button
-                        className={styles.editSaveBtn}
-                        onClick={async () => {
-                          try {
-                            await updateMutation.mutateAsync({ scoreId: t.score_id!, attempts: editValue });
-                            setEditingId(null);
-                            addToast("Resultado atualizado!");
-                          } catch {
-                            addToast("Erro ao atualizar", "error");
-                          }
-                        }}
-                      >
-                        Salvar
-                      </button>
-                      <button
-                        className={styles.editCancelBtn}
-                        onClick={() => setEditingId(null)}
-                      >
-                        ✕
-                      </button>
-                    </div>
-                  ) : (
-                    <div className={styles.editControls}>
-                      <span className={styles.editAttempts} style={{ color: meta.color }}>
-                        {t.attempts} {t.attempts === 1 ? "tent." : "tent."}
-                      </span>
-                      <button
-                        className={styles.editBtn}
-                        onClick={() => {
-                          setEditingId(t.score_id);
-                          setEditValue(t.attempts!);
-                        }}
-                        title="Editar"
-                      >
-                        <SquarePen size={14} />
-                      </button>
-                      <button
-                        className={styles.deleteBtn}
-                        onClick={async () => {
-                          try {
-                            await deleteMutation.mutateAsync(t.score_id!);
-                            addToast("Resultado removido");
-                          } catch {
-                            addToast("Erro ao remover", "error");
-                          }
-                        }}
-                        title="Remover"
-                      >
-                        <Trash2 size={14} />
-                      </button>
-                    </div>
-                  )}
-                </div>
-              </Card>
-            );
-          })}
+                </Card>
+              );
+            })}
         </div>
       </div>
     );
   }
 
-  const hasGamesToSubmit = pendingGames.some((g) => !skipped[g] && (attempts[g] ?? 0) >= 1);
+  const hasGamesToSubmit = pendingGames.some(
+    (g) => !skipped[g] && (attempts[g] ?? 0) >= 1,
+  );
 
   const handleSubmit = async () => {
     const scores = pendingGames
@@ -179,10 +208,18 @@ export function SubmitPage() {
   };
 
   return (
-    <div style={{ maxWidth: 560 }}>
+    <div
+      style={{
+        width: "100%",
+      }}
+    >
       <h1 className={styles.title}>Registrar Resultados</h1>
       <p className={styles.date}>
-        {new Date().toLocaleDateString("pt-BR", { day: "numeric", month: "long", year: "numeric" })}
+        {new Date().toLocaleDateString("pt-BR", {
+          day: "numeric",
+          month: "long",
+          year: "numeric",
+        })}
       </p>
 
       <div className={styles.gamesList}>
@@ -201,7 +238,10 @@ export function SubmitPage() {
                 transition: "opacity 0.2s",
               }}
             >
-              <div className={styles.gameHeader} style={{ marginBottom: isSkipped ? 0 : 16 }}>
+              <div
+                className={styles.gameHeader}
+                style={{ marginBottom: isSkipped ? 0 : 16 }}
+              >
                 <div className={styles.gameName}>
                   <GameDot game={game} />
                   <span>{meta.name}</span>
@@ -210,7 +250,9 @@ export function SubmitPage() {
                   <input
                     type="checkbox"
                     checked={isSkipped}
-                    onChange={(e) => setSkipped((p) => ({ ...p, [game]: e.target.checked }))}
+                    onChange={(e) =>
+                      setSkipped((p) => ({ ...p, [game]: e.target.checked }))
+                    }
                   />
                   Não joguei
                 </label>
@@ -221,7 +263,12 @@ export function SubmitPage() {
                   <div className={styles.stepper}>
                     <button
                       className={styles.stepperBtn}
-                      onClick={() => setAttempts((p) => ({ ...p, [game]: Math.max(1, val - 1) }))}
+                      onClick={() =>
+                        setAttempts((p) => ({
+                          ...p,
+                          [game]: Math.max(1, val - 1),
+                        }))
+                      }
                       disabled={val <= 1}
                     >
                       −
@@ -251,13 +298,19 @@ export function SubmitPage() {
                     />
                     <button
                       className={styles.stepperBtn}
-                      onClick={() => setAttempts((p) => ({ ...p, [game]: val + 1 }))}
+                      onClick={() =>
+                        setAttempts((p) => ({ ...p, [game]: val + 1 }))
+                      }
                     >
                       +
                     </button>
                   </div>
                   <p className={styles.stepperHint}>
-                    {!val ? " " : val === 1 ? "1 tentativa" : `${val} tentativas`}
+                    {!val
+                      ? " "
+                      : val === 1
+                        ? "1 tentativa"
+                        : `${val} tentativas`}
                   </p>
                 </>
               )}
@@ -268,7 +321,16 @@ export function SubmitPage() {
 
       {completedGames.length > 0 && (
         <div className={styles.alreadyDone}>
-          <h3 style={{ fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", color: "var(--text-muted)", marginBottom: 12 }}>
+          <h3
+            style={{
+              fontSize: 11,
+              fontWeight: 700,
+              textTransform: "uppercase",
+              letterSpacing: "0.08em",
+              color: "var(--text-muted)",
+              marginBottom: 12,
+            }}
+          >
             Já Registrados
           </h3>
           <div className={styles.doneTags}>

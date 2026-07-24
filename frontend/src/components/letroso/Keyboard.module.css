@@ -33,7 +33,9 @@
   color: var(--text-primary);
   cursor: pointer;
   user-select: none;
-  transition: background var(--duration-fast), transform var(--duration-fast);
+  transition:
+    background var(--duration-fast),
+    transform var(--duration-fast);
   -webkit-tap-highlight-color: transparent;
 }
 
